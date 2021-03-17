@@ -5,14 +5,14 @@ export const BoxContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: -50px;
+  margin-top: -15px;
+  float: left;
 `;
 
 export const FormContainer = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 0px 2.5px rgba(15, 15, 15, 0.19);
 `;
 
 export const MutedLink = styled.a`
@@ -33,7 +33,7 @@ export const BoldLink = styled.a`
 
 export const Input = styled.input`
   width: 100%;
-  height: 42px;
+  height: 26px;
   outline: none;
   border: 1px solid rgba(200, 200, 200, 0.3);
   padding: 0 10px;
@@ -89,27 +89,15 @@ export const SubmitButton = styled.button`
 `;
 
 export const SkillButton = styled.button`
-  padding: 3px 10%;
-  width: 10em;
-  color: #fff;
+  padding: 10px 10%;
+  width: 12em;
+  color: #000;
   font-size: 13px;
   font-weight: 600;
-  border: none;
+  border: #434343;
   border-radius: 100px 100px 100px 100px;
   cursor: pointer;
   transition: all, 240ms ease-in-out;
-
-  background: #000000; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #434343,
-    #000000
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #434343,
-    #000000
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   &:focus {
     outline: none;

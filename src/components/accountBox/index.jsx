@@ -4,7 +4,10 @@ import { motion } from "framer-motion";
 import { LoginForm } from "./loginForm";
 import { AccountContext } from "./context";
 import { SignupForm } from "./signupForm";
+import { Link } from "react-router-dom";
 import { MutedLink } from "./common";
+
+import BackImg from "../../images/Backorange.png";
 
 const BoxContainer = styled.div`
   width: 280px;
@@ -104,6 +107,18 @@ const expandingTransition = {
   stiffness: 30,
 };
 
+const BackImage = styled.div`
+  width: 2em;
+  height: 1.3em;
+  position: relative;
+  top: -20px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
 export function AccountBox(props) {
   const { initialActive } = props;
   const [isExpanded, setExpanded] = useState(false);
@@ -155,6 +170,11 @@ export function AccountBox(props) {
           {active === "signin" && (
             <>
               <HeaderContainer>
+                <Link to = "/">
+                  <BackImage>
+                    <img src={BackImg} alt="Back" />
+                  </BackImage>
+                </Link>
                 <HeaderText>Welcome</HeaderText>
                 <HeaderText>Back</HeaderText>
               </HeaderContainer>
@@ -164,6 +184,11 @@ export function AccountBox(props) {
           {active === "signup" && (
             <>
               <HeaderContainer>
+                <Link to = "/">
+                  <BackImage>
+                    <img src={BackImg} alt="Back" />
+                  </BackImage>
+                </Link>
                 <HeaderText>Create </HeaderText>
                 <HeaderText>Account</HeaderText>
               </HeaderContainer>

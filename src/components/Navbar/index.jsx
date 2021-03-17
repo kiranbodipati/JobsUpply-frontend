@@ -37,7 +37,7 @@ export function Navbar(props) {
             <BrandLogo />
             <AccessContainer>
                 <Link style={{ textDecoration: 'none', color: 'white' }} to = "/">
-                <AnchorLink>About us</AnchorLink>
+                    <AnchorLink>About us</AnchorLink>
                 </Link>
                 <Marginer direction = "horizontal" margin = {30} />
                 <Link style={{ textDecoration: 'none', color: 'white' }} to = "/Login">

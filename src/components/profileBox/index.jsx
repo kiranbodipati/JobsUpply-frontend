@@ -1,8 +1,10 @@
-import React, { createContext, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { LoginForm } from "./loginForm";
 import { AccountContext } from "./context";
+import { Marginer } from "../marginer";
+import BackImg from "../../images/Backorange.png";
 
 const BoxContainer = styled.div`
   width: 500px;
@@ -12,7 +14,7 @@ const BoxContainer = styled.div`
   border-radius: 19px;
   background-color: #fff;
   box-shadow: 0px 0px 2.7px rgba(15, 15, 15, 0.28);
-  position: relative;
+  position: relative; 
   overflow: hidden;
 `;
 
@@ -52,14 +54,14 @@ const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 0px;
+  margin-bottom: -15px;
 `;
 
 const HeaderText = styled.h2`
   font-weight: 600;
   color: #fff;
   z-index: 10;
-  margin: 0;
+  margin-bottom: 0;
   font-size: 30px;
   line-height: 1.24;
 `;
@@ -75,32 +77,22 @@ const SmallText = styled.h5`
 
 const InnerContainer = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
+  flex-direction: row;
   align-items: flex-start;
   padding: 0 2.7em;
 `;
 
-const backdropVariants = {
-  expanded: {
-    width: "233%",
-    height: "1050px",
-    borderRadius: "20%",
-    transform: "rotate(60deg)",
-  },
-  collapsed: {
-    width: "160%",
-    height: "550px",
-    borderRadius: "50%",
-    transform: "rotate(180deg)",
-  },
-};
+const BackImage = styled.div`
+  width: 2em;
+  height: 1.3em;
+  position: absolute;
 
-const expandingTransition = {
-  type: "spring",
-  duration: 2.3,
-  stiffness: 30,
-};
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`;
 
 export function ProfileBox(props) {
   return (
@@ -109,8 +101,11 @@ export function ProfileBox(props) {
         <TopContainer>
           <BackDrop/>
             <HeaderContainer>
-              <HeaderText>Edit</HeaderText>
-              <HeaderText>Profile</HeaderText>
+              <BackImage>
+                <img src={BackImg} alt="Back" />
+              </BackImage>
+              <Marginer direction="vertical" margin="2em" />
+              <HeaderText>Edit Profile</HeaderText>
             </HeaderContainer>
             <SmallText>Let us know better about you!</SmallText>
         </TopContainer>
