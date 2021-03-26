@@ -9,6 +9,7 @@ import {
   SubmitButton,
 } from "./common";
 import { AccountContext } from "./context";
+import { Link } from "react-router-dom";
 
 export function SignupForm(props) {
   const { switchToSignin } = useContext(AccountContext);
@@ -21,7 +22,9 @@ export function SignupForm(props) {
         <Input type="password" placeholder="Confirm Password" />
       </FormContainer>
       <Marginer direction="vertical" margin="2em" />
-      <SubmitButton>Signup</SubmitButton>
+      {/* <Link to = "/profile"> */}
+        <SubmitButton SubmitButton><Link to = "/profile">Signup</Link></SubmitButton>
+      {/* </Link> */}
       <Marginer direction="vertical" margin={5} />
       <MutedLink href="#">
         Already have an account?

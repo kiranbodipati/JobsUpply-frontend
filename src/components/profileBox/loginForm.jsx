@@ -8,6 +8,7 @@ import {
   SubmitButton,
   SkillButton
 } from "./common";
+import { Link } from "react-router-dom";
 import Dropdown from "./dropdown";
 
 const InnerText = styled.h5`
@@ -43,7 +44,7 @@ const RowRight = styled.div`
 export function LoginForm(props) {
   const University = ["NTU","NUS","SMU","SUTD","SUSS","SIM"]
   const Major = ["DSAI","CS","CE"];
-  const Minor = ["Business","Art","Biology"];
+  const Minor = ["None","Business","Art","Biology"];
 
   return (
     <BoxContainer>
@@ -90,7 +91,9 @@ export function LoginForm(props) {
         </RowContainer>
       </FormContainer>
       {/* <Marginer direction="vertical" margin="1em" /> */}
-      <SkillButton>Edit Skills</SkillButton>
+      <Link style={{ textDecoration: 'none', color: 'white' }} to = "/skill">
+        <SkillButton>Edit Skills</SkillButton>
+      </Link>
       <Marginer direction="vertical" margin="2em" />
       <SubmitButton>Confirm</SubmitButton>
       <Marginer direction="vertical" margin={5} />

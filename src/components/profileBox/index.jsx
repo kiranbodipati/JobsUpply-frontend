@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { LoginForm } from "./loginForm";
 import { AccountContext } from "./context";
 import { Marginer } from "../marginer";
+import { Link } from "react-router-dom";
 import BackImg from "../../images/Backorange.png";
 
 const BoxContainer = styled.div`
@@ -101,9 +102,11 @@ export function ProfileBox(props) {
         <TopContainer>
           <BackDrop/>
             <HeaderContainer>
+            <Link style={{ textDecoration: 'none', color: 'white' }} to = "/">
               <BackImage>
                 <img src={BackImg} alt="Back" />
               </BackImage>
+            </Link>
               <Marginer direction="vertical" margin="2em" />
               <HeaderText>Edit Profile</HeaderText>
             </HeaderContainer>
