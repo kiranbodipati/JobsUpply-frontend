@@ -4,15 +4,15 @@ export const BoxContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  margin-top: -15px;
-  float: left;
+  align-items: center;
+  margin-top: 10px;
 `;
 
 export const FormContainer = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-top: -10vh;
 `;
 
 export const MutedLink = styled.a`
@@ -33,14 +33,14 @@ export const BoldLink = styled.a`
 
 export const Input = styled.input`
   width: 100%;
-  height: 26px;
+  height: 42px;
   outline: none;
-  border: 1px solid rgba(200, 200, 200, 0.3);
+  border: 1px solid rgba(200, 200, 200, 0.03);
   padding: 0 10px;
   transition: all, 200ms ease-in-out;
   box-sizing: border-box;
   border-bottom: 1.4px solid transparent;
-  
+
   &::placeholder {
     color: rgba(170, 170, 170, 1);
   }
@@ -55,38 +55,40 @@ export const Input = styled.input`
     border-bottom: 2px solid rgb(244,98,58);
   }
 `;
-
+   
 export const SubmitButton = styled.button`
-  padding: 11px 40%;
-  width: 100%;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 600;
-  border: none;
-  border-radius: 100px 100px 100px 100px;
-  cursor: pointer;
-  transition: all, 240ms ease-in-out;
+padding: 11px 0%;
+width: 12em;
+flex: center;
+color: #fff;
+font-size: 15px;
+font-weight: 600;
+border: none;
+border-radius: 100px 100px 100px 100px;
+cursor: pointer;
+transition: all, 240ms ease-in-out;
 
-  background: rgb(244,98,58); /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #FDC830,
-    rgb(244,98,58)
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #FDC830,
-    rgb(244,98,58)
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: rgb(244,98,58); /* fallback for old browsers */
+background: -webkit-linear-gradient(
+  to right,
+  #FDC830,
+  rgb(244,98,58)
+); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(
+  to right,
+  #FDC830,
+  rgb(244,98,58)
+); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-  &:focus {
-    outline: none;
-  }
+&:focus {
+  outline: none;
+}
 
-  &:hover {
-    filter: brightness(1.03);
-  }
+&:hover {
+  filter: brightness(1.03);
+}
 `;
+
 
 export const SkillButton = styled.button`
   padding: 10px 10%;

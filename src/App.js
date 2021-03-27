@@ -1,10 +1,10 @@
 import "./App.css";
-import { HomePage } from "./containers/HomePage";
-import { Login } from "./containers/Login";
-import { ProfileEdit } from "./containers/Profile";
+import { HomePage } from "./containers/HomePage/HomePageIndex";
+import { Login } from "./containers/Login/LoginIndex";
+import { ProfileEdit } from "./containers/Profile/ProfileIndex";
+import { Skills } from "./components/SkillBox/SkillBoxIndex";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { EditSkills } from "./containers/Skills";
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
           <Route path = "/" exact component = {HomePage} />
           <Route path = "/login" exact component = {Login} />
           <Route path = "/profile" exact component = {ProfileEdit} />
-          <Route path = "/skill" exact component = {EditSkills} />
+          <Route path = "/skill" exact component = {Skills} />
         </Switch>
       </Router>
     </div>
