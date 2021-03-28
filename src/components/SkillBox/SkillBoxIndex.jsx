@@ -151,7 +151,7 @@ export function Skills() {
         <TopContainer>
             <BackDrop/>
             <HeaderContainer>
-                <Link style={{ textDecoration: 'none', color: 'white' }} to = "/">
+                <Link style={{ textDecoration: 'none', color: 'white' }} to = "/profile">
                 <BackImage>
                     <img src={BackImg} alt="Back" />
                 </BackImage>
@@ -168,9 +168,13 @@ export function Skills() {
         </BoxContainer>
         <Marginer direction="vertical" margin="2em" />
         <RowContainer>
-            <SubmitButton>Cancel</SubmitButton>
+            <Link style={{ textDecoration: 'none', color: 'white' }} to = "/profile">
+              <SubmitButton>Cancel</SubmitButton>
+            </Link>
             <Marginer direction="horizontal" margin="0.5em" />
-            <SubmitButton>Confirm</SubmitButton>
+            <Link style={{ textDecoration: 'none', color: 'white' }} to = "/profile">
+              <SubmitButton>Confirm</SubmitButton>
+            </Link>
         </RowContainer>
     </OuterContainer>
   );

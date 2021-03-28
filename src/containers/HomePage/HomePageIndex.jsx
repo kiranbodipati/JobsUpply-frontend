@@ -4,10 +4,12 @@ import TopSectionBackgroundImg from "../../Images/bg-masthead.jpg"
 import { Marginer} from "../../components/marginer";
 import { Link } from "react-router-dom";
 import { InnerPageContainer, PageContainer } from "../../components/pageContainer/PageContainerindex";
-import { Navbar } from "../../components/Navbar/Navbar";
+import { Navbar } from "../../components/Navbar/NavbarBefore";
 import { Button } from '../../components/Button/Button';
+import { Cards } from '../../components/Cards/Cards';
+import { Footer } from '../../components/Footer/FooterIndex'
 
-const ContentContainer = styled.div`
+export const ContentContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -15,13 +17,13 @@ const ContentContainer = styled.div`
     padding: 0;
 `;
 
-const Sectionhead = styled.h1`
+export const Sectionhead = styled.h1`
     font-weight: 700;
     color: #000;
     margin-top: 50px;
 `;
 
-const TopSectionContainer = styled.div`
+export const TopSectionContainer = styled.div`
     width: 100%;
     height: 700px;
     background: url(${TopSectionBackgroundImg});
@@ -31,7 +33,7 @@ const TopSectionContainer = styled.div`
     align-items: center;
 `;
 
-const BackgroundFilter = styled.div`
+export const BackgroundFilter = styled.div`
     width: 100%;
     height: 100%;
     background-color: rgba(72, 60, 50, 0.75);
@@ -39,7 +41,7 @@ const BackgroundFilter = styled.div`
     flex-direction: column;
 `;
 
-const TopSectionInnerContainer = styled.div`
+export const TopSectionInnerContainer = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
@@ -48,13 +50,13 @@ const TopSectionInnerContainer = styled.div`
     flex-direction: column;
 `;
 
-const HeadlineContainer = styled.div`
+export const HeadlineContainer = styled.div`
     display: flex;
     align-items:center;
     flex-direction: column;
 `;
 
-const Title = styled.h1`
+export const Title = styled.h1`
     margin: 0;
     font-size: ${({ size }) => size ? size + "px" : "60px"};
     color: rgb(255, 255, 255, 0.9);
@@ -62,7 +64,7 @@ const Title = styled.h1`
     width: 80%;
 `;
 
-const SloganText = styled.h3`
+export const SloganText = styled.h3`
     margin: 0;
     line-height: 1.4;
     color: rgb(255, 255, 255, 0.8);
@@ -71,7 +73,7 @@ const SloganText = styled.h3`
     width: 70%
 `;
 
-const Line = styled.hr`
+export const Line = styled.hr`
   margin: 30px;
   width: 10%;
   border-width: 0.1em;
@@ -101,7 +103,9 @@ export function HomePage(props){
             <InnerPageContainer>
                 <ContentContainer>
                     <Sectionhead>What we have here</Sectionhead>
+                    <Cards />
                 </ContentContainer>
             </InnerPageContainer>
+        <Footer />
     </PageContainer>)
 }

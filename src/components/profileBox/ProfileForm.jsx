@@ -73,7 +73,7 @@ export function ProfileForm(props) {
         </RowContainer>
         <RowContainer>
           <RowLeft>
-            <InnerText>Minor</InnerText>
+            <InnerText>Minor*</InnerText>
           </RowLeft>
           <RowRight>
           <MinorList/>

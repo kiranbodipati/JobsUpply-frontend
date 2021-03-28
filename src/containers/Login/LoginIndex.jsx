@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import { AccountBox } from "../../components/accountBox/AccountIndex";
 import { Footer } from "../../components/Footer/FooterIndex";
-import { Navbar } from "../../components/Navbar/Navbar";
+import { Navbar } from "../../components/Navbar/NavbarBefore";
 import {InnerPageContainer,  PageContainer } from "../../components/pageContainer/PageContainerindex";
 
 import TopSectionBackgroundImg from "../../Images/bg-masthead.jpg"
