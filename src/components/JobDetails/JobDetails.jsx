@@ -4,7 +4,7 @@ import Select from 'react-select'
 import {Button, JobHave, JobNo} from '../Button/Button'
 import { CourseCards, JobCards } from "../Cards/Cards"
 import { Link } from 'react-router-dom';
-import {PositionDetail} from "../../data"
+import {CourseDetail} from "../../data"
 
 const OuterContainer = styled.div`
   width: 58%;
@@ -64,8 +64,16 @@ export function JobDetail(props){
             <JobContainer>
               
                 <CourseContainer>
-                    <CourseCards />
-                    <CourseCards />
+                  {CourseDetail.map((data) =>
+                  // <Link className="jobcards__item__link" to="/main">
+                    <CourseCards key = {data.id}
+                    Title = {data.title}
+                    Institution = {data.institution}
+                    Rating = {data.rating} 
+                    Registered = {data.registered}
+                    Duration = {data.duration}/>
+                  // </Link>
+                )}
                 </CourseContainer>
             </JobContainer>
         </OuterContainer>

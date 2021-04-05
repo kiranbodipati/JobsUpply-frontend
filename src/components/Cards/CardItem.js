@@ -24,8 +24,12 @@ export function CardItem(props) {
 
 export function JobCardItem(props) {
   let {text1, text2, text3, text4, Userskill, Jobneed} = props;
-  let Userhave = Jobneed.filter(a => Userskill.some(b => a.id === b.id));  
-  let Userdonthave = Jobneed.filter(({ id: id1 }) => !Userskill.some(({ id: id2 }) => id2 === id1));
+  // let Userhave = Jobneed.filter(a => Userskill.some(b => a.id === b.id));  
+  let Userhave = []
+  Userhave = Jobneed.filter(a => Userskill.some(b => a.id === b.id));  
+  let Userdonthave = []
+  Userdonthave = Jobneed.filter(({ id: id1 }) => !Userskill.some(({ id: id2 }) => id2 === id1));
+  // let Userdonthave = Jobneed.filter(({ id: id1 }) => !Userskill.some(({ id: id2 }) => id2 === id1));
   return (
     <>
       <li className="jobcards__item">
@@ -63,6 +67,7 @@ export function JobCardItem(props) {
 }
 
 export function CourseCardItem(props) {
+  let {Title, Institution, Rating, Registered, Duration} = props;
   return (
     <>
       <li className="coursecards__item">
@@ -72,14 +77,14 @@ export function CourseCardItem(props) {
               className='coursecards__item__img' />
           </figure>
           <div className="coursecards__item__info">
-            <h5 className="coursecards__item__text">{props.text1}</h5>
+            <h5 className="coursecards__item__text">{Title}</h5>
           </div>
         </div>
         <div className="coursecards__item__info2">
-          <h5 className="coursecards__item__text">{props.text2}</h5>
-          <h5 className="coursecards__item__text">{props.text3}</h5>
-          <h5 className="coursecards__item__text">{props.text4}</h5>
-          <h5 className="coursecards__item__text">{props.text5}</h5>
+          <h5 className="coursecards__item__text">{Institution}</h5>
+          <h5 className="coursecards__item__text">{Rating}</h5>
+          <h5 className="coursecards__item__text">{Registered}</h5>
+          <h5 className="coursecards__item__text">{Duration}</h5>
         </div>
       </li>
     </>

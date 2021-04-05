@@ -2,6 +2,8 @@ import React from 'react';
 import './Cards.css';
 import { CardItem, JobCardItem, CourseCardItem } from './CardItem';
 import {Userskill,PositionDetail} from '../../data'
+import Linkedin from "../../Images/LinkedinLogo.jpg";
+import Coursera from "../../Images/coursera.png";
 
 export function Cards() {
   return (
@@ -47,7 +49,7 @@ export function JobCards(props) {
               text2= {Company} 
               text3= {Industry}
               text4='Skills needed:  '
-              src2 = 'Images/LinkedinLogo.jpg'
+              src2 = {Linkedin}
               Userskill = {Userskill}
               Jobneed = {Jobreq}
             /> 
@@ -58,19 +60,20 @@ export function JobCards(props) {
   );
 }
 
-export function CourseCards() {
+export function CourseCards(props) {
+  let {Title, Institution, Rating, Registered,Duration} = props;
   return (
     <div className='coursecards'>
       <div className="coursecards__container">
         <div className="coursecards__wrapper">
           <ul className='coursecards__items'>
             <CourseCardItem
-              src='Images/coursera.png'
-              text1='Some really really long Course Title that can barely fit in here'
-              text2='Long and tedious Institution Name'
-              text3='Really good or really bad Rating'
-              text4='number of people registered'
-              text5='9 hours to complete the entire course'
+              src={Coursera}
+              Title={Title}
+              Institution={Institution}
+              Rating={Rating}
+              Registered={Registered}
+              Duration={Duration}
             /> 
           </ul>
         </div>

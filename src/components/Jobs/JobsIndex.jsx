@@ -48,22 +48,27 @@ export const JobContainer = styled.div`
   margin-top: 0em;
 `;
 
-const options = [
+const Industryoptions = [
   { value: 'Select Industry', label: 'Select Industry'},
+  { value: 'Industry 1', label: 'Industry 1'},
+  { value: 'Industry 2', label: 'Industry 2' },
+  { value: 'Industry 3', label: 'Industry 3' },
+  { value: 'Industry 4', label: 'Industry 4' }
+]
+
+const Sortbyoptions = [
   { value: 'Sort by', label: 'Sort By'},
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
+  { value: 'Most Skill Matched', label: 'Most Skill Matched' },
+  { value: 'Least skill Matched', label: 'Least skill Matched' },
 ]
 
 const SelectIndustry = () => (
-  <Select options={options} defaultValue = {options[0]} />
+  <Select options={Industryoptions} defaultValue = {Industryoptions[0]} />
 
 )
 
 const Sortby = () => (
-
-  <Select options={options} defaultValue = {options[0]} classNamePrefix='my-className-prefix'/>
+  <Select options={Sortbyoptions} defaultValue = {Sortbyoptions[0]} classNamePrefix='my-className-prefix'/>
 )
 
 const SearchBar = ({keyword,setKeyword}) => {
@@ -97,7 +102,7 @@ export function JobList(props){
             </RowContainer>
             <JobContainer>
             {PositionDetail.map((data) =>
-                <Link className="jobcards__item__link" to="/main">
+                <Link className="jobcards__item__link" to={data.id}>
                   <JobCards key = {data.id}
                   Jobtitle = {data.Jobtitle}
                   Company = {data.Company}

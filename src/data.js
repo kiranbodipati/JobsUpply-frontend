@@ -181,3 +181,11 @@ export const colourOptions = [
   //   {id: 2, Jobtitle: 'Jobtitle 2', Company: 'Company 2', Industry:'Industry 2'},
   //   {id: 3, Jobtitle: 'Jobtitle 3', Company: 'Company 3', Industry:'Industry 3'}
   // ]
+
+  export const CourseDetail= [
+    {id: 1, title: 'Introduction to Big Data Management', institution: 'Nanyang Technological University', rating: '3.8/5.0', registered: '9.0k Registered', duration: '5.0 hrs'},
+    {id: 2, title: 'Introduction to Data Science', institution: 'Nanyang Technological University', rating: '3.9/5.0', registered: '7.8k Registered', duration: '8.0 hrs'},
+    {id: 3, title: 'Software Engineering', institution: 'Nanyang Technological University', rating: '4.0/5.0', registered: '9.2k Registered', duration: '25.0 hrs'},
+    {id: 4, title: 'Linear Algebra', institution: 'Nanyang Technological University', rating: '4.1/5.0', registered: '9.6k Registered', duration: '3.0 hrs'},
+    
+  ]
