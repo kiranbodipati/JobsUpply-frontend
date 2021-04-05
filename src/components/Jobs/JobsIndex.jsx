@@ -5,6 +5,7 @@ import { JobCards } from "../Cards/Cards"
 import {Button, JobHave, JobNo} from '../Button/Button'
 import { Link } from 'react-router-dom';
 import './new.css';
+import {PositionDetail} from "../../data"
 
 const OuterContainer = styled.div`
   width: 58%;
@@ -95,12 +96,15 @@ export function JobList(props){
               <RowOneThird><SearchBar/></RowOneThird>
             </RowContainer>
             <JobContainer>
-              <Link className="jobcards__item__link" to= "/job">
-                <JobCards />
-              </Link>
-              <Link className="jobcards__item__link" to="/job">
-                <JobCards />
-              </Link>
+            {PositionDetail.map((data) =>
+                <Link className="jobcards__item__link" to="/main">
+                  <JobCards key = {data.id}
+                  Jobtitle = {data.Jobtitle}
+                  Company = {data.Company}
+                  Industry = {data.Industry} 
+                  Jobreq = {data.Skill}/>
+                </Link>
+              )}
             </JobContainer>
         </OuterContainer>
     )

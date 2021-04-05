@@ -1,7 +1,7 @@
 import React from 'react';
 import './Cards.css';
 import { CardItem, JobCardItem, CourseCardItem } from './CardItem';
-
+import {Userskill,PositionDetail} from '../../data'
 
 export function Cards() {
   return (
@@ -11,19 +11,19 @@ export function Cards() {
           <ul className='cards__items'>
             <CardItem
               src='Images/bg-masthead.jpg'
-              text='ABCcjjcciilvjk'
+              text='Settings'
               label='Job Title 3'
-              path='/settings'
+              path='/se'
             />
             <CardItem
               src='Images/bg-masthead.jpg'
-              text='Data Sccientist '
+              text='profile-checker'
               label='Job Title 4'
               path='/profile-checker'
             />
             <CardItem
               src='Images/bg-masthead.jpg'
-              text='Senior/ Junior Software Engineer'
+              text='Course recommendation'
               label='Job Title 5 '
               path='/log-out'
             />
@@ -34,7 +34,8 @@ export function Cards() {
   );
 }
 
-export function JobCards() {
+export function JobCards(props) {
+  let {Jobtitle, Company, Industry, Jobreq} = props;
   return (
     <div className='jobcards'>
       <div className="jobcards__container">
@@ -42,11 +43,13 @@ export function JobCards() {
           <ul className='jobcards__items'>
             <JobCardItem
               src='Images/bg-masthead.jpg'
-              text1='Job Title'
-              text2='Company'
-              text3='Industry Sector'
+              text1= {Jobtitle}
+              text2= {Company} 
+              text3= {Industry}
               text4='Skills needed:  '
               src2 = 'Images/LinkedinLogo.jpg'
+              Userskill = {Userskill}
+              Jobneed = {Jobreq}
             /> 
           </ul>
         </div>

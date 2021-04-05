@@ -4,6 +4,7 @@ import Select from 'react-select'
 import {Button, JobHave, JobNo} from '../Button/Button'
 import { CourseCards, JobCards } from "../Cards/Cards"
 import { Link } from 'react-router-dom';
+import {PositionDetail} from "../../data"
 
 const OuterContainer = styled.div`
   width: 58%;
@@ -58,12 +59,10 @@ export const CourseContainer = styled.div`
 `
 
 export function JobDetail(props){
-    return(
+  return(
         <OuterContainer>
             <JobContainer>
-                <Link className="jobcards__item__link" to="/main">
-                    <JobCards />
-                </Link>
+              
                 <CourseContainer>
                     <CourseCards />
                     <CourseCards />

@@ -1,7 +1,8 @@
-import React from "react";
+import React, {Component} from "react";
 import styled from "styled-components";
 import DP from "../../Images/LinkedinLogo.png";
-import {Button, JobHave, JobNo} from '../Button/Button'
+import {Button, JobHave, JobNo} from '../Button/Button';
+import {Userskill} from '../../data'
 
 const OuterContainer = styled.div`
   width: 15%;
@@ -14,7 +15,7 @@ const OuterContainer = styled.div`
   position: relative; 
   overflow: hidden;
   margin: 2em;
-  margin-left: 8em;
+  margin-left: 10%;
 `;
 
 export const ProfileContainer = styled.div`
@@ -156,11 +157,12 @@ export function UserInfo(props){
             <SkillContainer>
               <Title>Your skills</Title>
               <SkillList>
-                <JobHave>Skill 1</JobHave>
-                <JobHave>Skill 2</JobHave>
-                <JobHave>Skill 5</JobHave>
-                <JobHave>Skill 88888888888888</JobHave>
-                <JobHave>Skill 9</JobHave>
+                {Userskill.map((item) =>
+                  // <JobHave key = {item.id} item = {item} />
+                  <JobHave key = {item.blablabla}>
+                    {item.name}
+                  </JobHave>
+                  )}
               </SkillList>
             </SkillContainer>
         </OuterContainer>

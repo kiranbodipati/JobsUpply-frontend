@@ -137,3 +137,47 @@ export const colourOptions = [
     { value: 'Biology', label: 'Biology'},
     { value: 'EEE', label: 'EEE'},
   ];
+
+  export const Userskill= [
+    {id: 1, name: 'Skill 1'},
+    {id: 2, name: 'Skill 2'},
+    {id: 6, name: 'Skill 6'},
+    {id: 7, name: 'Skill 7'},
+    {id: 5, name: 'Skill 5'},
+  ]
+
+  export const Jobreq= [
+    {id: 1, name: 'Skill 1'},
+    {id: 2, name: 'Skill 2'},
+    {id: 3, name: 'Skill 3'},
+    {id: 4, name: 'Skill 4'},
+    {id: 5, name: 'Skill 5'},
+  ]
+
+
+  export const PositionDetail= [
+    {id: 1, Jobtitle: 'Jobtitle 1', Company: 'Company 1', Industry:"Industry 1", Skill: [
+      {id: 1, name: 'Skill 1'},
+      {id: 2, name: 'Skill 2'},
+      {id: 3, name: 'Skill 3'},
+      {id: 4, name: 'Skill 4'},
+      {id: 5, name: 'Skill 5'},]},
+    {id: 2, Jobtitle: 'Jobtitle 2', Company: 'Company 2', Industry:'Industry 2', Skill: [
+      {id: 1, name: 'Skill 1'},
+      {id: 2, name: 'Skill 2'},
+      {id: 6, name: 'Skill 6'},
+      {id: 4, name: 'Skill 4'},
+      {id: 5, name: 'Skill 5'},]},
+    {id: 3, Jobtitle: 'Jobtitle 3', Company: 'Company 3', Industry:'Industry 3', Skill: [
+      {id: 1, name: 'Skill 1'},
+      {id: 2, name: 'Skill 2'},
+      {id: 3, name: 'Skill 3'},
+      {id: 4, name: 'Skill 4'},
+      {id: 9, name: 'Skill 9'},]}
+  ]
+
+  // export const PositionDetail= [
+  //   {id: 1, Jobtitle: 'Jobtitle 1', Company: 'Company 1', Industry:"Industry 1"},
+  //   {id: 2, Jobtitle: 'Jobtitle 2', Company: 'Company 2', Industry:'Industry 2'},
+  //   {id: 3, Jobtitle: 'Jobtitle 3', Company: 'Company 3', Industry:'Industry 3'}
+  // ]

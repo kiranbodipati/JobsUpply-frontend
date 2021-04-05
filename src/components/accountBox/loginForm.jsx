@@ -23,7 +23,9 @@ export function LoginForm(props) {
       </FormContainer>
       <MutedLink href="#">Forgot Password?</MutedLink>
       <Marginer direction="vertical" margin="1em" />
-      <SubmitButton>Login</SubmitButton>
+      <Link to = "/main">
+        <SubmitButton>Login</SubmitButton>
+        </Link>
       <Marginer direction="vertical" margin={5} />
       <MutedLink href="#">
         Dont have an Account?

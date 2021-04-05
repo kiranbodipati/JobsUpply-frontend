@@ -19,7 +19,7 @@ export const ContentContainer = styled.div`
 
 export const Sectionhead = styled.h1`
     font-weight: 700;
-    color: #000;
+    color: #00;
     margin-top: 50px;
 `;
 
