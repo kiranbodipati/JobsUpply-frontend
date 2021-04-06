@@ -7,7 +7,7 @@ import { InnerPageContainer, PageContainer } from "../../components/pageContaine
 import { Navbar } from "../../components/Navbar/NavbarBefore";
 import { Button } from '../../components/Button/Button';
 import { Cards } from '../../components/Cards/Cards';
-import { Footer } from '../../components/Footer/FooterIndex'
+import { Footer } from '../../components/Footer/FooterIndex';
 
 export const ContentContainer = styled.div`
     width: 100%;

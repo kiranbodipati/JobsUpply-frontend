@@ -1,7 +1,7 @@
 import React from 'react';
 import './Cards.css';
 import { CardItem, JobCardItem, CourseCardItem } from './CardItem';
-import {Userskill,PositionDetail} from '../../data'
+import {UserDetails, PositionDetail} from '../../data'
 import Linkedin from "../../Images/LinkedinLogo.jpg";
 import Coursera from "../../Images/coursera.png";
 
@@ -43,6 +43,7 @@ export function JobCards(props) {
       <div className="jobcards__container">
         <div className="jobcards__wrapper">
           <ul className='jobcards__items'>
+          {UserDetails.map((data) =>
             <JobCardItem
               src='Images/bg-masthead.jpg'
               text1= {Jobtitle}
@@ -50,9 +51,10 @@ export function JobCards(props) {
               text3= {Industry}
               text4='Skills needed:  '
               src2 = {Linkedin}
-              Userskill = {Userskill}
+              Userskill = {data.Skill}
               Jobneed = {Jobreq}
             /> 
+          )}
           </ul>
         </div>
       </div>

@@ -8,6 +8,7 @@ import { Navbar } from '../../components/Navbar/Navbar'
 import { Footer } from '../../components/Footer/FooterIndex'
 import { UserInfo } from '../../components/UserInfo/UserinfoIndex'
 import { JobList } from "../../components/Jobs/JobsIndex";
+import { UserDetails } from "../../data";
 
 export const TopSectionContainer = styled.div`
     width: 100%;
@@ -51,7 +52,14 @@ export function UserMain(props){
             <BackgroundFilter>
                 <Navbar />
                 <ContentContainer>
-                    <UserInfo />
+                {UserDetails.map((data) =>
+                    <UserInfo key = {data.id}
+                    DP = {data.Pic}
+                    University = {data.University}
+                    Major = {data.Major}
+                    Minor = {data.Minor}
+                    Skillsss = {data.Skill}/>
+                )}
                     <JobList />
                 </ContentContainer>
             </BackgroundFilter>

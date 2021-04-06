@@ -97,9 +97,13 @@ export function ProfileForm(props) {
       </RowContainer>
       <Marginer direction="vertical" margin="1em" />
       <RowContainer>
-        <SubmitButton>Cancel</SubmitButton>
+        <Link to = '/main'>
+          <SubmitButton>Cancel</SubmitButton>
+        </Link>
         <Marginer direction="horizontal" margin="2em" />
-        <SubmitButton>Confirm</SubmitButton>
+        <Link to = '/main'>
+          <SubmitButton>Confirm</SubmitButton>
+        </Link>
       </RowContainer>
       <Marginer direction="vertical" margin={20} />
 

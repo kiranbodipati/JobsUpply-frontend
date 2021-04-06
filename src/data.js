@@ -138,13 +138,16 @@ export const colourOptions = [
     { value: 'EEE', label: 'EEE'},
   ];
 
-  export const Userskill= [
-    {id: 1, name: 'Skill 1'},
-    {id: 2, name: 'Skill 2'},
-    {id: 6, name: 'Skill 6'},
-    {id: 7, name: 'Skill 7'},
-    {id: 5, name: 'Skill 5'},
+  export const UserDetails = [
+    {id: 5, Name: 'WY', University: 'NTU', Major: 'DSAI', Minor: 'Biology', Pic: './Images/jobsupplyLogo.png', Skill: [
+      {id: 1, name: 'Skill 1'},
+      {id: 2, name: 'Skill 2'},
+      {id: 6, name: 'Skill 6'},
+      {id: 7, name: 'Skill 7'},
+      {id: 5, name: 'Skill 5'},
+    ]},
   ]
+
 
   export const Jobreq= [
     {id: 1, name: 'Skill 1'},

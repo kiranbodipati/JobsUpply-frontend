@@ -1,9 +1,7 @@
 import React, {Component} from "react";
 import styled from "styled-components";
-import DP from "../../Images/LinkedinLogo.png";
 import {Button, JobHave, JobNo} from '../Button/Button';
-import {Userskill} from '../../data'
-
+import { UserDetails } from "../../data";
 const OuterContainer = styled.div`
   width: 15%;
   min-width: 180px;
@@ -78,7 +76,7 @@ export const InnerText = styled.h3`
   z-index: 10;
   margin-top: 0;
   font-size: 14px;
-  line-height: 26px;
+  line-height: 20px;
   vertical-align: middle;
 `;
 
@@ -119,6 +117,7 @@ const SkillList = styled.div`
 `;
 
 export function UserInfo(props){
+  let {DP, University, Major, Minor, Skillsss} = props;
     return(
         <OuterContainer>
             <ProfileContainer>
@@ -133,7 +132,7 @@ export function UserInfo(props){
                     <InnerText>University:</InnerText>
                   </RowLeft>
                   <RowRight>
-                  <InnerText>NTU</InnerText>
+                  <InnerText>{University}</InnerText>
                   </RowRight>
                 </RowContainer>
                 <RowContainer>
@@ -141,7 +140,7 @@ export function UserInfo(props){
                     <InnerText>Major:</InnerText>
                   </RowLeft>
                   <RowRight>
-                  <InnerText>DSAI</InnerText>
+                  <InnerText>{Major}</InnerText>
                   </RowRight>
                 </RowContainer>
                 <RowContainer>
@@ -149,7 +148,7 @@ export function UserInfo(props){
                     <InnerText>Minor:</InnerText>
                   </RowLeft>
                   <RowRight>
-                  <InnerText>Biz</InnerText>
+                  <InnerText>{Minor}</InnerText>
                   </RowRight>
                 </RowContainer>
               </FormContainer>
@@ -157,9 +156,9 @@ export function UserInfo(props){
             <SkillContainer>
               <Title>Your skills</Title>
               <SkillList>
-                {Userskill.map((item) =>
+                {Skillsss.map((item) =>
                   // <JobHave key = {item.id} item = {item} />
-                  <JobHave key = {item.blablabla}>
+                  <JobHave key = {item.id}>
                     {item.name}
                   </JobHave>
                   )}
