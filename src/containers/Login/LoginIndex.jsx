@@ -29,7 +29,7 @@ const StyledInnerContainer = styled(InnerPageContainer)`
 `;
 
 
-export function Login(props) {
+export function  Login(props) {
     return(
         <PageContainer>
             <Loginpagecontainer>

@@ -8,26 +8,28 @@ import BackImg from "../../Images/Backorange.png";
 
 const BoxContainer = styled.div`
   width: 500px;
-  min-height: 550px;
+  min-height: 450px;
+  max-height: 600px;
   display: flex;
   flex-direction: column;
   border-radius: 19px;
   background-color: #fff;
   box-shadow: 0px 0px 2.7px rgba(15, 15, 15, 0.28);
   position: relative; 
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 const TopContainer = styled.div`
   width: 100%;
-  height: 255px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: center;
   padding: 0 1.8em;
-  padding-bottom: 5em;
-  margin-top: -15vh;
+  padding-bottom: 0em;
+
 `;
 
 const BackDrop = styled(motion.div)`
@@ -56,6 +58,7 @@ const HeaderContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: -15px;
+  margin-top: 2em;
 `;
 
 const HeaderText = styled.h2`

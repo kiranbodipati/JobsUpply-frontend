@@ -120,7 +120,7 @@ const BackImage = styled.div`
   }
 `;
 
-export function AccountBox(props) {
+export function AccountBox(props,{setToken}) {
   const { initialActive } = props;
   const [isExpanded, setExpanded] = useState(false);
   const [active, setActive] = useState(

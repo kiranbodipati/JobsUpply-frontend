@@ -28,6 +28,7 @@ const RowContainer = styled.div`
   clear: both;
   margin-top: 10px;
   display: flex;
+  text-align: initial;
 `;
 
 const RowLeft = styled.div`
@@ -116,12 +117,12 @@ export function ProfileForm(props) {
         </RowContainer>
       </FormContainer>
       <RowContainer>
-        <RowLeft>
-          {/* <Link style={{ textDecoration: 'none', color: 'white' }} to = "/skill">
+        {/* <RowLeft>
+          <Link style={{ textDecoration: 'none', color: 'white' }} to = "/skill">
             <SkillButton>Edit Skills</SkillButton>
-          </Link> */}
-          <Skillpopup />
-        </RowLeft>
+          </Link>
+        </RowLeft> */}
+        <Skillpopup />
       </RowContainer>
       <Marginer direction="vertical" margin="1em" />
       <RowContainer>

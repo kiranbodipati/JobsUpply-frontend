@@ -8,7 +8,7 @@ import BackImg from "../../Images/Backorange.png";
 
 const OuterContainer = styled.div`
   width: 400px;
-  min-height: 200px;
+  min-height: 251px;
   display: flex;
   flex-direction: column;
   border-radius: 19px;
@@ -16,24 +16,23 @@ const OuterContainer = styled.div`
   box-shadow: 0px 0px 2.7px rgba(15, 15, 15, 0.28);
   position: relative; 
   overflow-x: hidden;
-  overflow-y: overlay;
+  overflow-y: visible;
 `;
 
 const TopContainer = styled.div`
   width: 100%;
-  height: 255px;
+  height: 180px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: flex-start;
   padding: 0 1.8em;
-  margin-top: -15vh;
 `;
 
 const BackDrop = styled(motion.div)`
   position: absolute;
   width: 250%;
-  height: 500px;
+  height: 450px;
   border-radius: 50%;
   transform: rotate(160deg);
   top: -400px;
@@ -64,7 +63,7 @@ export const FormContainer = styled.form`
   width: 90%;
   display: flex;
   flex-direction: column;
-  margin-top: -10vh;
+  margin-top: -15vh;
 `;
 
 export const SubmitButton = styled.button`
@@ -140,9 +139,10 @@ const RowContainer = styled.div`
   width: 100%;
   line-height: 26px;
   clear: both;
-  margin-top: 10px;
   display: flex;
   justify-content: space-evenly;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 `;
 
 class Skills extends Component {
@@ -155,29 +155,21 @@ class Skills extends Component {
         <TopContainer>
             <BackDrop/>
             <HeaderContainer>
-                <Link style={{ textDecoration: 'none', color: 'white' }} to = "/profile">
-                <BackImage>
-                    <img src={BackImg} alt="Back" />
-                </BackImage>
-                </Link>
-                <Marginer direction="vertical" margin="2em" />
                 <HeaderText>Edit Skills</HeaderText>
             </HeaderContainer>
-            <SmallText>Select some of your brilliant skills!</SmallText>
         </TopContainer>
         <BoxContainer>
             <FormContainer>
                 <AnimatedMulti style={{padding:padding, left: left, top:top}}/>
               </FormContainer>
           </BoxContainer>
-          <Marginer direction="vertical" margin="2em" />
          <RowContainer>
              <Link style={{ textDecoration: 'none', color: 'white' }} to = "/profile">
-               <SubmitButton onClick={this.props.closePopup}>Cancel</SubmitButton>
+               <SkillButton onClick={this.props.closePopup}>Cancel</SkillButton>
              </Link>
              <Marginer direction="horizontal" margin="0.5em" />
              <Link style={{ textDecoration: 'none', color: 'white' }} to = "/profile">
-               <SubmitButton onClick={this.props.closePopup}>Confirm</SubmitButton>
+               <SkillButton onClick={this.props.closePopup}>Confirm</SkillButton>
              </Link>
          </RowContainer>
       </OuterContainer>
@@ -219,19 +211,16 @@ export class Skillpopup extends Component {
   }
   offset = {right:0,left:10}
   render() {
-    var left = 5000 + 'px';
-    var top = 5000 + 'px';
-    var padding = 5000 + 'px';
     return (
-      <div className='app'>
+      <div>
+        <SkillButton onClick={this.togglePopup.bind(this)}>Edit Skills</SkillButton>
+        <Marginer direction="vertical" margin="1em" />
         {this.state.showPopup ? 
           <Skills
             closePopup={this.togglePopup.bind(this)}
-            style={{padding:padding, left: left, top:top}}
           />
           : null
         }
-        <SkillButton onClick={this.togglePopup.bind(this)}>Edit Skills</SkillButton>
       </div>
     );
   }
