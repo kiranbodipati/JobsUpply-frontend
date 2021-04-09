@@ -11,7 +11,7 @@ export default function AnimatedMulti() {
     <Select
       closeMenuOnSelect={false}
       components={animatedComponents}
-      defaultValue={[colourOptions[4], colourOptions[5]]}
+      // defaultValue={[colourOptions[4], colourOptions[5]]}
       isMulti
       options={colourOptions}
     />

@@ -6,6 +6,8 @@ export const BoxContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
+  overflow-x: hidden;
+  overflow-y: overlay;
 `;
 
 export const FormContainer = styled.form`

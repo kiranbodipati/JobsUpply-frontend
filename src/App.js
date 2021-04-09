@@ -18,7 +18,7 @@ function App() {
           <Route path = "/" exact component = {HomePage} />
           <Route path = "/login" exact component = {Login} />
           <Route path = "/profile" exact component = {ProfileEdit} />
-          <Route path = "/skill" exact component = {Skills} />
+          {/* <Route path = "/skill" exact component = {Skills} /> */}
           <Route path = "/main" exact component = {UserMain} />
           <Route path = "/job" exact component = {JobDetails} />
         </Switch>

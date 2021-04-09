@@ -19,7 +19,7 @@ export const Form1 = (props) => {
 
     return (
     <div className="conatiner">
-        <Row>
+        <Row> 
             <Col sm="12" md={{size: 6, offset : 3}} className = "text-center">
             <h2>Profile Checker</h2>   
                 </Col>{" "}

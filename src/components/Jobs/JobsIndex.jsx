@@ -102,7 +102,7 @@ export function JobList(props){
             </RowContainer>
             <JobContainer>
             {PositionDetail.map((data) =>
-                <Link className="jobcards__item__link" to={data.id}>
+                <Link className="jobcards__item__link" to= '/job'>
                   <JobCards key = {data.id}
                   Jobtitle = {data.Jobtitle}
                   Company = {data.Company}

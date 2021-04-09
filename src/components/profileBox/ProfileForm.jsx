@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import styled from "styled-components";
 import { Marginer } from "../marginer";
 import {
@@ -10,6 +10,7 @@ import {
 } from "./common";
 import { Link } from "react-router-dom";
 import {UniversityList, MajorList, MinorList} from "./dropdown";
+import { Skillpopup } from '../SkillBox/SkillBoxIndex';
 
 const InnerText = styled.h5`
   font-weight: 500;
@@ -43,7 +44,33 @@ const RowRight = styled.div`
   float: left;
 `;
 
+class Popup extends Component {
+  render() {
+    return (
+      <div className='popup'>
+        <div className='popup_inner'>
+          <h1>{this.props.text}</h1>
+        <button onClick={this.props.closePopup}>close me</button>
+        </div>
+      </div>
+    );
+  }
+}
+export class Popups extends Component {
+  constructor() {
+    super();
+    this.state = {
+      showPopup: false
+    };
+  }
+  togglePopup() {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
+  }
+}
 export function ProfileForm(props) {
+
   return (
     <BoxContainer>
       <FormContainer>
@@ -90,9 +117,10 @@ export function ProfileForm(props) {
       </FormContainer>
       <RowContainer>
         <RowLeft>
-          <Link style={{ textDecoration: 'none', color: 'white' }} to = "/skill">
+          {/* <Link style={{ textDecoration: 'none', color: 'white' }} to = "/skill">
             <SkillButton>Edit Skills</SkillButton>
-          </Link>
+          </Link> */}
+          <Skillpopup />
         </RowLeft>
       </RowContainer>
       <Marginer direction="vertical" margin="1em" />
