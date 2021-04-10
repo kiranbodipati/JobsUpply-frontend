@@ -23,7 +23,7 @@ const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
-        This field is required!
+        <font size="1">This field is required!</font>
       </div>
     );
   }
@@ -37,15 +37,19 @@ export const LoginForm = (props) => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [emMessage, setMessageEm] = useState("");
+  const [passMessage, setMessagePass] = useState("");
 
   const onChangeEmail = (e) => {
     const Email= e.target.value;
     setEmail(Email);
+    setMessageEm(required(Email))
   };
 
   const onChangePassword = (e) => {
     const password = e.target.value;
     setPassword(password);
+    setMessagePass(required(password))
   };
 
   const history = useHistory();
@@ -87,8 +91,8 @@ export const LoginForm = (props) => {
     <BoxContainer>
       <Form onSubmit={handleLogin} ref={form}> 
       {/* <FormContainer onSubmit={handleLogin} ref={form}> */}
-        {/* <Input placeholder="Email" /> */}
         <Input
+              placeholder="Email"
               type="text"
               className="form-control"
               name="Email"
@@ -96,8 +100,9 @@ export const LoginForm = (props) => {
               onChange={onChangeEmail}
               validations={[required]}
             />
-        {/* <Input type="password" placeholder="Password" /> */}
+        { emMessage }
         <Input
+              placeholder="Password"
               type="password"
               className="form-control"
               name="password"
@@ -105,6 +110,7 @@ export const LoginForm = (props) => {
               onChange={onChangePassword}
               validations={[required]}
             />
+          { passMessage }
       {/* </FormContainer> */}
         <MutedLink href="#">Forgot Password?</MutedLink>
         <Marginer direction="vertical" margin="1em" />

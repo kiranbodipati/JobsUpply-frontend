@@ -6,6 +6,14 @@ const register = (Email, Password) => {
   return axios.post(API_URL + "backend/database/Users", {
     email: Email,
     password: Password,
+  })
+  .then((response) => {
+    if (response.data.token) {
+      console.log(response.data.token)
+      localStorage.setItem("user", JSON.stringify(response.data));
+    }
+
+    return response.data;
   });
 };
 

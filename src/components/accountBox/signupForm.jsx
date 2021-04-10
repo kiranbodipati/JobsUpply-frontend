@@ -9,7 +9,7 @@ import {
   SubmitButton,
 } from "./common";
 import { AccountContext } from "./context";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
@@ -27,6 +27,9 @@ export const required = (value) => {
       </div>
     );
   }
+  else {
+    return 1;
+  }
 };
 
 const validEmail = (value) => {
@@ -36,6 +39,9 @@ const validEmail = (value) => {
         This is not a valid email.
       </div>
     );
+  }
+  else {
+    return 1;
   }
 };
 
@@ -50,24 +56,29 @@ const validEmail = (value) => {
 // };
 
 const vpassword = (value) => {
-  if (value.length < 6 || value.length > 40) {
+  if (value.length < 8 || value.length > 40) {
     return (
       <div className="alert alert-danger" role="alert">
-        The password must be between 6 and 40 characters.
+        The password must be between 8 and 40 characters.
       </div>
     );
+  }
+  else {
+    return 1;
   }
 };
 
 export const SignupForm = (props) => {
   const form = useRef();
   const checkBtn = useRef();
+  const hist = useHistory();
 
   // const [username, setUsername] = useState("");
   const [Email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
+  const [formIsValid, setFormIsValid] = useState(false);
 
   // const onChangeUsername = (e) => {
   //   const username = e.target.value;
@@ -77,11 +88,27 @@ export const SignupForm = (props) => {
   const onChangeEmail = (e) => {
     const Email = e.target.value;
     setEmail(Email);
+    if (required(Email) === 1 && validEmail(Email) === 1){
+      setFormIsValid(true);
+      setMessage("")
+    }
+    else {
+      setFormIsValid(false)
+      setMessage("Invalid email!")
+    }
   };
 
   const onChangePassword = (e) => {
     const password = e.target.value;
     setPassword(password);
+    if (required(password) === 1 && vpassword(password) === 1){
+      setFormIsValid(true);
+      setMessage("")
+    }
+    else {
+      setFormIsValid(false)
+      setMessage("Invalid password! (must be between 8 and 40 characters)")
+    }
   };
 
   const handleRegister = (e) => {
@@ -92,11 +119,11 @@ export const SignupForm = (props) => {
 
     form.current.validateAll();
 
-    if (checkBtn.current.context._errors.length === 0) {
+    if (checkBtn.current.context._errors.length === 0 && formIsValid === true) {
       AuthService.register(Email, password).then(
         (response) => {
-          setMessage(response.data.message);
           setSuccessful(true);
+          hist.push("/profileEdit")
         },
         (error) => {
           const resMessage =
@@ -111,6 +138,9 @@ export const SignupForm = (props) => {
         }
       );
     }
+    else {
+      setSuccessful(false);
+    }
   };
 
 // export function SignupForm(props) {
@@ -122,8 +152,8 @@ export const SignupForm = (props) => {
       {!successful && (
             <div>
               <div className="form-group">
-                <label htmlFor="email">Email</label>
                 <Input
+                  placeholder="Email"
                   type="text"
                   className="form-control"
                   name="email"
@@ -134,8 +164,8 @@ export const SignupForm = (props) => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="password">Password</label>
                 <Input
+                  placeholder="Password"
                   type="password"
                   className="form-control"
                   name="password"
@@ -145,9 +175,9 @@ export const SignupForm = (props) => {
                 />
               </div>
 
-              <div className="form-group">
+              {/* <div className="form-group">
                 <button className="btn btn-primary btn-block">Sign Up</button>
-              </div>
+              </div> */}
             </div>
           )}
 
@@ -157,25 +187,19 @@ export const SignupForm = (props) => {
                 className={ successful ? "alert alert-success" : "alert alert-danger" }
                 role="alert"
               >
-                {message}
+              <font size="1">{message}</font>
               </div>
             </div>
           )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
-      {/* <FormContainer>
-        <Input placeholder="Email" />
-        <Input type="password" placeholder="Password" />
-        <Input type="password" placeholder="Confirm Password" />
-      </FormContainer> */}
       <Marginer direction="vertical" margin="2em" />
-      <Link to = "/Settings">
-        <SubmitButton SubmitButton>Signup</SubmitButton>
-      </Link>
+      <CheckButton ref={checkBtn}>
+        <SubmitButton SubmitButton>Sign Up</SubmitButton>
+      </CheckButton>
       <Marginer direction="vertical" margin={5} />
       <MutedLink href="#">
         Already have an account?
         <BoldLink href="#" onClick={switchToSignin}>
-          sign in
+          Sign in
         </BoldLink>
       </MutedLink>
       </Form>
