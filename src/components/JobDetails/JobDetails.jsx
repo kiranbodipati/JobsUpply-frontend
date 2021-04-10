@@ -64,21 +64,23 @@ export function JobDetail(props){
         <OuterContainer>
             <JobContainer>
                 <CourseContainer>
+                <Link className="jobcards__item__link" to="/jobs">
                   {PositionDetailsingle.map((data) =>
                     <JobCards key = {data.id}
                     Jobtitle = {data.Jobtitle}
                     Company = {data.Company}
                     Industry = {data.Industry} 
                     Jobreq = {data.Skill}/> )}
+                    </Link>
                   {CourseDetail.map((data) =>
-                  // <Link className="jobcards__item__link" to="/main">
+                  // 
                     <CourseCards key = {data.id}
                     Title = {data.title}
                     Institution = {data.institution}
                     Rating = {data.rating} 
                     Registered = {data.registered}
                     Duration = {data.duration}/>
-                  // </Link>
+                  // 
                 )}
                 </CourseContainer>
             </JobContainer>

@@ -36,7 +36,7 @@ export const TopSectionContainer = styled.div`
 export const BackgroundFilter = styled.div`
     width: 100%;
     height: 100%;
-    background-color: rgba(72, 60, 50, 0);
+    background-color: rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
 `;
@@ -64,11 +64,11 @@ export const Title = styled.h1`
     width: 80%;
 `;
 
-export const SloganText = styled.h3`
+export const SloganText = styled.h2`
     margin: 0;
     line-height: 1.4;
     color: rgb(255, 255, 255, 0.8);
-    font-weight: 500;
+    font-weight: 1000;
     font-size: 25px;
     width: 70%
 `;

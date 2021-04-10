@@ -312,8 +312,8 @@
 
   .coursecards__item__pic-wrap {
     position: relative;
-    min-width: 60px;
-    height:60px;
+    min-width: 45px;
+    height: 45px;
     overflow: hidden;
     margin: 0.5em!important;
     margin-top: 0.3em!important;

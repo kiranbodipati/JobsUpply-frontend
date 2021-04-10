@@ -87,6 +87,7 @@ const DPContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 0.5em;
+  border: 1px solid #fff;
 `;
 
 const DPImage = styled.div`
