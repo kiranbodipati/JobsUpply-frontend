@@ -9,7 +9,8 @@ import {
   SubmitButton,
 } from "./common";
 import { AccountContext } from "./context";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
@@ -47,6 +48,8 @@ export const LoginForm = (props) => {
     setPassword(password);
   };
 
+  const history = useHistory();
+
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -58,8 +61,8 @@ export const LoginForm = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(Email, password).then(
         () => {
-          props.history.push("/profileEdit");
-          window.location.reload();
+          history.push("/jobs");
+          // window.location.reload();
         },
         (error) => {
           const resMessage =
@@ -103,18 +106,18 @@ export const LoginForm = (props) => {
               validations={[required]}
             />
       {/* </FormContainer> */}
-      <MutedLink href="#">Forgot Password?</MutedLink>
-      <Marginer direction="vertical" margin="1em" />
-      <Link to = "/jobs">
-        <SubmitButton>Login</SubmitButton>
-        </Link>
-      <Marginer direction="vertical" margin={5} />
-      <MutedLink href="#">
-        Dont have an Account?
-        <BoldLink href="#" onClick={switchToSignup}>
-          sign up
-        </BoldLink>
-      </MutedLink>
+        <MutedLink href="#">Forgot Password?</MutedLink>
+        <Marginer direction="vertical" margin="1em" />
+        <CheckButton ref={checkBtn}>
+          <SubmitButton>Login</SubmitButton>
+        </CheckButton>
+        <Marginer direction="vertical" margin={5} />
+        <MutedLink href="#">
+          Dont have an Account?
+          <BoldLink href="#" onClick={switchToSignup}>
+            sign up
+          </BoldLink>
+        </MutedLink>
       </Form>
     </BoxContainer>
   );
