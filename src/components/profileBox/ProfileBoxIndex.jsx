@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { ProfileForm } from "./ProfileForm";
+import Profile from "./ProfileForm";
 import { Marginer } from "../marginer";
 import { Link } from "react-router-dom";
 import BackImg from "../../Images/Backorange.png";
@@ -116,7 +116,7 @@ export function ProfileBox(props) {
           <SmallText>Let us know better about you!</SmallText>
       </TopContainer>
       <InnerContainer>
-        <ProfileForm />
+        <Profile />
       </InnerContainer>
     </BoxContainer>
   );
