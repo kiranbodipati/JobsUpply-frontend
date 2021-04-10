@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import TopSectionBackgroundImg from "../../Images/bg-masthead.jpg"
+import TopSectionBackgroundImg from "../../Images/bg-orange.png"
 import { Marginer} from "../../components/marginer";
 import { Link } from "react-router-dom";
 import { InnerPageContainer, PageContainer } from "../../components/pageContainer/PageContainerindex";
@@ -12,9 +12,8 @@ import { UserDetails } from "../../data";
 
 export const TopSectionContainer = styled.div`
     width: 100%;
-    height: 700px;
+    height: 683px;
     background: url(${TopSectionBackgroundImg});
-    background-position: 10px -100px;
     background-size: cover; 
     display: flex;
     align-items: center;
@@ -23,7 +22,7 @@ export const TopSectionContainer = styled.div`
 export const BackgroundFilter = styled.div`
     width: 100%;
     height: 100%;
-    background-color: rgba(72, 60, 50, 0.75);
+    background-color: rgba(72, 60, 50, 0);
     display: flex;
     flex-direction: column;
 `;
@@ -33,8 +32,9 @@ export const ContentContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     padding: 0;
+    overflow: auto;
 `;
 
 export const Title = styled.h1`
@@ -65,5 +65,6 @@ export function UserMain(props){
             </BackgroundFilter>
         </TopSectionContainer>
         <Footer />
-    </PageContainer>)
+    </PageContainer>
+    )
 }

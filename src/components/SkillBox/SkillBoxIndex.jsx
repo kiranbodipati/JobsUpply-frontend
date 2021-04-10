@@ -164,11 +164,11 @@ class Skills extends Component {
               </FormContainer>
           </BoxContainer>
          <RowContainer>
-             <Link style={{ textDecoration: 'none', color: 'white' }} to = "/profile">
+             <Link style={{ textDecoration: 'none', color: 'white' }} to = "/Settings">
                <SkillButton onClick={this.props.closePopup}>Cancel</SkillButton>
              </Link>
              <Marginer direction="horizontal" margin="0.5em" />
-             <Link style={{ textDecoration: 'none', color: 'white' }} to = "/profile">
+             <Link style={{ textDecoration: 'none', color: 'white' }} to = "/Settings">
                <SkillButton onClick={this.props.closePopup}>Confirm</SkillButton>
              </Link>
          </RowContainer>

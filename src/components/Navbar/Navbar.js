@@ -28,7 +28,7 @@ export function Navbar() {
     <>
       <nav className='navbar'>
         <div className='navbar-container'>
-          <Link to='/main' className='navbar-logo' onClick={closeMobileMenu}>
+          <Link to='/jobs' className='navbar-logo' onClick={closeMobileMenu}>
             JobsUpply
             <i class='fab fa-typo3' />
           </Link>
@@ -39,7 +39,7 @@ export function Navbar() {
 
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
-              <Link to='/main' className='nav-links' onClick={closeMobileMenu}>
+              <Link to='/jobs' className='nav-links' onClick={closeMobileMenu}>
                 Home
               </Link>
             </li>
@@ -55,7 +55,7 @@ export function Navbar() {
 
             <li className='nav-item'>
               <Link
-                to='/profile'
+                to='/Settings'
                 className='nav-links'
                 onClick={closeMobileMenu}>
                 Settings
@@ -64,7 +64,7 @@ export function Navbar() {
 
             <li>
               <Link
-                to='/'
+                to='/main'
                 className='nav-links'
                 onClick={closeMobileMenu}>
                 Log Out

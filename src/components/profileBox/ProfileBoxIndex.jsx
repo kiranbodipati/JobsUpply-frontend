@@ -105,7 +105,7 @@ export function ProfileBox(props) {
       <TopContainer>
         <BackDrop/>
           <HeaderContainer>
-          <Link style={{ textDecoration: 'none', color: 'white' }} to = "/">
+          <Link style={{ textDecoration: 'none', color: 'white' }} to = "/main">
             <BackImage>
               <img src={BackImg} alt="Back" />
             </BackImage>

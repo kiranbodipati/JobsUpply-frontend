@@ -62,6 +62,33 @@ export function JobCards(props) {
   );
 }
 
+export function SingleJobCard(props) {
+  let {Jobtitle, Company, Industry, Jobreq} = props;
+  return (
+    <div className='jobcards'>
+      <div className="jobcards__container">
+        <div className="jobcards__wrapper">
+          <ul className='jobcards__items'>
+          {UserDetails.map((data) =>
+            <JobCardItem
+              src='Images/bg-masthead.jpg'
+              text1= {Jobtitle}
+              text2= {Company} 
+              text3= {Industry}
+              text4='Skills needed:  '
+              src2 = {Linkedin}
+              Userskill = {data.Skill}
+              Jobneed = {Jobreq}
+            /> 
+          )}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 export function CourseCards(props) {
   let {Title, Institution, Rating, Registered,Duration} = props;
   return (

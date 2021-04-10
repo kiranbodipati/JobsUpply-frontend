@@ -1,6 +1,5 @@
 .cards {
     padding: 0rem;
-    background: #fff;
     width: 100%;
     border-radius: 19px;
   }
@@ -16,7 +15,7 @@
     max-width: 1120px;
     width: 100%;
     margin: 0 auto;
-    
+  
   }
   
   .cards__wrapper {
@@ -90,7 +89,7 @@
   }
   
   .cards__item__text {
-    color: #252e48;
+    color: #fff;
     font-size: 18px;
     line-height: 24px;
   }
@@ -115,10 +114,10 @@
 
   .jobcards {
     padding: 0rem;
-    background: #fff;
     width: 100%;
     border-radius: 19px;
     margin-bottom: 1em;
+    background: rgb(0, 0, 0, 0.7);
   }
 
   .jobcards__container {
@@ -138,6 +137,7 @@
     width: 100%;
     height: 100%;
     border-radius: 19px;
+    border: 1.5px solid bisque;
   }
 
   .jobcards__items {
@@ -224,7 +224,7 @@
   }
   
   .jobcards__item__text {
-    color: #252e48;
+    color: #fff;
     font-size: 18px;
     line-height: 24px;
     margin: 0em!important;
@@ -250,7 +250,7 @@
 
   .coursecards {
     padding: 0rem;
-    background: #fff;
+    background: rgb(0, 0, 0, 0.6);
     width: 45%;
     border-radius: 19px;
     margin-bottom: 1em;
@@ -276,6 +276,7 @@
     width: 100%;
     height: 100%;
     border-radius: 19px;
+    border: 1px solid bisque;
   }
 
   .coursecards__items {
@@ -300,7 +301,7 @@
   .coursecards__item__link {
     display: flex;
     flex-flow: row;
-    align-items:flex-start;
+    align-items:center;
     width: 100%;
     -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
     filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
@@ -356,17 +357,16 @@
 
   .coursecards__item__info2 {
     display: flex;
-
     width:100%;
     align-items:flex-start;
     flex-direction: column;
-    padding: 10px 10px 10px;
+    padding: 5px 5px;
   }
   
   .coursecards__item__text {
-    color: #252e48;
+    color: #fff;
     font-size: 15px;
-    line-height: 14px;
+    line-height: 18px;
     margin: 0em!important;
     margin-bottom: 0.3em;
   }

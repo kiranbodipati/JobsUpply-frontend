@@ -171,7 +171,7 @@ export function AccountBox(props,{setToken}) {
           {active === "signin" && (
             <>
               <HeaderContainer>
-                <Link to = "/">
+                <Link to = "/main">
                   <BackImage>
                     <img src={BackImg} alt="Back" />
                   </BackImage>
@@ -185,7 +185,7 @@ export function AccountBox(props,{setToken}) {
           {active === "signup" && (
             <>
               <HeaderContainer>
-                <Link to = "/">
+                <Link to = "/main">
                   <BackImage>
                     <img src={BackImg} alt="Back" />
                   </BackImage>

@@ -28,7 +28,7 @@ export function Navbar() {
     <>
       <nav className='navbar'>
         <div className='navbar-container'>
-          <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+          <Link to='/main' className='navbar-logo' onClick={closeMobileMenu}>
             JobsUpply
             <i class='fab fa-typo3' />
           </Link>
@@ -39,14 +39,14 @@ export function Navbar() {
 
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+              <Link to='/main' className='nav-links' onClick={closeMobileMenu}>
                 Home
               </Link>
             </li>
 
             <li className='nav-item'>
               <Link
-                to='/'
+                to='/main'
                 className='nav-links'
                 onClick={closeMobileMenu}>
                 About us

@@ -126,11 +126,11 @@ export function ProfileForm(props) {
       </RowContainer>
       <Marginer direction="vertical" margin="1em" />
       <RowContainer>
-        <Link to = '/main'>
+        <Link to = '/jobs'>
           <SubmitButton>Cancel</SubmitButton>
         </Link>
         <Marginer direction="horizontal" margin="2em" />
-        <Link to = '/main'>
+        <Link to = '/jobs'>
           <SubmitButton>Confirm</SubmitButton>
         </Link>
       </RowContainer>

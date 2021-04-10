@@ -17,24 +17,26 @@ const OuterContainer = styled.div`
 `;
 
 export const ProfileContainer = styled.div`
-  width: 100%;
+  width: 99%;
   min-height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: rgba(15, 15, 15, 0.45);
   border-radius: 19px;
+  border: 1px solid bisque;
 `;
 
 export const SkillContainer = styled.div`
-  width: 100%;
-  min-height: 350px;
+  width: 99%;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: rgba(15, 15, 15, 0.45);
   border-radius: 19px;
   margin-top: 1em;
+  border: 1px solid bisque;
 `;
 
 export const FormContainer = styled.form`
