@@ -62,12 +62,12 @@ export function JobDetails(props){
         if (user) {
         setCurrentUser(user);
         }
-        if(!currentUser) {
-        //    return (Login)
-        return ( <Login /> )
+        // if(!currentUser) {
+        // //    return (Login)
+        // return ( <Login /> )
 
-        // return <Redirect to = '/login' />
-        };
+        // // return <Redirect to = '/login' />
+        // };
     }, []);
 
     return (

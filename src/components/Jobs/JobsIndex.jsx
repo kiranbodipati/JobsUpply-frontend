@@ -104,10 +104,10 @@ export function JobList(props){
         setCurrentUser(user);
         }
     }, []);
-    if(!currentUser) {
-       return (<Login />);
-      //  return (<Redirect push to = '/login' />);
-      };
+    // if(!currentUser) {
+    //    return (<Login />);
+    //   //  return (<Redirect push to = '/login' />);
+    //   };
   
     return(
         <OuterContainer>

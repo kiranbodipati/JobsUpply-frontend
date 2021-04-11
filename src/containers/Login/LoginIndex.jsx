@@ -50,10 +50,10 @@ export function Login(props) {
         if(currentUser!=null){
         console.log(user.token)}
     }, []);
-    if(currentUser!=null) {
-      console.log(currentUser);
-      return (<JobList />)
-    };
+    // if(currentUser!=null) {
+    //   console.log(currentUser);
+    //   return (<JobList />)
+    // };
 
     return(
         <PageContainer>

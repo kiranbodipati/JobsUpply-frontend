@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import TopSectionBackgroundImg from "../../Images/bg-orange.png"
+import TopSectionBackgroundImg from '../../earth.png';
 import { Marginer} from "../../components/marginer";
 import { Link } from "react-router-dom";
 import { InnerPageContainer, PageContainer } from "../../components/pageContainer/PageContainerindex";
@@ -25,7 +25,7 @@ export const Sectionhead = styled.h1`
     color: #fff;
     margin-top: 50px;
 `;
-
+// background: url(${TopSectionBackgroundImg});
 export const TopSectionContainer = styled.div`
     width: 100%;
     height: 683px;
@@ -82,6 +82,18 @@ export const Line = styled.hr`
   border-color: rgb(244,98,58);
 `;
 
+// export background-video{
+
+//     height: 100%;
+//     width: 100%;
+//     float: left;
+//     top: 0;
+//     padding: none;
+//     position: fixed; /* optional depending on what you want to do in your app */
+    
+    
+//     }
+
 export function HomePage(props){
     const { children, textSize } = props;
 
@@ -99,6 +111,9 @@ export function HomePage(props){
     // }, []);
     return (<PageContainer>
             <TopSectionContainer>
+                {/* <video>
+                <source src = {TopSectionBackgroundImg} type = "video/mp4"/>
+                </video> */}
                 <BackgroundFilter>
                     <Navbar />
                     {children}

@@ -41,11 +41,11 @@ export function ProfileEdit(props) {
         if (user) {
         setCurrentUser(user);
         }
-        if(!currentUser) {
-            console.log(currentUser);
-            return (<Login />)
-        // return <Redirect to = '/login' />
-        };
+        // if(!currentUser) {
+        //     console.log(currentUser);
+        //     return (<Login />)
+        // // return <Redirect to = '/login' />
+        // };
     }, []);
     return(
         <PageContainer>

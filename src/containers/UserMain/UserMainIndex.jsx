@@ -56,9 +56,9 @@ export function UserMain(props){
         if (user) {
         setCurrentUser(user);
         }
-        if(!currentUser) {
-            console.log(currentUser);
-           return ( <Login/>)};
+        // if(!currentUser) {
+        //     console.log(currentUser);
+        //    return ( <Login/>)};
     }, []);
     return (
     <PageContainer>
