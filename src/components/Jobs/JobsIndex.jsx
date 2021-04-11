@@ -6,7 +6,7 @@ import { JobCards } from "../Cards/Cards"
 import {Button, JobHave, JobNo} from '../Button/Button'
 import { Link } from 'react-router-dom';
 import './new.css';
-import {PositionDetail} from "../../data";
+import {PositionDetail, PositionDetailKiran} from "../../data";
 import AuthService from "../../services/auth.service";
 import {Login} from "../../containers/Login/LoginIndex";
 import Redirect from 'react';
@@ -97,7 +97,7 @@ const SearchBar = ({keyword,setKeyword}) => {
 export function JobList(props){
 
   const [currentUser, setCurrentUser] = useState({token:"temp", user: UserDetails[0]});
-
+  let propIter=PositionDetail
     useEffect(() => {
         const user = AuthService.getCurrentUser();
         if (user) {
@@ -127,7 +127,7 @@ export function JobList(props){
               <RowOneThird><SearchBar/></RowOneThird>
             </RowContainer>
             <JobContainer>
-            {PositionDetail.map((data) =>
+            {propIter.map((data) =>
                 <Link className="jobcards__item__link" to= '/jobdetails'>
                   <JobCards key = {data.id}
                   Jobtitle = {data.Jobtitle}

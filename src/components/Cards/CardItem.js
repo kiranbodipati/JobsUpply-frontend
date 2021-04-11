@@ -26,9 +26,9 @@ export function JobCardItem(props) {
   let {text1, text2, text3, text4, Userskill, Jobneed} = props;
   // let Userhave = Jobneed.filter(a => Userskill.some(b => a.id === b.id));  
   let Userhave = []
-  Userhave = Jobneed.filter(a => Userskill.some(b => a.id === b.id));  
+  Userhave = Jobneed.filter(a => Userskill.some(b => a.name=== b.name));  
   let Userdonthave = []
-  Userdonthave = Jobneed.filter(({ id: id1 }) => !Userskill.some(({ id: id2 }) => id2 === id1));
+  Userdonthave = Jobneed.filter(({ name: name1 }) => !Userskill.some(({ name: name2}) => name2 === name1));
   // let Userdonthave = Jobneed.filter(({ id: id1 }) => !Userskill.some(({ id: id2 }) => id2 === id1));
   return (
     <>
