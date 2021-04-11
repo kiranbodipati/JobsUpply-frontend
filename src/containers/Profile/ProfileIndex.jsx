@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { ProfileBox } from "../../components/profileBox/ProfileBoxIndex";
 import { Footer } from "../../components/Footer/FooterIndex";
 import { Navbar } from "../../components/Navbar/Navbar";
 import {InnerPageContainer,  PageContainer } from "../../components/pageContainer/PageContainerindex";
-
-import TopSectionBackgroundImg from "../../Images/bg-orange.png"
+import AuthService from "../../services/auth.service";
+import {Login} from "../../containers/Login/LoginIndex";
+import TopSectionBackgroundImg from "../../Images/bg-orange.png";
+import  { Redirect } from 'react-router-dom';
 
 const ProfilepageContainer = styled.div`
     width: 100%;
@@ -30,6 +32,21 @@ const StyledInnerContainer = styled(InnerPageContainer)`
 
 
 export function ProfileEdit(props) {
+
+    const [currentUser, setCurrentUser] = useState(undefined);
+
+    useEffect(() => {
+        const user = AuthService.getCurrentUser();
+
+        if (user) {
+        setCurrentUser(user);
+        }
+        // if(!currentUser) {
+        //     console.log(currentUser);
+        //     return (<Login />)
+        // // return <Redirect to = '/login' />
+        // };
+    }, []);
     return(
         <PageContainer>
             <ProfilepageContainer>

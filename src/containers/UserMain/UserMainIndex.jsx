@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TopSectionBackgroundImg from "../../Images/bg-orange.png"
 import { Marginer} from "../../components/marginer";
@@ -9,6 +9,8 @@ import { Footer } from '../../components/Footer/FooterIndex'
 import { UserInfo } from '../../components/UserInfo/UserinfoIndex'
 import { JobList } from "../../components/Jobs/JobsIndex";
 import { UserDetails } from "../../data";
+import AuthService from "../../services/auth.service";
+import {Login} from "../../containers/Login/LoginIndex";
 
 export const TopSectionContainer = styled.div`
     width: 100%;
@@ -46,6 +48,18 @@ export const Title = styled.h1`
 `;
 
 export function UserMain(props){
+    const [currentUser, setCurrentUser] = useState(undefined);
+
+    useEffect(() => {
+        const user = AuthService.getCurrentUser();
+
+        if (user) {
+        setCurrentUser(user);
+        }
+        // if(!currentUser) {
+        //     console.log(currentUser);
+        //    return ( <Login/>)};
+    }, []);
     return (
     <PageContainer>
         <TopSectionContainer>

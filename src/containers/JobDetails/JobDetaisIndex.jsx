@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import TopSectionBackgroundImg from "../../Images/bg-orange.png";
 import { Marginer} from "../../components/marginer";
@@ -9,6 +10,10 @@ import { Footer } from '../../components/Footer/FooterIndex'
 import { UserInfo } from '../../components/UserInfo/UserinfoIndex'
 import { JobDetail } from'../../components/JobDetails/JobDetails'
 import { UserDetails } from "../../data";
+import AuthService from "../../services/auth.service";
+import {Login} from "../../containers/Login/LoginIndex";
+import Redirect from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 
 export const TopSectionContainer = styled.div`
@@ -49,13 +54,29 @@ export const Title = styled.h1`
 
 export function JobDetails(props){
 
+    const [currentUser, setCurrentUser] = useState(undefined);
+
+    useEffect(() => {
+        const user = AuthService.getCurrentUser();
+
+        if (user) {
+        setCurrentUser(user);
+        }
+        // if(!currentUser) {
+        // //    return (Login)
+        // return ( <Login /> )
+
+        // // return <Redirect to = '/login' />
+        // };
+    }, []);
+
     return (
     <PageContainer>
         <TopSectionContainer>
             <BackgroundFilter>
                 <Navbar />
                 <ContentContainer>
-                )}
+                
                     {UserDetails.map((data) =>
                         <UserInfo key = {data.id}
                         DP = {data.Pic}

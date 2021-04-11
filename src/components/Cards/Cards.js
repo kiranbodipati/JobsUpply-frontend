@@ -2,6 +2,9 @@ import React from 'react';
 import './Cards.css';
 import { CardItem, JobCardItem, CourseCardItem } from './CardItem';
 import {UserDetails, PositionDetail} from '../../data'
+import profilechecker from "../../Images/profilechecker.jpg";
+import courserecom from "../../Images/courserecom.jpg";
+import settings from "../../Images/settings.jpg";
 import Linkedin from "../../Images/LinkedinLogo.jpg";
 import Coursera from "../../Images/coursera.png";
 
@@ -12,19 +15,19 @@ export function Cards() {
         <div className="cards__wrapper">
           <ul className='cards__items'>
             <CardItem
-              src='Images/bg-masthead.jpg'
+              src='Images/settings.jpg'
               text='Settings'
               label='Job Title 3'
               path='/se'
             />
             <CardItem
-              src='Images/bg-masthead.jpg'
+              src='Images/profilechecker.jpg'
               text='profile-checker'
               label='Job Title 4'
               path='/profile-checker'
             />
             <CardItem
-              src='Images/bg-masthead.jpg'
+              src='Images/courserecom.jpg'
               text='Course recommendation'
               label='Job Title 5 '
               path='/log-out'

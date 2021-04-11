@@ -6,15 +6,13 @@ import { Skills } from "./components/SkillBox/SkillBoxIndex";
 import { UserMain } from "./containers/UserMain/UserMainIndex";
 import { JobDetails } from "./containers/JobDetails/JobDetaisIndex";
 import Home from "./components/Home";
-import Profile from "./components/profileBox/ProfileForm";
+import {ProfileForm} from "./components/profileBox/ProfileForm";
 import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
 import React, { useState, useEffect } from "react";
 import AuthService from "./services/auth.service.js";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 
 function App() {
@@ -36,6 +34,20 @@ function App() {
   const logOut = () => {
     AuthService.logout();
   };
+
+  // const {token, setToken} = useToken();
+
+  if(!currentUser) {
+    return (
+      <Router>
+        <Switch>
+        <Route path = {["/", "/main"]} exact component = {HomePage} />
+        <Route path={["/login", "/jobs", "/jobdetails", "/profileEdit", "/Settings"]} exact component={Login} />
+        </Switch>
+      </Router>
+    );
+    }
+
   return (
     <div className="App">
       <Router>
@@ -44,7 +56,7 @@ function App() {
           {/* <Route exact path={["/", "/home"]} component={Home} /> */}
           <Route path = "/login" exact component = {Login} />
           <Route path = "/Settings" exact component = {ProfileEdit} />
-          <Route exact path="/profileEdit" component={Profile} />
+          <Route exact path="/profileEdit" component={ProfileForm} />
           {/* <Route path = "/skill" exact component = {Skills} /> */}
           <Route path = "/jobs" exact component = {UserMain} />
           <Route path = "/jobdetails" exact component = {JobDetails} />
