@@ -156,7 +156,7 @@ export const colourOptions = [
   ];
 
   export const UserDetails = [
-    {id: 5, email: "loading@loading.com", name: 'Loading...', university: 'Loading...', major: 'Loading...', minor: 'Loading...', Pic: './Images/jobsupplyLogo.png', skill: [
+    {id: 5, email: "loading@loading.com", name: 'Loading...', university: 'Loading...', major: 'Loading...', minor: 'Loading...', Pic: './Images/jobsupplyLogo.png', skills: [
       {id: 1, name: 'Skill 1'},
       {id: 2, name: 'Skill 2'},
       {id: 6, name: 'Skill 6'},

@@ -82,7 +82,7 @@ export function UserMain(props){
                         University = {data.university}
                         Major = {data.major}
                         Minor = {m}
-                        Skillsss = {data.skill}
+                        Skillsss = {data.skills}
                     />)}
                 )}
                 <JobList />

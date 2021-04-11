@@ -54,7 +54,7 @@ export function JobCards(props) {
               text3= {Industry}
               text4='Skills needed:  '
               src2 = {Linkedin}
-              Userskill = {data.skill}
+              Userskill = {data.skills}
               Jobneed = {Jobreq}
             /> 
           )}

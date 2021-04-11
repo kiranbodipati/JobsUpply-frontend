@@ -17,6 +17,22 @@ const register = (Email, Password) => {
   });
 };
 
+const update = (updatedDict) => {
+  return axios.put(API_URL + "backend/database/Users", updatedDict)
+  .then((response) => {
+    if (response.data.email) {
+      console.log(response.data.email+" updated.");
+      let currUser = getCurrentUser();
+      currUser.user.name = updatedDict.name;
+      currUser.user.university = updatedDict.university;
+      currUser.user.major = updatedDict.major;
+      currUser.user.minor = [updatedDict.minor];
+      localStorage.setItem("user", JSON.stringify(currUser));
+    }
+    return response.data;
+  });
+};
+
 const login = (Email, Password) => {
   return axios
     .post(API_URL + "token-auth/", {
@@ -43,6 +59,7 @@ const getCurrentUser = () => {
 
 export default {
   register,
+  update,
   login,
   logout,
   getCurrentUser,

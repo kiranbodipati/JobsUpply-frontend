@@ -163,17 +163,18 @@ export function UserInfo(props){
                 </RowContainer>
               </FormContainer>
             </ProfileContainer>
-            {/* <SkillContainer>
+            <SkillContainer>
               <Title>Your skills</Title>
               <SkillList>
+                {console.log(Skillsss)}
                 {Skillsss.map((item) =>
                   // <JobHave key = {item.id} item = {item} />
-                  <JobHave key = {item.id}>
+                  <JobHave key = {item.name}>
                     {item.name}
                   </JobHave>
                   )}
               </SkillList>
-            </SkillContainer> */}
+            </SkillContainer>
         </OuterContainer>
 
 

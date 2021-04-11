@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useState, useRef, useContext} from "react";
 import styled from "styled-components";
 import { Marginer } from "../marginer";
 import {
@@ -9,11 +9,17 @@ import {
   ConfirmButton,
   SkillButton
 } from "./common";
-import { Link } from "react-router-dom";
 import {UniversityList, MajorList, MinorList} from "./dropdown";
 import { Skillpopup } from '../SkillBox/SkillBoxIndex';
 import  { Redirect } from 'react-router-dom'
 // import AuthService from "../../services/auth.service";
+
+import { Link, useHistory } from "react-router-dom";
+
+import Form from "react-validation/build/form";
+import CheckButton from "react-validation/build/button";
+
+import AuthService from "../../services/auth.service";
 
 const InnerText = styled.h5`
   font-weight: 500;
@@ -103,17 +109,132 @@ export class Popups extends Component {
 // };
 
 // export default Profile;
+
+export const required = (value) => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+  else {
+    return 1;
+  }
+};
+
+
 export function ProfileForm(props) {
+  const form = useRef();
+  const checkBtn = useRef();
+  const hist = useHistory();
+
+  const [name, setName] = useState("");
+  const [university, setUniversity] = useState("");
+  const [major, setMajor] = useState("");
+  const [minor, setMinor] = useState("");
+  const [successful, setSuccessful] = useState(false);
+  const [message, setMessage] = useState("");
+  const [formIsValid, setFormIsValid] = useState(false);
+
+  const onChangeName = (e) => {
+    const Name = e.target.value;
+    setName(Name);
+    if (required(Name) === 1){
+      setFormIsValid(true);
+      setMessage("")
+    }
+    else {
+      setFormIsValid(false)
+      setMessage("Invalid name!")
+    }
+  };
+
+  const onChangeUni = (e) => {
+    const Name = e.target.value;
+    setUniversity(Name);
+    if (required(Name) === 1){
+      setFormIsValid(true);
+      setMessage("")
+    }
+    else {
+      setFormIsValid(false)
+      setMessage("Invalid university!")
+    }
+  };
+
+  const onChangeMajor = (e) => {
+    const Name = e.target.value;
+    setMajor(Name);
+    if (required(Name) === 1){
+      setFormIsValid(true);
+      setMessage("")
+    }
+    else {
+      setFormIsValid(false)
+      setMessage("Invalid major!")
+    }
+  };
+
+  const onChangeMinor = (e) => {
+    const Name = e.target.value;
+    setMinor(Name);
+    if (required(Name) === 1){
+      setFormIsValid(true);
+      setMessage("")
+    }
+    else {
+      setFormIsValid(false)
+      setMessage("Invalid Minor! Choose None for default.")
+    }
+  };
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+
+    setMessage("");
+    setSuccessful(false);
+
+    form.current.validateAll();
+
+    if (checkBtn.current.context._errors.length === 0 && formIsValid === true) {
+      AuthService.update({"name": name, "university":university, "major":major, "minor":minor}).then(
+        (response) => {
+          setSuccessful(true);
+          hist.push("/Settings")
+        },
+        (error) => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          setMessage(resMessage);
+          setSuccessful(false);
+        }
+      );
+    }
+    else {
+      setSuccessful(false);
+    }
+  };
 
   return (
     <BoxContainer>
+      <Form onSubmit={handleUpdate} ref={form}>
       <FormContainer>
         <RowContainer>
           <RowLeft>
             <InnerText>Name*</InnerText>
           </RowLeft>
           <RowRight>
-            <Input placeholder="Full Name" />
+            <Input placeholder="Full Name" 
+                  name="name"
+                  value={name}
+                  onChange={onChangeName}
+                  validations={[required]}/>
           </RowRight>
         </RowContainer>
         <RowContainer>
@@ -160,7 +281,7 @@ export function ProfileForm(props) {
         </Link>
       </RowContainer>
       <Marginer direction="vertical" margin={20} />
-
+      </Form>
     </BoxContainer>
   );
 }
