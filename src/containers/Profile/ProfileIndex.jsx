@@ -54,7 +54,7 @@ export function ProfileEdit(props) {
                 <BackgroundFilter>
                     <Navbar />
                     <StyledInnerContainer>
-                        <ProfileBox />
+                        <ProfileBox user={currentUser.user}/>
                     </StyledInnerContainer>
                 </BackgroundFilter>
             </ProfilepageContainer>

@@ -41,7 +41,7 @@ function App() {
 
   // const {token, setToken} = useToken();
 
-  if(!currentUser) {
+  if(currentUser.token==="temp") {
     return (
       <Router>
         <Switch>

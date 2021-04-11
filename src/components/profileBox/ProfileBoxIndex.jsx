@@ -100,6 +100,7 @@ const BackImage = styled.div`
 
 
 export function ProfileBox(props) {
+  let { user } = props
   return (
     <BoxContainer>
       <TopContainer>
@@ -116,7 +117,7 @@ export function ProfileBox(props) {
           <SmallText>Let us know more about you!</SmallText>
       </TopContainer>
       <InnerContainer>
-        <ProfileForm />
+        <ProfileForm user={user}/>
       </InnerContainer>
     </BoxContainer>
   );

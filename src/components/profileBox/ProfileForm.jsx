@@ -20,6 +20,8 @@ import Form from "react-validation/build/form";
 import CheckButton from "react-validation/build/button";
 
 import AuthService from "../../services/auth.service";
+import { University, Major, Minor } from '../../data';
+import CreatableSelect from 'react-select/creatable';
 
 const InnerText = styled.h5`
   font-weight: 500;
@@ -125,67 +127,65 @@ export const required = (value) => {
 
 
 export function ProfileForm(props) {
+  let { user } = props
   const form = useRef();
   const checkBtn = useRef();
   const hist = useHistory();
 
-  const [name, setName] = useState("");
-  const [university, setUniversity] = useState("");
-  const [major, setMajor] = useState("");
-  const [minor, setMinor] = useState("");
+  const [name, setName] = useState(user.name);
+  const [university, setUniversity] = useState(user.university);
+  const [major, setMajor] = useState(user.major);
+  const [minor, setMinor] = useState(user.minor);
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
   const [formIsValid, setFormIsValid] = useState(false);
 
   const onChangeName = (e) => {
     const Name = e.target.value;
-    setName(Name);
+    console.log({"email":user.email, "name": name, "university":university, "major":major, "minor":minor})
     if (required(Name) === 1){
+      setName(Name);
       setFormIsValid(true);
       setMessage("")
     }
     else {
-      setFormIsValid(false)
-      setMessage("Invalid name!")
+      setName(user.name)
     }
   };
 
   const onChangeUni = (e) => {
-    const Name = e.target.value;
-    setUniversity(Name);
+    const Name = e.value;
     if (required(Name) === 1){
+      setUniversity(Name);
       setFormIsValid(true);
       setMessage("")
     }
     else {
-      setFormIsValid(false)
-      setMessage("Invalid university!")
+      setUniversity(user.university)
     }
   };
 
   const onChangeMajor = (e) => {
-    const Name = e.target.value;
-    setMajor(Name);
+    const Name = e.value;
     if (required(Name) === 1){
+      setMajor(Name);
       setFormIsValid(true);
       setMessage("")
     }
     else {
-      setFormIsValid(false)
-      setMessage("Invalid major!")
+      setMajor(user.major)
     }
   };
 
   const onChangeMinor = (e) => {
-    const Name = e.target.value;
-    setMinor(Name);
+    const Name = e.value;
     if (required(Name) === 1){
+      setMinor(Name);
       setFormIsValid(true);
       setMessage("")
     }
     else {
-      setFormIsValid(false)
-      setMessage("Invalid Minor! Choose None for default.")
+      setMinor(user.minor)
     }
   };
 
@@ -198,10 +198,10 @@ export function ProfileForm(props) {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0 && formIsValid === true) {
-      AuthService.update({"name": name, "university":university, "major":major, "minor":minor}).then(
+      AuthService.update({"email":user.email, "name": name, "university":university, "major":major, "minor":minor}).then(
         (response) => {
           setSuccessful(true);
-          hist.push("/Settings")
+          console.log({"email":user.email, "name": name, "university":university, "major":major, "minor":minor})
         },
         (error) => {
           const resMessage =
@@ -212,6 +212,7 @@ export function ProfileForm(props) {
             error.toString();
 
           setMessage(resMessage);
+          console.log(resMessage);
           setSuccessful(false);
         }
       );
@@ -242,7 +243,10 @@ export function ProfileForm(props) {
             <InnerText>University*</InnerText>
           </RowLeft>
           <RowRight>
-            <UniversityList />
+            <CreatableSelect
+              onChange={onChangeUni}
+              options={University}
+            />
           </RowRight>
         </RowContainer>
         <RowContainer>
@@ -250,7 +254,10 @@ export function ProfileForm(props) {
             <InnerText>Major*</InnerText>
           </RowLeft>
           <RowRight>
-            <MajorList />
+          <CreatableSelect
+              onChange={onChangeMajor}
+              options={Major}
+            />
           </RowRight>
         </RowContainer>
         <RowContainer>
@@ -258,7 +265,10 @@ export function ProfileForm(props) {
             <InnerText>Minor*</InnerText>
           </RowLeft>
           <RowRight>
-          <MinorList/>
+            <CreatableSelect
+              onChange={onChangeMinor}
+              options={Minor}
+            />
           </RowRight>
         </RowContainer>
       </FormContainer>
@@ -276,9 +286,9 @@ export function ProfileForm(props) {
           <SubmitButton>Cancel</SubmitButton>
         </Link> */}
         {/* <Marginer direction="horizontal" margin="2em" /> */}
-        <Link to = '/jobs'>
+        <CheckButton ref={checkBtn}>
           <ConfirmButton>Confirm</ConfirmButton>
-        </Link>
+        </CheckButton>
       </RowContainer>
       <Marginer direction="vertical" margin={20} />
       </Form>
