@@ -48,7 +48,7 @@ export const LoginForm = (props) => {
     setPassword(password);
   };
 
-  const history = useHistory();
+  const hist = useHistory();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -61,8 +61,8 @@ export const LoginForm = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(Email, password).then(
         () => {
-          history.push("/jobs");
-          // window.location.reload();
+          hist.push('/jobs');
+          window.location.reload();
         },
         (error) => {
           const resMessage =

@@ -1,11 +1,20 @@
-import React from "react";
+import React from 'react';
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Select from 'react-select'
 import { JobCards } from "../Cards/Cards"
 import {Button, JobHave, JobNo} from '../Button/Button'
 import { Link } from 'react-router-dom';
 import './new.css';
-import {PositionDetail} from "../../data"
+import {PositionDetail} from "../../data";
+import AuthService from "../../services/auth.service";
+import {Login} from "../../containers/Login/LoginIndex";
+import Redirect from 'react';
+// import AuthService from "./services/auth.service.js";
+// import AuthService from "/Users/abhishekvaidyanathan/Desktop/JobsUpply-frontend/src/services/auth.service.js";
+// import AuthService from "../../services/auth.service";
+// import {Login} from "../../containers/Login/LoginIndex";
+
 
 const OuterContainer = styled.div`
   width: 58%;
@@ -85,6 +94,21 @@ const SearchBar = ({keyword,setKeyword}) => {
 }
 
 export function JobList(props){
+
+  const [currentUser, setCurrentUser] = useState(undefined);
+
+    useEffect(() => {
+        const user = AuthService.getCurrentUser();
+
+        if (user) {
+        setCurrentUser(user);
+        }
+    }, []);
+    if(!currentUser) {
+       return (<Login />);
+      //  return (<Redirect push to = '/login' />);
+      };
+  
     return(
         <OuterContainer>
             <RowContainer>
