@@ -157,11 +157,8 @@ export const colourOptions = [
 
   export const UserDetails = [
     {id: 5, email: "loading@loading.com", name: 'Loading...', university: 'Loading...', major: 'Loading...', minor: 'Loading...', Pic: './Images/jobsupplyLogo.png', skills: [
-      {id: 1, name: 'Skill 1'},
-      {id: 2, name: 'Skill 2'},
-      {id: 6, name: 'Skill 6'},
-      {id: 7, name: 'Skill 7'},
-      {id: 5, name: 'Skill 5'},
+      {id: 1, name: 'Python (Programming Language)'},
+      {id: 2, name: 'Machine Learning'}
     ]},
   ]
 
@@ -176,68 +173,112 @@ export const colourOptions = [
 
 
   export const PositionDetail= [
-    {id: 1, Jobtitle: 'Jobtitle 1', Company: 'Company 1', Industry:"Industry 1", Skill: [
-      {id: 1, name: 'Skill 1'},
-      {id: 2, name: 'Skill 2'},
-      {id: 3, name: 'Skill 3'},
-      {id: 4, name: 'Skill 4'},
-      {id: 5, name: 'Skill 5'},]},
-    {id: 2, Jobtitle: 'Jobtitle 2', Company: 'Company 2', Industry:'Industry 2', Skill: [
-      {id: 1, name: 'Skill 1'},
-      {id: 2, name: 'Skill 2'},
-      {id: 6, name: 'Skill 6'},
-      {id: 4, name: 'Skill 4'},
-      {id: 5, name: 'Skill 5'},]},
-    {id: 3, Jobtitle: 'Jobtitle 3', Company: 'Company 3', Industry:'Industry 3', Skill: [
-      {id: 1, name: 'Skill 1'},
-      {id: 2, name: 'Skill 2'},
-      {id: 3, name: 'Skill 3'},
-      {id: 4, name: 'Skill 4'},
-      {id: 9, name: 'Skill 9'},]},
-      {id: 1, Jobtitle: 'Jobtitle 1', Company: 'Company 1', Industry:"Industry 1", Skill: [
-        {id: 1, name: 'Skill 1'},
-        {id: 2, name: 'Skill 2'},
-        {id: 3, name: 'Skill 3'},
-        {id: 4, name: 'Skill 4'},
-        {id: 5, name: 'Skill 5'},]},
-      {id: 2, Jobtitle: 'Jobtitle 2', Company: 'Company 2', Industry:'Industry 2', Skill: [
-        {id: 1, name: 'Skill 1'},
-        {id: 2, name: 'Skill 2'},
-        {id: 6, name: 'Skill 6'},
-        {id: 4, name: 'Skill 4'},
-        {id: 5, name: 'Skill 5'},]},
-      {id: 3, Jobtitle: 'Jobtitle 3', Company: 'Company 3', Industry:'Industry 3', Skill: [
-        {id: 1, name: 'Skill 1'},
-        {id: 2, name: 'Skill 2'},
-        {id: 3, name: 'Skill 3'},
-        {id: 4, name: 'Skill 4'},
-        {id: 9, name: 'Skill 9'},]},
-        {id: 1, Jobtitle: 'Jobtitle 1', Company: 'Company 1', Industry:"Industry 1", Skill: [
-          {id: 1, name: 'Skill 1'},
-          {id: 2, name: 'Skill 2'},
-          {id: 3, name: 'Skill 3'},
-          {id: 4, name: 'Skill 4'},
-          {id: 5, name: 'Skill 5'},]},
-        {id: 2, Jobtitle: 'Jobtitle 2', Company: 'Company 2', Industry:'Industry 2', Skill: [
-          {id: 1, name: 'Skill 1'},
-          {id: 2, name: 'Skill 2'},
-          {id: 6, name: 'Skill 6'},
-          {id: 4, name: 'Skill 4'},
-          {id: 5, name: 'Skill 5'},]},
-        {id: 3, Jobtitle: 'Jobtitle 3', Company: 'Company 3', Industry:'Industry 3', Skill: [
-          {id: 1, name: 'Skill 1'},
-          {id: 2, name: 'Skill 2'},
-          {id: 3, name: 'Skill 3'},
-          {id: 4, name: 'Skill 4'},
-          {id: 9, name: 'Skill 9'},]},
+    {id: 1, Jobtitle: 'Data Scientist', Company: 'Shopee', Industry:"Data Science", Skill: [
+      {id: 1, name: 'Python (Programming Language)'},
+      {id: 2, name: 'Machine Learning'},
+      {id: 3, name: 'R (Programmming Language)'},
+      {id: 4, name: 'SQL'},
+      {id: 5, name: 'Tablaeu'},
+      {id: 5, name: 'Data Science'},]},
+    {id: 2, Jobtitle: 'Machine Learning Engineer', Company: 'IDP Education Ltd', Industry:'Data Science', Skill: [
+      {id: 1, name: 'Python (Programming Language)'},
+      {id: 2, name: 'SQL'},
+      {id: 6, name: 'R (Programmming Language)'},]},
+    {id: 3, Jobtitle: 'Technical Lead', Company: 'Ethos BeathChapman', Industry:'Information Technology', Skill: [
+      {id: 1, name: 'Python (Programming Language)'},
+      {id: 3, name: 'Golang'},
+      {id: 4, name: 'PHP'},
+      {id: 9, name: 'Software Engineering'},]},
+      {id: 4, Jobtitle: 'Software Engineer (Backend Developer)', Company: 'Grab', Industry:"Information Technology", Skill: [
+        {id: 1, name: 'Software Engineering'},
+        {id: 2, name: 'Python (Programming Language)'},
+        {id: 3, name: 'Golang'},
+        {id: 4, name: 'Amazon Web Services'},
+        {id: 5, name: 'Machine Learning'},]},
+      {id: 5, Jobtitle: 'IT Consultant', Company: 'KPMG, Singapore', Industry:'Information Technology', Skill: [
+        {id: 1, name: 'Software Engineering'},
+        {id: 2, name: 'C# (Programming Language)'},
+        {id: 6, name: 'ReactJS'},
+        {id: 4, name: 'App Development'},
+        {id: 5, name: 'Python (Programming Language)'},]},
+      {id: 6, Jobtitle: 'Backend Engineer', Company: 'Company 3', Industry:'Software Engineering', Skill: [
+        {id: 1, name: 'Javascript'},
+        {id: 2, name: 'C# (Programming Language)'},
+        {id: 3, name: 'API Development'},
+        {id: 4, name: 'Unity'},
+        {id: 9, name: 'NodeJS'},]},
+        {id: 1, Jobtitle: 'Engineer (Mobile App Dev)', Company: 'Company 1', Industry:"Software Engineering", Skill: [
+          {id: 1, name: 'React Native'},
+          {id: 2, name: 'Flutter'},
+          {id: 3, name: 'Firebase'},
+          {id: 4, name: 'API Development'},
+          {id: 5, name: 'Javascript'},]},
+        {id: 7, Jobtitle: 'Senior Developer', Company: 'Point72', Industry:'Software Engineering', Skill: [
+          {id: 1, name: 'Firebase'},
+          {id: 2, name: 'Django'},
+          {id: 6, name: 'Javascript'},
+          {id: 4, name: 'Web Development'},
+          {id: 5, name: 'C# (Programming Language)'},]},
   ]
+
+  export const PositionDetailKiran= [
+    {id: 1, Jobtitle: 'Business Analyst', Company: 'Shopee', Industry:"Data Science", Skill: [
+      {id: 1, name: 'Python (Programming Language)'},
+      {id: 2, name: 'Machine Learning'},
+      {id: 3, name: 'R (Programmming Language)'},
+      {id: 4, name: 'SQL'},
+      {id: 5, name: 'Tablaeu'},
+      {id: 5, name: 'Data Science'},]},
+    {id: 2, Jobtitle: 'Machine Learning Engineer', Company: 'IDP Education Ltd', Industry:'Data Science', Skill: [
+      {id: 1, name: 'Python (Programming Language)'},
+      {id: 2, name: 'SQL'},
+      {id: 6, name: 'R (Programmming Language)'},]},
+    {id: 3, Jobtitle: 'Technical Lead', Company: 'Ethos BeathChapman', Industry:'Information Technology', Skill: [
+      {id: 1, name: 'Python (Programming Language)'},
+      {id: 3, name: 'Golang'},
+      {id: 4, name: 'PHP'},
+      {id: 9, name: 'Software Engineering'},]},
+      {id: 4, Jobtitle: 'Software Engineer (Backend Developer)', Company: 'Grab', Industry:"Information Technology", Skill: [
+        {id: 1, name: 'Software Engineering'},
+        {id: 2, name: 'Python (Programming Language)'},
+        {id: 3, name: 'Golang'},
+        {id: 4, name: 'Amazon Web Services'},
+        {id: 5, name: 'Machine Learning'},]},
+      {id: 5, Jobtitle: 'IT Consultant', Company: 'KPMG, Singapore', Industry:'Information Technology', Skill: [
+        {id: 1, name: 'Software Engineering'},
+        {id: 2, name: 'C# (Programming Language)'},
+        {id: 6, name: 'ReactJS'},
+        {id: 4, name: 'App Development'},
+        {id: 5, name: 'Python (Programming Language)'},]},
+      {id: 6, Jobtitle: 'Backend Engineer', Company: 'Company 3', Industry:'Software Engineering', Skill: [
+        {id: 1, name: 'Javascript'},
+        {id: 2, name: 'C# (Programming Language)'},
+        {id: 3, name: 'API Development'},
+        {id: 4, name: 'Unity'},
+        {id: 9, name: 'NodeJS'},]},
+        {id: 1, Jobtitle: 'Engineer (Mobile App Dev)', Company: 'Company 1', Industry:"Software Engineering", Skill: [
+          {id: 1, name: 'React Native'},
+          {id: 2, name: 'Flutter'},
+          {id: 3, name: 'Firebase'},
+          {id: 4, name: 'API Development'},
+          {id: 5, name: 'Javascript'},]},
+        {id: 7, Jobtitle: 'Senior Developer', Company: 'Point72', Industry:'Software Engineering', Skill: [
+          {id: 1, name: 'Firebase'},
+          {id: 2, name: 'Django'},
+          {id: 6, name: 'Javascript'},
+          {id: 4, name: 'Web Development'},
+          {id: 5, name: 'C# (Programming Language)'},]},
+  ]
+
+
   export const PositionDetailsingle= [
-    {id: 1, Jobtitle: 'Jobtitle 1', Company: 'Company 1', Industry:"Industry 1", Skill: [
-      {id: 1, name: 'Skill 1'},
-      {id: 2, name: 'Skill 2'},
-      {id: 3, name: 'Skill 3'},
-      {id: 4, name: 'Skill 4'},
-      {id: 5, name: 'Skill 5'},]},
+    {id: 1, Jobtitle: 'Data Scientist', Company: 'Shopee', Industry:"Data Science", Skill: [
+      {id: 1, name: 'Python (Programming Language)'},
+      {id: 2, name: 'Machine Learning'},
+      {id: 3, name: 'R (Programmming Language)'},
+      {id: 4, name: 'SQL'},
+      {id: 5, name: 'Tablaeu'},
+      {id: 5, name: 'Data Science'},]},
   ]
   // export const PositionDetail= [
   //   {id: 1, Jobtitle: 'Jobtitle 1', Company: 'Company 1', Industry:"Industry 1"},
@@ -246,17 +287,8 @@ export const colourOptions = [
   // ]
 
   export const CourseDetail= [
-    {id: 1, title: 'Introduction to Big Data Management', institution: 'Nanyang Technological University', rating: '3.8/5.0', registered: '9.0k Registered', duration: '5.0 hrs'},
-    {id: 2, title: 'Introduction to Data Science', institution: 'Nanyang Technological University', rating: '3.9/5.0', registered: '7.8k Registered', duration: '8.0 hrs'},
-    {id: 3, title: 'Software Engineering', institution: 'Nanyang Technological University', rating: '4.0/5.0', registered: '9.2k Registered', duration: '25.0 hrs'},
-    {id: 4, title: 'Linear Algebra', institution: 'Nanyang Technological University', rating: '4.1/5.0', registered: '9.6k Registered', duration: '3.0 hrs'},
-    {id: 1, title: 'Introduction to Big Data Management', institution: 'Nanyang Technological University', rating: '3.8/5.0', registered: '9.0k Registered', duration: '5.0 hrs'},
-    {id: 2, title: 'Introduction to Data Science', institution: 'Nanyang Technological University', rating: '3.9/5.0', registered: '7.8k Registered', duration: '8.0 hrs'},
-    {id: 3, title: 'Software Engineering', institution: 'Nanyang Technological University', rating: '4.0/5.0', registered: '9.2k Registered', duration: '25.0 hrs'},
-    {id: 4, title: 'Linear Algebra', institution: 'Nanyang Technological University', rating: '4.1/5.0', registered: '9.6k Registered', duration: '3.0 hrs'},
-    {id: 1, title: 'Introduction to Big Data Management', institution: 'Nanyang Technological University', rating: '3.8/5.0', registered: '9.0k Registered', duration: '5.0 hrs'},
-    {id: 2, title: 'Introduction to Data Science', institution: 'Nanyang Technological University', rating: '3.9/5.0', registered: '7.8k Registered', duration: '8.0 hrs'},
-    {id: 3, title: 'Software Engineering', institution: 'Nanyang Technological University', rating: '4.0/5.0', registered: '9.2k Registered', duration: '25.0 hrs'},
-    {id: 4, title: 'Linear Algebra', institution: 'Nanyang Technological University', rating: '4.1/5.0', registered: '9.6k Registered', duration: '3.0 hrs'},
-    
+    {id: 1, title: 'Intoruction to R programming Language', institution: 'Nanyang Technological University', rating: '3.8/5.0', registered: '9.0k Registered', duration: '5.0 hrs'},
+    {id: 2, title: 'SQL', institution: 'University of Helsinki', rating: '3.9/5.0', registered: '7.8k Registered', duration: '8.0 hrs'},
+    {id: 4, title: 'Tableau', institution: 'Harvard University', rating: '4.1/5.0', registered: '9.6k Registered', duration: '3.0 hrs'},
+    {id: 2, title: 'Data Science', institution: 'Michigan State University', rating: '3.9/5.0', registered: '7.8k Registered', duration: '8.0 hrs'},    
   ]
