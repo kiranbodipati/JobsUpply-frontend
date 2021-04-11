@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Select from 'react-select'
-import { JobCards } from "../Cards/Cards"
+import { JobCards, IndustryCard } from "../Cards/Cards"
 import {Button, JobHave, JobNo} from '../Button/Button'
 import { Link } from 'react-router-dom';
 import './new.css';
@@ -10,6 +10,7 @@ import {PositionDetail} from "../../data";
 import AuthService from "../../services/auth.service";
 import {Login} from "../../containers/Login/LoginIndex";
 import Redirect from 'react';
+import APIService from "../../services/JobData"
 // import AuthService from "./services/auth.service.js";
 // import AuthService from "/Users/abhishekvaidyanathan/Desktop/JobsUpply-frontend/src/services/auth.service.js";
 // import AuthService from "../../services/auth.service";
@@ -95,14 +96,17 @@ const SearchBar = ({keyword,setKeyword}) => {
 
 export function JobList(props){
 
-  const [currentUser, setCurrentUser] = useState(undefined);
-
+  // const [currentUser, setCurrentUser] = useState(undefined);
+  const [recJobs, setRecJobs] = useState({ "queryText":"Loading", "jobList":[{"linkedinUrl":"loading", "title":"loading","company":"loading" , "skills": [{"name":"loading"}]}, ]});
     useEffect(() => {
-        const user = AuthService.getCurrentUser();
+        // const user = AuthService.getCurrentUser();
+        
 
-        if (user) {
-        setCurrentUser(user);
-        }
+        // if (user) {
+        // setCurrentUser(user);
+        // }
+        setRecJobs(APIService.jobQuery());
+        console.log(recJobs);
     }, []);
     // if(!currentUser) {
     //    return (<Login />);
@@ -125,13 +129,10 @@ export function JobList(props){
               <RowOneThird><SearchBar/></RowOneThird>
             </RowContainer>
             <JobContainer>
-            {PositionDetail.map((data) =>
+            {[recJobs,].map((data) =>
                 <Link className="jobcards__item__link" to= '/jobdetails'>
-                  <JobCards key = {data.id}
-                  Jobtitle = {data.Jobtitle}
-                  Company = {data.Company}
-                  Industry = {data.Industry} 
-                  Jobreq = {data.Skill}/>
+                  <IndustryCard key = {data.queryText}
+                  Joblist = {data.jobList}/>
                 </Link>
               )}
             </JobContainer>
