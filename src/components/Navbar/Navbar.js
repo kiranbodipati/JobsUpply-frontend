@@ -46,7 +46,7 @@ export function Navbar() {
 
             <li className='nav-item'>
               <Link
-                // to='/profile-checker'
+                to='/jobs'
                 className='nav-links'
                 onClick={closeMobileMenu}>
                 Profile Checker

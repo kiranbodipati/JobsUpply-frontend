@@ -118,28 +118,45 @@ export const colourOptions = [
   ];
 
   export const University = [
-    { value: 'NTU', label: 'NTU' },
-    { value: 'NUS', label: 'NUS'},
-    { value: 'SMU', label: 'SMU'},
-    { value: 'SUTD', label: 'SUTD'},
+    { value: 'Nanyang Technological University', label: 'NTU' },
+    { value: 'National University of Singapore', label: 'NUS'},
+    { value: 'Singapore Management University', label: 'SMU'},
+    { value: 'Singapore University of Technology and Design', label: 'SUTD'},
   ];
   
   export const Major = [
-    { value: 'DSAI', label: 'DSAI' },
-    { value: 'CS', label: 'CS'},
-    { value: 'CE', label: 'CE'},
+    { value: 'Data Science and Artificial Intelligence', label: 'Data Science and Artificial Intelligence' },
+    { value: 'Computer Science', label: 'Computer Science'},
+    { value: 'Computer Engineering', label: 'Computer Engineering'},
     { value: 'Business', label: 'Business'},
+    { value: 'Chemical Engineering', label: 'Chemical Engineering'},
+    { value: 'Mechanical Engineering', label: 'Mechanical Engineering'},
+    { value: 'Aerospace Engineering', label: 'Aerospace Engineering'},
+    { value: 'Civil Engineering', label: 'Civil Engineering'},
+    { value: 'Material Science', label: 'Material Science'},
+    { value: 'ELectrical and Electronics Engineering', label: 'Electrical and Electronics Engineering'},
+    { value: 'Finance', label: 'Finance'},
+    { value: 'Accountancy', label: 'Accountancy'}
   ];
 
   export const Minor = [
-    { value: 'None', label: 'None' },
-    { value: 'Language', label: 'Language'},
-    { value: 'Biology', label: 'Biology'},
-    { value: 'EEE', label: 'EEE'},
+    { value: null, label: 'None'},
+    { value: 'Data Science and Artificial Intelligence', label: 'Data Science and Artificial Intelligence' },
+    { value: 'Computer Science', label: 'Computer Science'},
+    { value: 'Computer Engineering', label: 'Computer Engineering'},
+    { value: 'Business', label: 'Business'},
+    { value: 'Chemical Engineering', label: 'Chemical Engineering'},
+    { value: 'Mechanical Engineering', label: 'Mechanical Engineering'},
+    { value: 'Aerospace Engineering', label: 'Aerospace Engineering'},
+    { value: 'Civil Engineering', label: 'Civil Engineering'},
+    { value: 'Material Science', label: 'Material Science'},
+    { value: 'ELectrical and Electronics Engineering', label: 'Electrical and Electronics Engineering'},
+    { value: 'Finance', label: 'Finance'},
+    { value: 'Accountancy', label: 'Accountancy'}
   ];
 
   export const UserDetails = [
-    {id: 5, Name: 'WY', University: 'NTU', Major: 'DSAI', Minor: 'Biology', Pic: './Images/jobsupplyLogo.png', Skill: [
+    {id: 5, email: "loading@loading.com", name: 'Loading...', university: 'Loading...', major: 'Loading...', minor: 'Loading...', Pic: './Images/jobsupplyLogo.png', skill: [
       {id: 1, name: 'Skill 1'},
       {id: 2, name: 'Skill 2'},
       {id: 6, name: 'Skill 6'},

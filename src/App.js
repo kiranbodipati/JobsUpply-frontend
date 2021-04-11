@@ -13,23 +13,27 @@ import BoardAdmin from "./components/BoardAdmin";
 import React, { useState, useEffect } from "react";
 import AuthService from "./services/auth.service.js";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { UserDetails } from "./data";
 
 
 function App() {
 
   // const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   // const [showAdminBoard, setShowAdminBoard] = useState(false);
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState({token:"temp", user: UserDetails[0]});
 
-  useEffect(() => {
-    const user = AuthService.getCurrentUser();
-
-    if (user) {
-      setCurrentUser(user);
-      // setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-      // setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
-    }
-  }, []);
+    useEffect(() => {
+        const user = AuthService.getCurrentUser();
+        if (user) {
+            setCurrentUser(user);
+        }
+        else {
+            console.log("oops")
+        }
+        // if(!currentUser) {
+        //     console.log(currentUser);
+        //    return ( <Login/>)};
+    }, []);
 
   const logOut = () => {
     AuthService.logout();
@@ -42,7 +46,7 @@ function App() {
       <Router>
         <Switch>
         <Route path = {["/", "/main"]} exact component = {HomePage} />
-        <Route path={["/login", "/jobs", "/jobdetails", "/profileEdit", "/Settings"]} exact component={Login} />
+        <Route path={["/login", "/jobs", "/jobdetails", "/Settings"]} exact component={Login} />
         </Switch>
       </Router>
     );
@@ -56,7 +60,7 @@ function App() {
           {/* <Route exact path={["/", "/home"]} component={Home} /> */}
           <Route path = "/login" exact component = {Login} />
           <Route path = "/Settings" exact component = {ProfileEdit} />
-          <Route exact path="/profileEdit" component={ProfileForm} />
+          {/* <Route exact path="/createProfile" component={ProfileForm} /> */}
           {/* <Route path = "/skill" exact component = {Skills} /> */}
           <Route path = "/jobs" exact component = {UserMain} />
           <Route path = "/jobdetails" exact component = {JobDetails} />

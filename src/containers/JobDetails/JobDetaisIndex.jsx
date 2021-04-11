@@ -54,20 +54,20 @@ export const Title = styled.h1`
 
 export function JobDetails(props){
 
-    const [currentUser, setCurrentUser] = useState(undefined);
+    const [currentUser, setCurrentUser] = useState({token:"temp", user: UserDetails});
 
     useEffect(() => {
         const user = AuthService.getCurrentUser();
-
         if (user) {
-        setCurrentUser(user);
+            setCurrentUser({token: user.token, user: [user.user,]});
+            console.log(currentUser)
+        }
+        else {
+            console.log("oops")
         }
         // if(!currentUser) {
-        // //    return (Login)
-        // return ( <Login /> )
-
-        // // return <Redirect to = '/login' />
-        // };
+        //     console.log(currentUser);
+        //    return ( <Login/>)};
     }, []);
 
     return (
@@ -79,7 +79,7 @@ export function JobDetails(props){
                 
                     {UserDetails.map((data) =>
                         <UserInfo key = {data.id}
-                        DP = {data.Pic}
+                        Name = {data.Name}
                         University = {data.University}
                         Major = {data.Major}
                         Minor = {data.Minor}

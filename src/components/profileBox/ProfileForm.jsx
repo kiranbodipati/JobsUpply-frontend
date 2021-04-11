@@ -6,6 +6,7 @@ import {
   FormContainer,
   Input,
   SubmitButton,
+  ConfirmButton,
   SkillButton
 } from "./common";
 import { Link } from "react-router-dom";
@@ -125,7 +126,7 @@ export function ProfileForm(props) {
         </RowContainer>
         <RowContainer>
           <RowLeft>
-            <InnerText>Major/Industry*</InnerText>
+            <InnerText>Major*</InnerText>
           </RowLeft>
           <RowRight>
             <MajorList />
@@ -139,14 +140,6 @@ export function ProfileForm(props) {
           <MinorList/>
           </RowRight>
         </RowContainer>
-        <RowContainer>
-          <RowLeft>
-            <InnerText>LinkedIn</InnerText>
-          </RowLeft>
-          <RowRight>
-            <Input placeholder = "LinkedIn URL" />
-          </RowRight>
-        </RowContainer>
       </FormContainer>
       <RowContainer>
         {/* <RowLeft>
@@ -158,12 +151,12 @@ export function ProfileForm(props) {
       </RowContainer>
       <Marginer direction="vertical" margin="1em" />
       <RowContainer>
-        <Link to = '/jobs'>
+        {/* <Link to = '/jobs'>
           <SubmitButton>Cancel</SubmitButton>
-        </Link>
-        <Marginer direction="horizontal" margin="2em" />
+        </Link> */}
+        {/* <Marginer direction="horizontal" margin="2em" /> */}
         <Link to = '/jobs'>
-          <SubmitButton>Confirm</SubmitButton>
+          <ConfirmButton>Confirm</ConfirmButton>
         </Link>
       </RowContainer>
       <Marginer direction="vertical" margin={20} />

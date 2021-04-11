@@ -105,7 +105,7 @@ export function ProfileBox(props) {
       <TopContainer>
         <BackDrop/>
           <HeaderContainer>
-          <Link style={{ textDecoration: 'none', color: 'white' }} to = "/main">
+          <Link style={{ textDecoration: 'none', color: 'white' }} to = "/jobs">
             <BackImage>
               <img src={BackImg} alt="Back" />
             </BackImage>
@@ -113,7 +113,7 @@ export function ProfileBox(props) {
             <Marginer direction="vertical" margin="2em" />
             <HeaderText>Edit Profile</HeaderText>
           </HeaderContainer>
-          <SmallText>Let us know better about you!</SmallText>
+          <SmallText>Let us know more about you!</SmallText>
       </TopContainer>
       <InnerContainer>
         <ProfileForm />

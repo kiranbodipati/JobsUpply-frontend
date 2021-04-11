@@ -8,6 +8,7 @@ import AuthService from "../../services/auth.service";
 import {Login} from "../../containers/Login/LoginIndex";
 import TopSectionBackgroundImg from "../../Images/bg-orange.png";
 import  { Redirect } from 'react-router-dom';
+import { UserDetails } from "../../data";
 
 const ProfilepageContainer = styled.div`
     width: 100%;
@@ -33,19 +34,19 @@ const StyledInnerContainer = styled(InnerPageContainer)`
 
 export function ProfileEdit(props) {
 
-    const [currentUser, setCurrentUser] = useState(undefined);
+    const [currentUser, setCurrentUser] = useState({token:"temp", user: UserDetails[0]});
 
     useEffect(() => {
         const user = AuthService.getCurrentUser();
-
         if (user) {
-        setCurrentUser(user);
+            setCurrentUser(user);
+        }
+        else {
+            console.log("oops")
         }
         // if(!currentUser) {
         //     console.log(currentUser);
-        //     return (<Login />)
-        // // return <Redirect to = '/login' />
-        // };
+        //    return ( <Login/>)};
     }, []);
     return(
         <PageContainer>

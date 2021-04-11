@@ -14,6 +14,7 @@ import AuthService from "../../services/auth.service";
 import  { Redirect } from 'react-router-dom'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { JobList } from "../../components/Jobs/JobsIndex";
+import { UserDetails } from "../../data";
 
 // import AuthService from "../services/auth.service";
 
@@ -38,17 +39,19 @@ const StyledInnerContainer = styled(InnerPageContainer)`
     margin-top: 1em;
 `;
 export function Login(props) {
-
-    const [currentUser, setCurrentUser] = useState(undefined);
+    const [currentUser, setCurrentUser] = useState({token:"temp", user: UserDetails[0]});
 
     useEffect(() => {
         const user = AuthService.getCurrentUser();
-
         if (user) {
-        setCurrentUser(user);
+            setCurrentUser(user);
         }
-        if(currentUser!=null){
-        console.log(user.token)}
+        else {
+            console.log("oops")
+        }
+        if(currentUser.token!="temp") {
+            console.log(currentUser);
+        }
     }, []);
     // if(currentUser!=null) {
     //   console.log(currentUser);

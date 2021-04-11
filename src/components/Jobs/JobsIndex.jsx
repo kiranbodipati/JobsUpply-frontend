@@ -10,6 +10,7 @@ import {PositionDetail} from "../../data";
 import AuthService from "../../services/auth.service";
 import {Login} from "../../containers/Login/LoginIndex";
 import Redirect from 'react';
+import { UserDetails } from "../../data";
 // import AuthService from "./services/auth.service.js";
 // import AuthService from "/Users/abhishekvaidyanathan/Desktop/JobsUpply-frontend/src/services/auth.service.js";
 // import AuthService from "../../services/auth.service";
@@ -95,19 +96,20 @@ const SearchBar = ({keyword,setKeyword}) => {
 
 export function JobList(props){
 
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState({token:"temp", user: UserDetails[0]});
 
     useEffect(() => {
         const user = AuthService.getCurrentUser();
-
         if (user) {
-        setCurrentUser(user);
+            setCurrentUser(user);
         }
+        else {
+            console.log("oops")
+        }
+        // if(!currentUser) {
+        //     console.log(currentUser);
+        //    return ( <Login/>)};
     }, []);
-    // if(!currentUser) {
-    //    return (<Login />);
-    //   //  return (<Redirect push to = '/login' />);
-    //   };
   
     return(
         <OuterContainer>

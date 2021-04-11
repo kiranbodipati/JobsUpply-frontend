@@ -54,7 +54,7 @@ export function JobCards(props) {
               text3= {Industry}
               text4='Skills needed:  '
               src2 = {Linkedin}
-              Userskill = {data.Skill}
+              Userskill = {data.skill}
               Jobneed = {Jobreq}
             /> 
           )}
@@ -80,7 +80,7 @@ export function SingleJobCard(props) {
               text3= {Industry}
               text4='Skills needed:  '
               src2 = {Linkedin}
-              Userskill = {data.Skill}
+              Userskill = {data.skill}
               Jobneed = {Jobreq}
             /> 
           )}

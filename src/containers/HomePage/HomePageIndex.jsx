@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TopSectionBackgroundImg from '../../earth.png';
+// import TopSectionBackgroundVideo from "../../video.mp4"
 import { Marginer} from "../../components/marginer";
 import { Link } from "react-router-dom";
 import { InnerPageContainer, PageContainer } from "../../components/pageContainer/PageContainerindex";
