@@ -39,29 +39,29 @@ export function Cards() {
   );
 }
 
-export function IndustryCard(props) {
-  let {industry, Joblist} = props;
-  console.log(Joblist)
-  return (
-    <div className='jobcards'>
-      <div className="jobcards__container">
-        <div className="jobcards__wrapper">
-          <ul className='jobcards__items'>
-          {Joblist.map((data) =>
-            <JobCards key={data.linkedinUrl}
-              src='Images/bg-masthead.jpg'
-              title= {data.title}
-              company= {data.company} 
-              industry= {industry}
-              skills={data.skills}
-            /> 
-          )}
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
-}
+// export function IndustryCard(props) {
+//   let {industry, Joblist} = props;
+//   console.log(Joblist)
+//   return (
+//     <div className='jobcards'>
+//       <div className="jobcards__container">
+//         <div className="jobcards__wrapper">
+//           <ul className='jobcards__items'>
+//           {Joblist.map((data) =>
+//             <JobCards key={data.linkedinUrl}
+//               src='Images/bg-masthead.jpg'
+//               title= {data.title}
+//               company= {data.company} 
+//               industry= {industry}
+//               skills={data.skills}
+//             /> 
+//           )}
+//           </ul>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
 export function JobCards(props) {
   let {Jobtitle, Company, Industry, skills} = props;

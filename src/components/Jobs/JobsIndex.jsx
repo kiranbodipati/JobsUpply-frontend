@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Select from 'react-select'
-import { JobCards, IndustryCard } from "../Cards/Cards"
+import { JobCards} from "../Cards/Cards"
 import {Button, JobHave, JobNo} from '../Button/Button'
 import { Link } from 'react-router-dom';
 import './new.css';
@@ -95,9 +95,9 @@ const SearchBar = ({keyword,setKeyword}) => {
 }
 
 export function JobList(props){
-
+  let jobListExt=[];
   // const [currentUser, setCurrentUser] = useState(undefined);
-  const [recJobs, setRecJobs] = useState({ "queryText":"Loading", "jobList":[{"linkedinUrl":"loading", "title":"loading","company":"loading" , "skills": [{"name":"loading"}]}, ]});
+  const [recJobs, setRecJobs] = useState({ queryText:"Loading", jobList:[{linkedinUrl:"loading", title:"loading",company:"loading" , skills: [{name:"loading"}]}, ]});
     useEffect(() => {
         // const user = AuthService.getCurrentUser();
         
@@ -107,6 +107,18 @@ export function JobList(props){
         // }
         setRecJobs(APIService.jobQuery());
         console.log(recJobs);
+        let indust=[];
+        let jobListExt=[];
+        for(let i=0; i<recJobs.length; i++){
+          indust[i]=recJobs[i].queryText;
+          let jobs=recJobs[i].jobList;
+          for(let j=0; j<=jobs.length; j++){
+              jobListExt.push(jobs[i]);
+
+          };
+          
+        };
+
     }, []);
     // if(!currentUser) {
     //    return (<Login />);
@@ -129,10 +141,14 @@ export function JobList(props){
               <RowOneThird><SearchBar/></RowOneThird>
             </RowContainer>
             <JobContainer>
-            {[recJobs,].map((data) =>
+            {jobListExt.map((data) =>
                 <Link className="jobcards__item__link" to= '/jobdetails'>
-                  <IndustryCard key = {data.queryText}
-                  Joblist = {data.jobList}/>
+                  <JobCards key = {data.linkedinUrl}
+                  Jobtitle = {data.title}
+                  Company = {data.company}
+                  Industry = "test"
+                  skills ={data.skills}
+                  />
                 </Link>
               )}
             </JobContainer>
