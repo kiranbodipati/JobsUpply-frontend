@@ -14,7 +14,7 @@ export const FormContainer = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: -10vh;
+  margin-top: 0vh;
 `;
 
 export const MutedLink = styled.a`
@@ -91,6 +91,38 @@ background: linear-gradient(
 }
 `;
 
+export const ConfirmButton = styled.button`
+padding: 11px 0%;
+width: 27.5em;
+flex: center;
+color: #fff;
+font-size: 15px;
+font-weight: 600;
+border: none;
+border-radius: 100px 100px 100px 100px;
+cursor: pointer;
+transition: all, 240ms ease-in-out;
+
+background: rgb(244,98,58); /* fallback for old browsers */
+background: -webkit-linear-gradient(
+  to right,
+  #FDC830,
+  rgb(244,98,58)
+); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(
+  to right,
+  #FDC830,
+  rgb(244,98,58)
+); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+&:focus {
+  outline: none;
+}
+
+&:hover {
+  filter: brightness(1.03);
+}
+`;
 
 export const SkillButton = styled.button`
   padding: 10px 10%;

@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import styled from "styled-components";
 import {Button, JobHave, JobNo} from '../Button/Button';
-import { UserDetails } from "../../data";
 const OuterContainer = styled.div`
   width: 15%;
   min-width: 180px;
@@ -120,16 +119,24 @@ const SkillList = styled.div`
 `;
 
 export function UserInfo(props){
-  let {DP, University, Major, Minor, Skillsss} = props;
+  let {Name, University, Major, Minor, Skillsss} = props;
     return(
         <OuterContainer>
             <ProfileContainer>
               <DPContainer>
                 <DPImage>
-                  <img src = {DP} alt = "User DP" style={{borderRadius: 100} }/>
+                  <img src = '../Images/jobsupplyLogo.png' alt = "User DP" style={{borderRadius: 100} }/>
                 </DPImage>
               </DPContainer>
               <FormContainer>
+                <RowContainer>
+                  <RowLeft>
+                    <InnerText>Name:</InnerText>
+                  </RowLeft>
+                  <RowRight>
+                    <InnerText>{Name}</InnerText>
+                  </RowRight>
+                </RowContainer>
                 <RowContainer>
                   <RowLeft>
                     <InnerText>University:</InnerText>
@@ -159,9 +166,10 @@ export function UserInfo(props){
             <SkillContainer>
               <Title>Your skills</Title>
               <SkillList>
+                {console.log(Skillsss)}
                 {Skillsss.map((item) =>
                   // <JobHave key = {item.id} item = {item} />
-                  <JobHave key = {item.id}>
+                  <JobHave key = {item.name}>
                     {item.name}
                   </JobHave>
                   )}

@@ -123,7 +123,7 @@ export const SignupForm = (props) => {
       AuthService.register(Email, password).then(
         (response) => {
           setSuccessful(true);
-          hist.push("/profileEdit")
+          hist.push("/Settings")
         },
         (error) => {
           const resMessage =

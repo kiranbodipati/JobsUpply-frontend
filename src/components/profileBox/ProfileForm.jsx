@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useState, useRef, useContext, useEffect} from "react";
 import styled from "styled-components";
 import { Marginer } from "../marginer";
 import {
@@ -6,13 +6,24 @@ import {
   FormContainer,
   Input,
   SubmitButton,
+  ConfirmButton,
   SkillButton
 } from "./common";
-import { Link } from "react-router-dom";
 import {UniversityList, MajorList, MinorList} from "./dropdown";
 import { Skillpopup } from '../SkillBox/SkillBoxIndex';
 import  { Redirect } from 'react-router-dom'
 // import AuthService from "../../services/auth.service";
+
+import { Link, useHistory } from "react-router-dom";
+
+import Form from "react-validation/build/form";
+import CheckButton from "react-validation/build/button";
+
+import AuthService from "../../services/auth.service";
+import { University, Major, Minor } from '../../data';
+import CreatableSelect from 'react-select/creatable';
+
+import { UserDetails } from "../../data";
 
 const InnerText = styled.h5`
   font-weight: 500;
@@ -102,17 +113,153 @@ export class Popups extends Component {
 // };
 
 // export default Profile;
+
+export const required = (value) => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+  else {
+    return 1;
+  }
+};
+
+
 export function ProfileForm(props) {
+  const form = useRef();
+  const checkBtn = useRef();
+  const hist = useHistory();
+
+  const [currentUser, setCurrentUser] = useState({token:"temp", user: UserDetails[0]});
+  const [counter, setCounter] = useState(0);
+
+  const [name, setName] = useState(currentUser.user.name);
+  const [university, setUniversity] = useState(currentUser.user.university);
+  const [major, setMajor] = useState(currentUser.user.major);
+  const [minor, setMinor] = useState(currentUser.user.minor);
+  const [successful, setSuccessful] = useState(false);
+  const [message, setMessage] = useState("");
+  const [formIsValid, setFormIsValid] = useState(false);
+
+    useEffect(() => {
+        const user = AuthService.getCurrentUser();
+        if (user.user.name != "Loading...") {
+            setCurrentUser(user);
+            console.log("Success")
+            console.log(user.user)
+            setName(user.user.name)
+            setUniversity(user.user.university)
+            setMajor(user.user.major)
+            setMinor(user.user.minor)
+        }
+        else {
+            console.log("Failure")
+            console.log(user);
+            setCounter(counter+1);
+            console.log(counter);
+        }
+    }, []);
+
+  const onChangeName = (e) => {
+    const Name = e.target.value;
+    console.log({"email":currentUser.user.email, "name": name, "university":university, "major":major, "minor":minor})
+    if (required(Name) === 1){
+      setName(Name);
+      setFormIsValid(true);
+      setMessage("")
+    }
+    else {
+      setName(currentUser.user.name)
+    }
+  };
+
+  const onChangeUni = (e) => {
+    const Name = e.value;
+    if (required(Name) === 1){
+      setUniversity(Name);
+      setFormIsValid(true);
+      setMessage("")
+    }
+    else {
+      setUniversity(currentUser.user.university)
+    }
+  };
+
+  const onChangeMajor = (e) => {
+    const Name = e.value;
+    if (required(Name) === 1){
+      setMajor(Name);
+      setFormIsValid(true);
+      setMessage("")
+    }
+    else {
+      setMajor(currentUser.user.major)
+    }
+  };
+
+  const onChangeMinor = (e) => {
+    const Name = e.value;
+    if (required(Name) === 1){
+      setMinor(Name);
+      setFormIsValid(true);
+      setMessage("")
+    }
+    else {
+      setMinor(currentUser.user.minor)
+    }
+  };
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+
+    setMessage("");
+    setSuccessful(false);
+
+    form.current.validateAll();
+
+    if (checkBtn.current.context._errors.length === 0 && formIsValid === true) {
+      AuthService.update({"email":currentUser.user.email, "name": name, "university":university, "major":major, "minor":minor}).then(
+        (response) => {
+          setSuccessful(true);
+          console.log({"email":currentUser.user.email, "name": name, "university":university, "major":major, "minor":minor});
+          // hist.push("/jobs");
+        },
+        (error) => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          setMessage(resMessage);
+          console.log(resMessage);
+          setSuccessful(false);
+        }
+      );
+    }
+    else {
+      setSuccessful(false);
+    }
+  };
 
   return (
     <BoxContainer>
+      <Form onSubmit={handleUpdate} ref={form}>
       <FormContainer>
         <RowContainer>
           <RowLeft>
             <InnerText>Name*</InnerText>
           </RowLeft>
           <RowRight>
-            <Input placeholder="Full Name" />
+            <Input placeholder="Full Name" 
+                  name="name"
+                  value={name}
+                  onChange={onChangeName}
+                  validations={[required]}/>
           </RowRight>
         </RowContainer>
         <RowContainer>
@@ -120,15 +267,21 @@ export function ProfileForm(props) {
             <InnerText>University*</InnerText>
           </RowLeft>
           <RowRight>
-            <UniversityList />
+            <CreatableSelect
+              onChange={onChangeUni}
+              options={University}
+            />
           </RowRight>
         </RowContainer>
         <RowContainer>
           <RowLeft>
-            <InnerText>Major/Industry*</InnerText>
+            <InnerText>Major*</InnerText>
           </RowLeft>
           <RowRight>
-            <MajorList />
+          <CreatableSelect
+              onChange={onChangeMajor}
+              options={Major}
+            />
           </RowRight>
         </RowContainer>
         <RowContainer>
@@ -136,15 +289,10 @@ export function ProfileForm(props) {
             <InnerText>Minor*</InnerText>
           </RowLeft>
           <RowRight>
-          <MinorList/>
-          </RowRight>
-        </RowContainer>
-        <RowContainer>
-          <RowLeft>
-            <InnerText>LinkedIn</InnerText>
-          </RowLeft>
-          <RowRight>
-            <Input placeholder = "LinkedIn URL" />
+            <CreatableSelect
+              onChange={onChangeMinor}
+              options={Minor}
+            />
           </RowRight>
         </RowContainer>
       </FormContainer>
@@ -158,16 +306,16 @@ export function ProfileForm(props) {
       </RowContainer>
       <Marginer direction="vertical" margin="1em" />
       <RowContainer>
-        <Link to = '/jobs'>
+        {/* <Link to = '/jobs'>
           <SubmitButton>Cancel</SubmitButton>
-        </Link>
-        <Marginer direction="horizontal" margin="2em" />
-        <Link to = '/jobs'>
-          <SubmitButton>Confirm</SubmitButton>
-        </Link>
+        </Link> */}
+        {/* <Marginer direction="horizontal" margin="2em" /> */}
+        <CheckButton ref={checkBtn}>
+          <ConfirmButton>Confirm</ConfirmButton>
+        </CheckButton>
       </RowContainer>
       <Marginer direction="vertical" margin={20} />
-
+      </Form>
     </BoxContainer>
   );
 }

@@ -54,20 +54,19 @@ export const Title = styled.h1`
 
 export function JobDetails(props){
 
-    const [currentUser, setCurrentUser] = useState(undefined);
+    const [currentUser, setCurrentUser] = useState({token:"temp", user: UserDetails[0]});
 
     useEffect(() => {
         const user = AuthService.getCurrentUser();
-
         if (user) {
-        setCurrentUser(user);
+            setCurrentUser(user);
+        }
+        else {
+            console.log("oops")
         }
         // if(!currentUser) {
-        // //    return (Login)
-        // return ( <Login /> )
-
-        // // return <Redirect to = '/login' />
-        // };
+        //     console.log(currentUser);
+        //    return ( <Login/>)};
     }, []);
 
     return (
@@ -76,15 +75,23 @@ export function JobDetails(props){
             <BackgroundFilter>
                 <Navbar />
                 <ContentContainer>
-                
-                    {UserDetails.map((data) =>
-                        <UserInfo key = {data.id}
-                        DP = {data.Pic}
-                        University = {data.University}
-                        Major = {data.Major}
-                        Minor = {data.Minor}
-                        Skillsss = {data.Skill}/>
-                    )}
+                {[currentUser.user, ].map((data) => {
+                    let m;
+                    if (Object.keys(data.minor).length == 0){
+                            m = "None";
+                    }
+                    else {
+                        m = data.minor[0]
+                    }
+                    return(
+                        <UserInfo key = {data.email}
+                        Name = {data.name}
+                        University = {data.university}
+                        Major = {data.major}
+                        Minor = {m}
+                        Skillsss = {data.skills}
+                    />)}
+                )}
                     <JobDetail/>
                 </ContentContainer>
             </BackgroundFilter>
