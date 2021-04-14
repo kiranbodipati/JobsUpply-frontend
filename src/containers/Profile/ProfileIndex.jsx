@@ -33,28 +33,13 @@ const StyledInnerContainer = styled(InnerPageContainer)`
 
 
 export function ProfileEdit(props) {
-
-    const [currentUser, setCurrentUser] = useState({token:"temp", user: UserDetails[0]});
-
-    useEffect(() => {
-        const user = AuthService.getCurrentUser();
-        if (user) {
-            setCurrentUser(user);
-        }
-        else {
-            console.log("oops")
-        }
-        // if(!currentUser) {
-        //     console.log(currentUser);
-        //    return ( <Login/>)};
-    }, []);
     return(
         <PageContainer>
             <ProfilepageContainer>
                 <BackgroundFilter>
                     <Navbar />
                     <StyledInnerContainer>
-                        <ProfileBox user={currentUser.user}/>
+                        <ProfileBox />
                     </StyledInnerContainer>
                 </BackgroundFilter>
             </ProfilepageContainer>

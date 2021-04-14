@@ -22,7 +22,7 @@ const update = (updatedDict) => {
   .then((response) => {
     if (response.data.email) {
       console.log(response.data.email+" updated.");
-      let currUser = getCurrentUser();
+      let currUser = JSON.parse(localStorage.getItem("user"));
       currUser.user.name = updatedDict.name;
       currUser.user.university = updatedDict.university;
       currUser.user.major = updatedDict.major;

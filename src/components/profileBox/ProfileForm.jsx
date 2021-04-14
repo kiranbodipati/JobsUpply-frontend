@@ -1,4 +1,4 @@
-import React, {Component, useState, useRef, useContext} from "react";
+import React, {Component, useState, useRef, useContext, useEffect} from "react";
 import styled from "styled-components";
 import { Marginer } from "../marginer";
 import {
@@ -22,6 +22,8 @@ import CheckButton from "react-validation/build/button";
 import AuthService from "../../services/auth.service";
 import { University, Major, Minor } from '../../data';
 import CreatableSelect from 'react-select/creatable';
+
+import { UserDetails } from "../../data";
 
 const InnerText = styled.h5`
   font-weight: 500;
@@ -127,29 +129,50 @@ export const required = (value) => {
 
 
 export function ProfileForm(props) {
-  let { user } = props
   const form = useRef();
   const checkBtn = useRef();
   const hist = useHistory();
 
-  const [name, setName] = useState(user.name);
-  const [university, setUniversity] = useState(user.university);
-  const [major, setMajor] = useState(user.major);
-  const [minor, setMinor] = useState(user.minor);
+  const [currentUser, setCurrentUser] = useState({token:"temp", user: UserDetails[0]});
+  const [counter, setCounter] = useState(0);
+
+  const [name, setName] = useState(currentUser.user.name);
+  const [university, setUniversity] = useState(currentUser.user.university);
+  const [major, setMajor] = useState(currentUser.user.major);
+  const [minor, setMinor] = useState(currentUser.user.minor);
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
   const [formIsValid, setFormIsValid] = useState(false);
 
+    useEffect(() => {
+        const user = AuthService.getCurrentUser();
+        if (user.user.name != "Loading...") {
+            setCurrentUser(user);
+            console.log("Success")
+            console.log(user.user)
+            setName(user.user.name)
+            setUniversity(user.user.university)
+            setMajor(user.user.major)
+            setMinor(user.user.minor)
+        }
+        else {
+            console.log("Failure")
+            console.log(user);
+            setCounter(counter+1);
+            console.log(counter);
+        }
+    }, []);
+
   const onChangeName = (e) => {
     const Name = e.target.value;
-    console.log({"email":user.email, "name": name, "university":university, "major":major, "minor":minor})
+    console.log({"email":currentUser.user.email, "name": name, "university":university, "major":major, "minor":minor})
     if (required(Name) === 1){
       setName(Name);
       setFormIsValid(true);
       setMessage("")
     }
     else {
-      setName(user.name)
+      setName(currentUser.user.name)
     }
   };
 
@@ -161,7 +184,7 @@ export function ProfileForm(props) {
       setMessage("")
     }
     else {
-      setUniversity(user.university)
+      setUniversity(currentUser.user.university)
     }
   };
 
@@ -173,7 +196,7 @@ export function ProfileForm(props) {
       setMessage("")
     }
     else {
-      setMajor(user.major)
+      setMajor(currentUser.user.major)
     }
   };
 
@@ -185,7 +208,7 @@ export function ProfileForm(props) {
       setMessage("")
     }
     else {
-      setMinor(user.minor)
+      setMinor(currentUser.user.minor)
     }
   };
 
@@ -198,10 +221,11 @@ export function ProfileForm(props) {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0 && formIsValid === true) {
-      AuthService.update({"email":user.email, "name": name, "university":university, "major":major, "minor":minor}).then(
+      AuthService.update({"email":currentUser.user.email, "name": name, "university":university, "major":major, "minor":minor}).then(
         (response) => {
           setSuccessful(true);
-          console.log({"email":user.email, "name": name, "university":university, "major":major, "minor":minor})
+          console.log({"email":currentUser.user.email, "name": name, "university":university, "major":major, "minor":minor});
+          // hist.push("/jobs");
         },
         (error) => {
           const resMessage =

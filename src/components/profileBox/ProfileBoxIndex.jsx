@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import {ProfileForm} from "./ProfileForm";
@@ -100,7 +100,6 @@ const BackImage = styled.div`
 
 
 export function ProfileBox(props) {
-  let { user } = props
   return (
     <BoxContainer>
       <TopContainer>
@@ -117,7 +116,7 @@ export function ProfileBox(props) {
           <SmallText>Let us know more about you!</SmallText>
       </TopContainer>
       <InnerContainer>
-        <ProfileForm user={user}/>
+        <ProfileForm />
       </InnerContainer>
     </BoxContainer>
   );
