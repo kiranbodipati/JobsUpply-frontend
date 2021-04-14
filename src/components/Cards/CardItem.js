@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Marginer} from "../../components/marginer";
-import {Button, JobHave, JobNo} from '../Button/Button'
-
+import {Button, JobHave, JobNo} from '../Button/Button';
+import APIServices from '../../services/JobData'
+import AuthServices from '../../services/auth.service'
+import { useState, useEffect } from "react";
 
 export function CardItem(props) {
   return (
@@ -24,12 +26,18 @@ export function CardItem(props) {
 
 export function JobCardItem(props) {
   let {text1, text2, text3, text4, Userskill, Jobneed} = props;
+
   // let Userhave = Jobneed.filter(a => Userskill.some(b => a.id === b.id));  
   let Userhave = []
-  Userhave = Jobneed.filter(a => Userskill.some(b => a.name=== b.name));  
+  // Userhave = Jobneed.filter(a => Userskill.some(b => a.id === b.id));  
   let Userdonthave = []
-  Userdonthave = Jobneed.filter(({ name: name1 }) => !Userskill.some(({ name: name2}) => name2 === name1));
-  // let Userdonthave = Jobneed.filter(({ id: id1 }) => !Userskill.some(({ id: id2 }) => id2 === id1));
+  // Userdonthave = Jobneed.filter(({ name: id1 }) => !Userskill.some(({ id: id2 }) => id2 === id1));
+  // let Userdonthave = Jobneed.filter(({ name: id1 }) => !Userskill.some(({ id: id2 }) => id2 === id1));
+  const [recCourses, setRecCourses] = useState({"num_matched":0, "num_missing":0, "matched":[{"name":'loading'}], "matched":[{"name":'loading'}], "recommendation":[]})
+  useEffect(() => {
+    setRecCourses(APIServices.courseRecommendation(Userskill, Jobneed));
+    console.log(recCourses)
+  }, []);
   return (
     <>
       <li className="jobcards__item">

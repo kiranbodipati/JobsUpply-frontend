@@ -1,9 +1,16 @@
 export default function authHeader() {
-    const user = JSON.parse(localStorage.getItem('user'));
+    let user = JSON.parse(localStorage.getItem('user'));
   
-    if (user && user.accessToken) {
-      return { Authorization: 'Bearer ' + user.accessToken };
+    if (user.token) {
+      // return {
+      //   auth: {
+      //   username: user.user.email,
+      //   password: user.user.password
+      // }};
+      console.log(user.token)
+      return { Authorization: 'Bearer ' + user.token };
     } else {
-      return {};
+      console.log("Error. No token found");
+      return { Authorization: 'Bearer ' + user.token };
     }
   }
