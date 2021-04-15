@@ -26,7 +26,12 @@ const update = (updatedDict) => {
       currUser.user.name = updatedDict.name;
       currUser.user.university = updatedDict.university;
       currUser.user.major = updatedDict.major;
-      currUser.user.minor = [updatedDict.minor];
+      if (updatedDict.minor.constructor == Object || updatedDict.minor == "" || updatedDict.minor == "{}"){
+        currUser.user.minor = "None";
+      }
+      else {
+        currUser.user.minor = updatedDict.minor;
+      }
       localStorage.setItem("user", JSON.stringify(currUser));
     }
     return response.data;

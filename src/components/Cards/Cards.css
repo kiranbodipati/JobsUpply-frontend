@@ -217,10 +217,16 @@
 
   .jobcards__item__info2 {
     display: flex;
-    width:80%;
+    width:50rem;
     align-items:center;
     flex-direction: row;
     padding: 10px 10px 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .jobcards__item__info2::-webkit-scrollbar {
+    display: none;
   }
   
   .jobcards__item__text {

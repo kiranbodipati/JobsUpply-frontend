@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Marginer } from "../marginer";
 import { Link } from "react-router-dom";
 import BackImg from "../../Images/Backorange.png";
+import MultiSelect from "./SkillDropdown";
 
 const OuterContainer = styled.div`
   width: 400px;
@@ -146,6 +147,20 @@ const RowContainer = styled.div`
 `;
 
 class Skills extends Component {
+  constructor(props) {
+    super(props);
+    this.skillInput = React.createRef();
+  }
+
+  handleSubmission = () => {
+    /* Add API call to update localStorage and DB later */
+    if (this.skillInput.current != null) {
+      console.log(this.skillInput.current.returnValue());
+    }
+    this.props.closePopup();
+    return;
+  }
+
   render() {
     var left = 5000 + 'px';
     var top = 5000 + 'px';
@@ -157,20 +172,17 @@ class Skills extends Component {
             <HeaderContainer>
                 <HeaderText>Edit Skills</HeaderText>
             </HeaderContainer>
+            <SmallText>Click "confirm" to save changes.</SmallText>
         </TopContainer>
         <BoxContainer>
             <FormContainer>
-                <AnimatedMulti style={{padding:padding, left: left, top:top}}/>
+                <MultiSelect style={{padding:padding, left: left, top:top}} ref={this.skillInput} />
               </FormContainer>
           </BoxContainer>
          <RowContainer>
-             <Link style={{ textDecoration: 'none', color: 'white' }} to = "/Settings">
-               <SkillButton onClick={this.props.closePopup}>Cancel</SkillButton>
-             </Link>
-             <Marginer direction="horizontal" margin="0.5em" />
-             <Link style={{ textDecoration: 'none', color: 'white' }} to = "/Settings">
-               <SkillButton onClick={this.props.closePopup}>Confirm</SkillButton>
-             </Link>
+            <SkillButton onClick={this.props.closePopup}>Cancel</SkillButton>
+            <Marginer direction="horizontal" margin="0.5em" />
+            <SkillButton onClick={this.handleSubmission}>Confirm</SkillButton>
          </RowContainer>
       </OuterContainer>
   );

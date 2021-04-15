@@ -9,7 +9,6 @@ import {
   ConfirmButton,
   SkillButton
 } from "./common";
-import {UniversityList, MajorList, MinorList} from "./dropdown";
 import { Skillpopup } from '../SkillBox/SkillBoxIndex';
 import  { Redirect } from 'react-router-dom'
 // import AuthService from "../../services/auth.service";
@@ -83,39 +82,10 @@ export class Popups extends Component {
     });
   }
 }
-// const Profile = () => {
-//   const currentUser = AuthService.getCurrentUser();
-
-//   return (
-//     <div className="container">
-//       <header className="jumbotron">
-//         <h3>
-//           <strong>{currentUser.Email}</strong> Profile
-//         </h3>
-//       </header>
-//       <p>
-//         <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
-//         {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
-//       </p>
-//       <p>
-//         <strong>Id:</strong> {currentUser.id}
-//       </p>
-//       <p>
-//         <strong>Email:</strong> {currentUser.Email}
-//       </p>
-//       <strong>Authorities:</strong>
-//       <ul>
-//         {currentUser.roles &&
-//           currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
-//       </ul>
-//     </div>
-//   );
-// };
-
-// export default Profile;
 
 export const required = (value) => {
   if (!value) {
+    console.log("Error: required field")
     return (
       <div className="alert alert-danger" role="alert">
         This field is required!
@@ -221,11 +191,12 @@ export function ProfileForm(props) {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0 && formIsValid === true) {
-      AuthService.update({"email":currentUser.user.email, "name": name, "university":university, "major":major, "minor":minor}).then(
+      AuthService.update({"email":currentUser.user.email, "name": name, "university":university, "major":major, "minor":minor})
+      .then(
         (response) => {
           setSuccessful(true);
           console.log({"email":currentUser.user.email, "name": name, "university":university, "major":major, "minor":minor});
-          // hist.push("/jobs");
+          hist.push("/jobs");
         },
         (error) => {
           const resMessage =
@@ -297,19 +268,13 @@ export function ProfileForm(props) {
         </RowContainer>
       </FormContainer>
       <RowContainer>
-        {/* <RowLeft>
-          <Link style={{ textDecoration: 'none', color: 'white' }} to = "/skill">
-            <SkillButton>Edit Skills</SkillButton>
-          </Link>
-        </RowLeft> */}
+        <font size="2">Note: Editing skills will save any changes above first.</font>
+      </RowContainer>
+      <RowContainer>
         <Skillpopup />
       </RowContainer>
       <Marginer direction="vertical" margin="1em" />
       <RowContainer>
-        {/* <Link to = '/jobs'>
-          <SubmitButton>Cancel</SubmitButton>
-        </Link> */}
-        {/* <Marginer direction="horizontal" margin="2em" /> */}
         <CheckButton ref={checkBtn}>
           <ConfirmButton>Confirm</ConfirmButton>
         </CheckButton>

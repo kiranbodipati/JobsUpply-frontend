@@ -39,8 +39,32 @@ export function Cards() {
   );
 }
 
+// export function IndustryCard(props) {
+//   let {industry, Joblist} = props;
+//   console.log(Joblist)
+//   return (
+//     <div className='jobcards'>
+//       <div className="jobcards__container">
+//         <div className="jobcards__wrapper">
+//           <ul className='jobcards__items'>
+//           {Joblist.map((data) =>
+//             <JobCards key={data.linkedinUrl}
+//               src='Images/bg-masthead.jpg'
+//               title= {data.title}
+//               company= {data.company} 
+//               industry= {industry}
+//               skills={data.skills}
+//             /> 
+//           )}
+//           </ul>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
 export function JobCards(props) {
-  let {Jobtitle, Company, Industry, Jobreq} = props;
+  let {Jobtitle, Company, Industry, skills, matched, missing} = props;
   return (
     <div className='jobcards'>
       <div className="jobcards__container">
@@ -54,8 +78,8 @@ export function JobCards(props) {
               text3= {Industry}
               text4='Skills needed:  '
               src2 = {Linkedin}
-              Userskill = {data.skills}
-              Jobneed = {Jobreq}
+              matched = {matched}
+              missing = {missing}
             /> 
           )}
           </ul>
@@ -64,36 +88,9 @@ export function JobCards(props) {
     </div>
   );
 }
-
-export function SingleJobCard(props) {
-  let {Jobtitle, Company, Industry, Jobreq} = props;
-  return (
-    <div className='jobcards'>
-      <div className="jobcards__container">
-        <div className="jobcards__wrapper">
-          <ul className='jobcards__items'>
-          {UserDetails.map((data) =>
-            <JobCardItem
-              src='Images/bg-masthead.jpg'
-              text1= {Jobtitle}
-              text2= {Company} 
-              text3= {Industry}
-              text4='Skills needed:  '
-              src2 = {Linkedin}
-              Userskill = {data.skill}
-              Jobneed = {Jobreq}
-            /> 
-          )}
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 
 export function CourseCards(props) {
-  let {Title, Institution, Rating, Registered,Duration} = props;
+  let {Title, Institution, Rating, NumRatings} = props;
   return (
     <div className='coursecards'>
       <div className="coursecards__container">
@@ -104,8 +101,7 @@ export function CourseCards(props) {
               Title={Title}
               Institution={Institution}
               Rating={Rating}
-              Registered={Registered}
-              Duration={Duration}
+              NumRatings={NumRatings}
             /> 
           </ul>
         </div>

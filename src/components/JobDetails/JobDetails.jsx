@@ -60,27 +60,28 @@ export const CourseContainer = styled.div`
 `
 
 export function JobDetail(props){
+  let { jobData, courseData } = props;
+  console.log(jobData.recommendations);
   return(
         <OuterContainer>
             <JobContainer>
                 <CourseContainer>
                 <Link className="jobcards__item__link" to="/jobs">
-                  {PositionDetailsingle.map((data) =>
-                    <JobCards key = {data.id}
-                    Jobtitle = {data.Jobtitle}
-                    Company = {data.Company}
-                    Industry = {data.Industry} 
-                    Jobreq = {data.Skill}/> )}
-                    </Link>
-                  {CourseDetail.map((data) =>
-                  // 
-                    <CourseCards key = {data.id}
-                    Title = {data.title}
-                    Institution = {data.institution}
+                  <JobCards
+                  Jobtitle = {jobData.title}
+                  Company = {jobData.company}
+                  Industry = {jobData.industry}
+                  skills ={jobData.skills}
+                  matched = {jobData.matched}
+                  missing = {jobData.missing}
+                  />
+                  </Link>
+                  {courseData.map((data) =>
+                    <CourseCards key = {data.url}
+                    Title = {data.course}
+                    Institution = {data.university}
                     Rating = {data.rating} 
-                    Registered = {data.registered}
-                    Duration = {data.duration}/>
-                  // 
+                    NumRatings = {data.numratings}/>
                 )}
                 </CourseContainer>
             </JobContainer>

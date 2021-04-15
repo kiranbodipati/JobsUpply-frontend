@@ -57,16 +57,10 @@ function App() {
       <Router>
         <Switch>
           <Route path = {["/", "/main"]} exact component = {HomePage} />
-          {/* <Route exact path={["/", "/home"]} component={Home} /> */}
           <Route path = "/login" exact component = {Login} />
           <Route path = "/Settings" exact component = {ProfileEdit} />
-          {/* <Route exact path="/createProfile" component={ProfileForm} /> */}
-          {/* <Route path = "/skill" exact component = {Skills} /> */}
           <Route path = "/jobs" exact component = {UserMain} />
           <Route path = "/jobdetails" exact component = {JobDetails} />
-          {/* <Route path="/user" component={BoardUser} />
-          <Route path="/mod" component={BoardModerator} />
-          <Route path="/admin" component={BoardAdmin} /> */}
         </Switch>
       </Router>
     </div>

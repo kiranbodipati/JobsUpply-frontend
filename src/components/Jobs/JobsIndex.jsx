@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Select from 'react-select'
-import { JobCards } from "../Cards/Cards"
+import { JobCards} from "../Cards/Cards"
 import {Button, JobHave, JobNo} from '../Button/Button'
 import { Link } from 'react-router-dom';
 import './new.css';
@@ -10,7 +10,8 @@ import {PositionDetail, PositionDetailKiran} from "../../data";
 import AuthService from "../../services/auth.service";
 import {Login} from "../../containers/Login/LoginIndex";
 import Redirect from 'react';
-import { UserDetails } from "../../data";
+import APIService from "../../services/JobData"
+import {UserDetails} from '../../data'
 // import AuthService from "./services/auth.service.js";
 // import AuthService from "/Users/abhishekvaidyanathan/Desktop/JobsUpply-frontend/src/services/auth.service.js";
 // import AuthService from "../../services/auth.service";
@@ -95,48 +96,77 @@ const SearchBar = ({keyword,setKeyword}) => {
 }
 
 export function JobList(props){
+  // const [currentUser, setCurrentUser] = useState(undefined);
+  const [industries, setIndustries] = useState([]);
+  const [jobListExtracted, setJobListExtracted] = useState([]);
+  const [waitText, setWaitText] = useState("Please wait while we find the best jobs for you... (Estimated time: 30s)");
 
-  const [currentUser, setCurrentUser] = useState({token:"temp", user: UserDetails[0]});
-  let propIter=PositionDetail
-    useEffect(() => {
-        const user = AuthService.getCurrentUser();
-        if (user) {
-            setCurrentUser(user);
-        }
-        else {
-            console.log("oops")
-        }
-        // if(!currentUser) {
-        //     console.log(currentUser);
-        //    return ( <Login/>)};
-    }, []);
+  useEffect( async () => {
+    let recJobs = await APIService.jobQuery();
+    console.log(recJobs);
+    if (recJobs.length > 0){
+      console.log("Success");
+      let indust=[];
+      let jobListExt=[];
+      for(let i=0; i<recJobs.length; i++){
+        indust[i]=recJobs[i].queryText;
+        let jobs=recJobs[i].jobList;
+        for(let j=0; j<jobs.length; j++){
+          let temp = jobs[j];
+          temp['industry'] = indust[i];
+          let response = await APIService.courseRecommendation(UserDetails[0].skills, temp.skills);
+          temp['matched'] = response.matched;
+          temp['missing'] = response.missing;
+          temp['recommendations'] = response.recommendations;
+          jobListExt.push(temp);
+        };
+      };
+      setIndustries(indust);
+      setJobListExtracted(jobListExt);
+      setWaitText("Click on a job to know more!")
+    }
+
+  }, []);
   
-    return(
-        <OuterContainer>
-            <RowContainer>
-              <RowOneThird>
-              <div className= 'my-className-prefix'>
-                <SelectIndustry/>
-              </div>
-              </RowOneThird>
-              <RowOneThird>
-              <div className= 'my-className-prefix'>
-                <Sortby/>
-              </div>
-              </RowOneThird>
-              <RowOneThird><SearchBar/></RowOneThird>
-            </RowContainer>
-            <JobContainer>
-            {propIter.map((data) =>
-                <Link className="jobcards__item__link" to= '/jobdetails'>
-                  <JobCards key = {data.id}
-                  Jobtitle = {data.Jobtitle}
-                  Company = {data.Company}
-                  Industry = {data.Industry} 
-                  Jobreq = {data.Skill}/>
-                </Link>
-              )}
-            </JobContainer>
-        </OuterContainer>
-    )
+  return(
+      <OuterContainer>
+          <RowContainer>
+            <RowOneThird>
+            <div className= 'my-className-prefix'>
+              <SelectIndustry/>
+            </div>
+            </RowOneThird>
+            <RowOneThird>
+            <div className= 'my-className-prefix'>
+              <Sortby/>
+            </div>
+            </RowOneThird>
+            <RowOneThird><SearchBar/></RowOneThird>
+          </RowContainer>
+          <h3><font color="white">{waitText}</font></h3>
+          <JobContainer>
+            {/* {console.log("from inside:")}
+            {console.log(recJobs)}
+            {console.log(counter)}
+            {console.log(response)} */}
+            {console.log(industries)}
+            {console.log(jobListExtracted)}
+          {jobListExtracted.map((data) =>
+              <Link className="jobcards__item__link" to={{
+                pathname: '/jobdetails',
+                state: data
+              }}>
+                <JobCards key = {data.linkedinUrl}
+                Jobtitle = {data.title}
+                Company = {data.company}
+                Industry = {data.industry}
+                skills ={data.skills}
+                matched = {data.matched}
+                missing = {data.missing}
+                />
+              </Link>
+            )}
+          </JobContainer>
+      </OuterContainer>
+  )
 }
