@@ -11,6 +11,7 @@ import AuthService from "../../services/auth.service";
 import {Login} from "../../containers/Login/LoginIndex";
 import Redirect from 'react';
 import APIService from "../../services/JobData"
+import {UserDetails} from '../../data'
 // import AuthService from "./services/auth.service.js";
 // import AuthService from "/Users/abhishekvaidyanathan/Desktop/JobsUpply-frontend/src/services/auth.service.js";
 // import AuthService from "../../services/auth.service";
@@ -98,6 +99,7 @@ export function JobList(props){
   // const [currentUser, setCurrentUser] = useState(undefined);
   const [industries, setIndustries] = useState([]);
   const [jobListExtracted, setJobListExtracted] = useState([]);
+  const [waitText, setWaitText] = useState("Please wait while we find the best jobs for you... (Estimated time: 30s)");
 
   useEffect( async () => {
     let recJobs = await APIService.jobQuery();
@@ -110,11 +112,17 @@ export function JobList(props){
         indust[i]=recJobs[i].queryText;
         let jobs=recJobs[i].jobList;
         for(let j=0; j<jobs.length; j++){
-            jobListExt.push(jobs[j]);
+          let temp = jobs[j];
+          temp['industry'] = indust[i];
+          let response = await APIService.courseRecommendation(UserDetails[0].skills, temp.skills);
+          temp['matched'] = response.matched;
+          temp['missing'] = response.missing;
+          jobListExt.push(temp);
         };
       };
       setIndustries(indust);
       setJobListExtracted(jobListExt);
+      setWaitText("Click on a job to know more!")
     }
 
   }, []);
@@ -134,6 +142,7 @@ export function JobList(props){
             </RowOneThird>
             <RowOneThird><SearchBar/></RowOneThird>
           </RowContainer>
+          <h3><font color="white">{waitText}</font></h3>
           <JobContainer>
             {/* {console.log("from inside:")}
             {console.log(recJobs)}
@@ -146,8 +155,10 @@ export function JobList(props){
                 <JobCards key = {data.linkedinUrl}
                 Jobtitle = {data.title}
                 Company = {data.company}
-                Industry = "test"
+                Industry = {data.industry}
                 skills ={data.skills}
+                matched = {data.matched}
+                missing = {data.missing}
                 />
               </Link>
             )}

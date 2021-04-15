@@ -25,19 +25,10 @@ export function CardItem(props) {
 }
 
 export function JobCardItem(props) {
-  let {text1, text2, text3, text4, Userskill, Jobneed} = props;
-
-  // let Userhave = Jobneed.filter(a => Userskill.some(b => a.id === b.id));  
-  let Userhave = []
-  // Userhave = Jobneed.filter(a => Userskill.some(b => a.id === b.id));  
-  let Userdonthave = []
-  // Userdonthave = Jobneed.filter(({ name: id1 }) => !Userskill.some(({ id: id2 }) => id2 === id1));
-  // let Userdonthave = Jobneed.filter(({ name: id1 }) => !Userskill.some(({ id: id2 }) => id2 === id1));
-  const [recCourses, setRecCourses] = useState({"num_matched":0, "num_missing":0, "matched":[{"name":'loading'}], "matched":[{"name":'loading'}], "recommendation":[]})
-  useEffect(() => {
-    setRecCourses(APIServices.courseRecommendation(Userskill, Jobneed));
-    console.log(recCourses)
-  }, []);
+  let {text1, text2, text3, text4, matched, missing} = props;
+  if (matched.length == 0 && missing.length == 0){
+    missing = [{"name":"Unable to extract: view job details"}]
+  }
   return (
     <>
       <li className="jobcards__item">
@@ -58,13 +49,13 @@ export function JobCardItem(props) {
         </div>
         <div className="jobcards__item__info2">
         <h5 className="jobcards__item__text">{text4}</h5>
-        {Userhave.map((item) =>
-          <JobHave key = {item.blablabla}>
+        {matched.map((item) =>
+          <JobHave key = {item.name}>
             {item.name}
           </JobHave>
         )}
-        {Userdonthave.map((item) =>
-          <JobNo key = {item.blablabla}>
+        {missing.map((item) =>
+          <JobNo key = {item.name}>
             {item.name}
           </JobNo>
           )}

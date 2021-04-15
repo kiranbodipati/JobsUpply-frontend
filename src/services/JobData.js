@@ -21,7 +21,7 @@ const jobQuery = async () => {
 
 const courseQuery = (courseUrl) =>{
     if (courseUrl!==""){
-    axios.post(API_URL+"database/Courses/get", {courseUrl})
+    axios.post(API_URL+"database/Courses/get", {"url":courseUrl})
     .then(
         (resp) =>{
             return resp.data;
@@ -31,18 +31,13 @@ const courseQuery = (courseUrl) =>{
     };
 };
 
-const courseRecommendation = (userSkills, jobSkills) =>{
+const courseRecommendation = async (userSkills, jobSkills) =>{
     let data={}
     data["jobSkills"]=jobSkills;
     data["userSkills"]=userSkills;
-    axios.post(API_URL+"backend/API/Recommend/Courses", {data})
-    .then(
-        resp=>{
-            console.log(resp.data)
-            return resp.data;
-        }
-    )
-    .catch((err) =>console.log(err));
+    const resp = await axios.post(API_URL+"backend/API/Recommend/Courses", data);
+    console.log(resp.data)
+    return resp.data;
 };
 
 export default {

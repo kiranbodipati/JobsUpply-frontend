@@ -64,7 +64,7 @@ export function Cards() {
 // }
 
 export function JobCards(props) {
-  let {Jobtitle, Company, Industry, skills} = props;
+  let {Jobtitle, Company, Industry, skills, matched, missing} = props;
   return (
     <div className='jobcards'>
       <div className="jobcards__container">
@@ -78,8 +78,8 @@ export function JobCards(props) {
               text3= {Industry}
               text4='Skills needed:  '
               src2 = {Linkedin}
-              Userskill = {data.skills}
-              Jobneed = {skills}
+              matched = {matched}
+              missing = {missing}
             /> 
           )}
           </ul>
