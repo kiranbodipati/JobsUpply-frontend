@@ -1,28 +1,22 @@
 import axios from "axios";
 import authHeader from "./auth-header";
+import getCurrentUser from "./auth.service"
 const API_URL = "http://localhost:8000/";
-const user = JSON.parse(localStorage.getItem('user'));
-const jobQuery = () =>{
-    axios.get(API_URL+"backend/API/Recommend/Jobs?email="+user.user.email)
-    .then((res) => {
-        if (res.data == 0){
-            console.log("error in fetching job data");
-        }
-        console.log(res.data)
-        const industry=Object.keys(res.data);
-        console.log(industry.toString);
-        axios.get(API_URL+"backend/database/JobCache?industries="+industry.toString())
-        .then(
-            response=>{
-                console.log(response.data);
-                return response.data;
-            }
-        )
-        .catch((err) =>console.log(err));
-    }, (err)=>{
-        console.log(err)
-    })
-    .catch((err) =>console.log(err));
+
+const jobQuery = async () => {
+    let user = JSON.parse(localStorage.getItem('user'));
+    const res = await axios.get(API_URL+"backend/API/Recommend/Jobs?email="+user.user.email);
+    if (res.data == 0) {
+        console.log("error in fetching job data");
+        return;
+    }
+    console.log(res.data);
+    const industry=Object.keys(res.data);
+    console.log(industry.toString);
+    const response = await axios.get(API_URL+"backend/database/JobCache?industries="+industry.toString());
+    console.log(response.data);
+    console.log("before return");
+    return response.data;
 };
 
 const courseQuery = (courseUrl) =>{

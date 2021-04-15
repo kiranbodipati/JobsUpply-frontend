@@ -95,59 +95,63 @@ const SearchBar = ({keyword,setKeyword}) => {
 }
 
 export function JobList(props){
-  let jobListExt=[];
   // const [currentUser, setCurrentUser] = useState(undefined);
-  const [recJobs, setRecJobs] = useState({ queryText:"Loading", jobList:[{linkedinUrl:"loading", title:"loading",company:"loading" , skills: [{name:"loading"}]}, ]});
-    useEffect(() => {
-        // const user = AuthService.getCurrentUser();
-        
+  const [industries, setIndustries] = useState([]);
+  const [jobListExtracted, setJobListExtracted] = useState([]);
 
-        // if (user) {
-        // setCurrentUser(user);
-        // }
-        setRecJobs(APIService.jobQuery());
-        console.log(recJobs);
-        let indust=[];
-        let jobListExt=[];
-        for(let i=0; i<recJobs.length; i++){
-          indust[i]=recJobs[i].queryText;
-          let jobs=recJobs[i].jobList;
-          for(let j=0; j<=jobs.length; j++){
-              jobListExt.push(jobs[i]);
-
-          };
-          
+  useEffect( async () => {
+    let recJobs = await APIService.jobQuery();
+    console.log(recJobs);
+    if (recJobs.length > 0){
+      console.log("Success");
+      let indust=[];
+      let jobListExt=[];
+      for(let i=0; i<recJobs.length; i++){
+        indust[i]=recJobs[i].queryText;
+        let jobs=recJobs[i].jobList;
+        for(let j=0; j<=jobs.length; j++){
+            jobListExt.push(jobs[i]);
         };
+      };
+      setIndustries(indust);
+      setJobListExtracted(jobListExt);
+      console.log(industries);
+      console.log(jobListExtracted);
+    }
 
-    }, []);
+  }, []);
   
-    return(
-        <OuterContainer>
-            <RowContainer>
-              <RowOneThird>
-              <div className= 'my-className-prefix'>
-                <SelectIndustry/>
-              </div>
-              </RowOneThird>
-              <RowOneThird>
-              <div className= 'my-className-prefix'>
-                <Sortby/>
-              </div>
-              </RowOneThird>
-              <RowOneThird><SearchBar/></RowOneThird>
-            </RowContainer>
-            <JobContainer>
-            {jobListExt.map((data) =>
-                <Link className="jobcards__item__link" to= '/jobdetails'>
-                  <JobCards key = {data.linkedinUrl}
-                  Jobtitle = {data.title}
-                  Company = {data.company}
-                  Industry = "test"
-                  skills ={data.skills}
-                  />
-                </Link>
-              )}
-            </JobContainer>
-        </OuterContainer>
-    )
+  return(
+      <OuterContainer>
+          <RowContainer>
+            <RowOneThird>
+            <div className= 'my-className-prefix'>
+              <SelectIndustry/>
+            </div>
+            </RowOneThird>
+            <RowOneThird>
+            <div className= 'my-className-prefix'>
+              <Sortby/>
+            </div>
+            </RowOneThird>
+            <RowOneThird><SearchBar/></RowOneThird>
+          </RowContainer>
+          <JobContainer>
+            {/* {console.log("from inside:")}
+            {console.log(recJobs)}
+            {console.log(counter)}
+            {console.log(response)} */}
+          {jobListExtracted.map((data) =>
+              <Link className="jobcards__item__link" to= '/jobdetails'>
+                <JobCards key = {data.linkedinUrl}
+                Jobtitle = {data.title}
+                Company = {data.company}
+                Industry = "test"
+                skills ={data.skills}
+                />
+              </Link>
+            )}
+          </JobContainer>
+      </OuterContainer>
+  )
 }
