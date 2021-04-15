@@ -19,16 +19,12 @@ const jobQuery = async () => {
     return response.data;
 };
 
-const courseQuery = (courseUrl) =>{
+const courseQuery = async (courseUrl) =>{
     if (courseUrl!==""){
-    axios.post(API_URL+"database/Courses/get", {"url":courseUrl})
-    .then(
-        (resp) =>{
-            return resp.data;
-        }
-    )
-    .catch((err) =>console.log(err));
-    };
+        const resp = await axios.post(API_URL+"backend/database/Courses/get", {"url":courseUrl});
+        return resp.data;
+    }
+    return {};
 };
 
 const courseRecommendation = async (userSkills, jobSkills) =>{

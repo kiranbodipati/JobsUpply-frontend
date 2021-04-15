@@ -14,6 +14,7 @@ import AuthService from "../../services/auth.service";
 import {Login} from "../../containers/Login/LoginIndex";
 import Redirect from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import APIService from "../../services/JobData";
 
 
 export const TopSectionContainer = styled.div`
@@ -53,10 +54,12 @@ export const Title = styled.h1`
 `;
 
 export function JobDetails(props){
-
+    let singleData = props.location.state;
+    console.log(singleData);
     const [currentUser, setCurrentUser] = useState({token:"temp", user: UserDetails[0]});
+    const [courseData, setCourseData] = useState([]);
 
-    useEffect(() => {
+    useEffect( async () => {
         const user = AuthService.getCurrentUser();
         if (user) {
             setCurrentUser(user);
@@ -64,9 +67,12 @@ export function JobDetails(props){
         else {
             console.log("oops")
         }
-        // if(!currentUser) {
-        //     console.log(currentUser);
-        //    return ( <Login/>)};
+        let courses = [];
+        for(let i=0; i<singleData.recommendations.length; i++){
+            courses[i] = await APIService.courseQuery(singleData.recommendations[i]);
+            console.log(courses[i]);
+        }
+        setCourseData(courses);
     }, []);
 
     return (
@@ -77,11 +83,12 @@ export function JobDetails(props){
                 <ContentContainer>
                 {[currentUser.user, ].map((data) => {
                     let m;
-                    if (data.minor == {} || data.minor == "" || data.minor == "{}"){
-                            m = "None";
+                    if (data.minor.constructor == Object || data.minor == "" || data.minor == "{}"){
+                        m = "None";
                     }
                     else {
-                        m = data.minor
+                        m = data.minor;
+                        console.log(m);
                     }
                     return(
                         <UserInfo key = {data.email}
@@ -92,7 +99,7 @@ export function JobDetails(props){
                         Skillsss = {data.skills}
                     />)}
                 )}
-                    <JobDetail/>
+                    <JobDetail jobData={singleData} courseData={courseData} />
                 </ContentContainer>
             </BackgroundFilter>
         </TopSectionContainer>

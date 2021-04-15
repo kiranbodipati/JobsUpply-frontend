@@ -66,7 +66,7 @@ export function JobCardItem(props) {
 }
 
 export function CourseCardItem(props) {
-  let {Title, Institution, Rating, Registered, Duration} = props;
+  let {Title, Institution, Rating, NumRatings} = props;
   return (
     <>
       <li className="coursecards__item">
@@ -82,8 +82,7 @@ export function CourseCardItem(props) {
         <div className="coursecards__item__info2">
           <h5 className="coursecards__item__text">{Institution}</h5>
           <h5 className="coursecards__item__text">{Rating}</h5>
-          <h5 className="coursecards__item__text">{Registered}</h5>
-          <h5 className="coursecards__item__text">{Duration}</h5>
+          <h5 className="coursecards__item__text">{NumRatings}</h5>
         </div>
       </li>
     </>

@@ -117,6 +117,7 @@ export function JobList(props){
           let response = await APIService.courseRecommendation(UserDetails[0].skills, temp.skills);
           temp['matched'] = response.matched;
           temp['missing'] = response.missing;
+          temp['recommendations'] = response.recommendations;
           jobListExt.push(temp);
         };
       };
@@ -151,7 +152,10 @@ export function JobList(props){
             {console.log(industries)}
             {console.log(jobListExtracted)}
           {jobListExtracted.map((data) =>
-              <Link className="jobcards__item__link" to= '/jobdetails'>
+              <Link className="jobcards__item__link" to={{
+                pathname: '/jobdetails',
+                state: data
+              }}>
                 <JobCards key = {data.linkedinUrl}
                 Jobtitle = {data.title}
                 Company = {data.company}
