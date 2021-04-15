@@ -102,6 +102,7 @@ export function JobList(props){
   const [waitText, setWaitText] = useState("Please wait while we find the best jobs for you... (Estimated time: 30s)");
 
   useEffect( async () => {
+    let currentUser = AuthService.getCurrentUser();
     let recJobs = await APIService.jobQuery();
     console.log(recJobs);
     if (recJobs.length > 0){
@@ -114,7 +115,7 @@ export function JobList(props){
         for(let j=0; j<jobs.length; j++){
           let temp = jobs[j];
           temp['industry'] = indust[i];
-          let response = await APIService.courseRecommendation(UserDetails[0].skills, temp.skills);
+          let response = await APIService.courseRecommendation(currentUser.user.skills, temp.skills);
           temp['matched'] = response.matched;
           temp['missing'] = response.missing;
           temp['recommendations'] = response.recommendations;

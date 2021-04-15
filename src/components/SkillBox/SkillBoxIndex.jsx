@@ -6,6 +6,7 @@ import { Marginer } from "../marginer";
 import { Link } from "react-router-dom";
 import BackImg from "../../Images/Backorange.png";
 import MultiSelect from "./SkillDropdown";
+import AuthService from "../../services/auth.service.js";
 
 const OuterContainer = styled.div`
   width: 400px;
@@ -155,7 +156,17 @@ class Skills extends Component {
   handleSubmission = () => {
     /* Add API call to update localStorage and DB later */
     if (this.skillInput.current != null) {
-      console.log(this.skillInput.current.returnValue());
+      let email = AuthService.getCurrentUser().user.email;
+      let n = this.skillInput.current.returnValue();
+      console.log(this.props)
+      console.log(n);
+      let res = [];
+      for(let i=0; i<n.length; i++){
+        res[i] = {"name":n[i].value};
+      }
+      let up = AuthService.updateSkills({"email":email, "skills":res});
+      console.log(email);
+      console.log(up);
     }
     this.props.closePopup();
     return;

@@ -271,7 +271,7 @@ export function ProfileForm(props) {
         <font size="2">Note: Editing skills will save any changes above first.</font>
       </RowContainer>
       <RowContainer>
-        <Skillpopup />
+        <Skillpopup email={currentUser.user.email} />
       </RowContainer>
       <Marginer direction="vertical" margin="1em" />
       <RowContainer>

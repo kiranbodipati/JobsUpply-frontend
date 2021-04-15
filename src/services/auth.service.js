@@ -21,7 +21,7 @@ const update = (updatedDict) => {
   return axios.put(API_URL + "backend/database/Users", updatedDict)
   .then((response) => {
     if (response.data.email) {
-      console.log(response.data.email+" updated.");
+      console.log(response.data.email+" profile updated.");
       let currUser = JSON.parse(localStorage.getItem("user"));
       currUser.user.name = updatedDict.name;
       currUser.user.university = updatedDict.university;
@@ -32,6 +32,20 @@ const update = (updatedDict) => {
       else {
         currUser.user.minor = updatedDict.minor;
       }
+      localStorage.setItem("user", JSON.stringify(currUser));
+    }
+    return response.data;
+  });
+};
+
+const updateSkills = (updatedDict) => {
+  console.log(updatedDict);
+  return axios.put(API_URL + "backend/database/Users", updatedDict)
+  .then((response) => {
+    if (response.data.email) {
+      console.log(response.data.email+" skills updated.");
+      let currUser = JSON.parse(localStorage.getItem("user"));
+      currUser.user.skills = updatedDict.skills;
       localStorage.setItem("user", JSON.stringify(currUser));
     }
     return response.data;
@@ -68,4 +82,5 @@ export default {
   login,
   logout,
   getCurrentUser,
+  updateSkills
 };
