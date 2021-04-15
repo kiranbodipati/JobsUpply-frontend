@@ -109,14 +109,12 @@ export function JobList(props){
       for(let i=0; i<recJobs.length; i++){
         indust[i]=recJobs[i].queryText;
         let jobs=recJobs[i].jobList;
-        for(let j=0; j<=jobs.length; j++){
-            jobListExt.push(jobs[i]);
+        for(let j=0; j<jobs.length; j++){
+            jobListExt.push(jobs[j]);
         };
       };
       setIndustries(indust);
       setJobListExtracted(jobListExt);
-      console.log(industries);
-      console.log(jobListExtracted);
     }
 
   }, []);
@@ -141,6 +139,8 @@ export function JobList(props){
             {console.log(recJobs)}
             {console.log(counter)}
             {console.log(response)} */}
+            {console.log(industries)}
+            {console.log(jobListExtracted)}
           {jobListExtracted.map((data) =>
               <Link className="jobcards__item__link" to= '/jobdetails'>
                 <JobCards key = {data.linkedinUrl}
