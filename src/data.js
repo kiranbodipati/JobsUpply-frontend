@@ -140,7 +140,7 @@ export const colourOptions = [
   ];
 
   export const Minor = [
-    { value: null, label: 'None'},
+    { value: 'None', label: 'None'},
     { value: 'Data Science and Artificial Intelligence', label: 'Data Science and Artificial Intelligence' },
     { value: 'Computer Science', label: 'Computer Science'},
     { value: 'Computer Engineering', label: 'Computer Engineering'},

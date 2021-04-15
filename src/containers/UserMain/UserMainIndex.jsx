@@ -70,11 +70,12 @@ export function UserMain(props){
                 <ContentContainer>
                 {[currentUser.user, ].map((data) => {
                     let m;
-                    if (Object.keys(data.minor).length == 0){
-                            m = "None";
+                    if (data.minor.constructor == Object || data.minor == "" || data.minor == "{}"){
+                        m = "None";
                     }
                     else {
-                        m = data.minor[0]
+                        m = data.minor;
+                        console.log(m);
                     }
                     return(
                         <UserInfo key = {data.email}

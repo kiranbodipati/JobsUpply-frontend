@@ -77,11 +77,11 @@ export function JobDetails(props){
                 <ContentContainer>
                 {[currentUser.user, ].map((data) => {
                     let m;
-                    if (Object.keys(data.minor).length == 0){
+                    if (data.minor == {} || data.minor == "" || data.minor == "{}"){
                             m = "None";
                     }
                     else {
-                        m = data.minor[0]
+                        m = data.minor
                     }
                     return(
                         <UserInfo key = {data.email}
