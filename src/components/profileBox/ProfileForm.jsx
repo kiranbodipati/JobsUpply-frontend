@@ -268,19 +268,13 @@ export function ProfileForm(props) {
         </RowContainer>
       </FormContainer>
       <RowContainer>
-        {/* <RowLeft>
-          <Link style={{ textDecoration: 'none', color: 'white' }} to = "/skill">
-            <SkillButton>Edit Skills</SkillButton>
-          </Link>
-        </RowLeft> */}
+        <font size="2">Note: Editing skills will save any changes above first.</font>
+      </RowContainer>
+      <RowContainer>
         <Skillpopup />
       </RowContainer>
       <Marginer direction="vertical" margin="1em" />
       <RowContainer>
-        {/* <Link to = '/jobs'>
-          <SubmitButton>Cancel</SubmitButton>
-        </Link> */}
-        {/* <Marginer direction="horizontal" margin="2em" /> */}
         <CheckButton ref={checkBtn}>
           <ConfirmButton>Confirm</ConfirmButton>
         </CheckButton>
