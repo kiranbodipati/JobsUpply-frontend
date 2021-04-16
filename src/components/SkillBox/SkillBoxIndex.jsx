@@ -10,12 +10,13 @@ import AuthService from "../../services/auth.service.js";
 
 const OuterContainer = styled.div`
   width: 400px;
-  min-height: 251px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   border-radius: 19px;
   background-color: #fff;
   box-shadow: 0px 0px 2.7px rgba(15, 15, 15, 0.28);
+  border: 1px solid rgb(244,98,58);
   position: relative; 
   overflow-x: hidden;
   overflow-y: visible;
@@ -23,7 +24,7 @@ const OuterContainer = styled.div`
 
 const TopContainer = styled.div`
   width: 100%;
-  height: 180px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -65,7 +66,6 @@ export const FormContainer = styled.form`
   width: 90%;
   display: flex;
   flex-direction: column;
-  margin-top: -15vh;
 `;
 
 export const SubmitButton = styled.button`
@@ -110,7 +110,7 @@ const HeaderContainer = styled.div`
 
 const HeaderText = styled.h2`
   font-weight: 600;
-  color: #fff;
+  color: #000;
   z-index: 10;
   margin-bottom: 0;
   font-size: 30px;
@@ -119,7 +119,7 @@ const HeaderText = styled.h2`
 
 const SmallText = styled.h5`
   font-weight: 500;
-  color: #fff;
+  color: #000;
   z-index: 10;
   margin-bottom: 10;
   font-size: 13px;
@@ -179,7 +179,6 @@ class Skills extends Component {
     return (
     <OuterContainer>
         <TopContainer>
-            <BackDrop/>
             <HeaderContainer>
                 <HeaderText>Edit Skills</HeaderText>
             </HeaderContainer>

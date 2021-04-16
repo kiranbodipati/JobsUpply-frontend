@@ -52,6 +52,7 @@ export default class MultiSelect extends Component {
           cacheOptions
           loadOptions={loadOptions}
           isMulti
+          placeholder="Start typing..."
           onChange={this.onChange}
         />
       </div>
