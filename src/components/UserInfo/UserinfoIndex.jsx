@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import styled from "styled-components";
-import {Button, JobHave, JobNo} from '../Button/Button';
+import {Button, JobHave, JobNo, JobProfileHave} from '../Button/Button';
 const OuterContainer = styled.div`
   width: 15%;
   min-width: 180px;
@@ -170,9 +170,9 @@ export function UserInfo(props){
                 {console.log(Skillsss)}
                 {Skillsss.map((item) =>
                   // <JobHave key = {item.id} item = {item} />
-                  <JobHave key = {item.name}>
+                  <JobProfileHave key = {item.name}>
                     {item.name}
-                  </JobHave>
+                  </JobProfileHave>
                   )}
               </SkillList>
             </SkillContainer>

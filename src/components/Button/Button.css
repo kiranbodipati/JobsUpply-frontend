@@ -74,6 +74,7 @@ btn-large{
     color: #242424;
     border: 1px solid bisque;
     margin: 0.25em;
+    white-space: nowrap;
 }
 .btn--skilldonthave {
     font-size: 10px;
@@ -86,5 +87,20 @@ btn-large{
     background: coral ;
     color: #242424;
     border: 1px solid whitesmoke;
+    margin: 0.25em;
+    white-space: nowrap;
+}
+
+.btn--skillProfilehave {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 0.75em 1.25em;
+    border: none;
+    border-radius: 35px;
+    display: block;
+    text-transform: uppercase;
+    background: bisque;
+    color: #242424;
+    border: 1px solid bisque;
     margin: 0.25em;
 }
