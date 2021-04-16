@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '../Button/Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import AuthService from "../../services/auth.service.js";
 
 export function Navbar() {
   const [click, setClick] = useState(false);
@@ -9,6 +10,10 @@ export function Navbar() {
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+  const handleLogout = async () => {
+    let res = await AuthService.logout();
+    setClick(false);
+  }
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -66,7 +71,7 @@ export function Navbar() {
               <Link
                 to='/main'
                 className='nav-links'
-                onClick={closeMobileMenu}>
+                onClick={handleLogout}>
                 Log Out
               </Link>
             </li>

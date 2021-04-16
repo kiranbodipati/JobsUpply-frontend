@@ -1,15 +1,13 @@
 import React, {Component} from "react";
 import styled from "styled-components";
-import AnimatedMulti from "./SkillDropdown";
 import { motion } from "framer-motion";
 import { Marginer } from "../marginer";
 import { Link } from "react-router-dom";
-import BackImg from "../../Images/Backorange.png";
-import MultiSelect from "./SkillDropdown";
 import AuthService from "../../services/auth.service.js";
+import { BoldLink, Input, MutedLink } from "./common";
 
 const OuterContainer = styled.div`
-  width: 400px;
+  width: 250px;
   min-height: 200px;
   display: flex;
   flex-direction: column;
@@ -29,7 +27,7 @@ const TopContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 0 1.8em;
+  padding: 0 1.2em;
 `;
 
 const BackDrop = styled(motion.div)`
@@ -147,26 +145,33 @@ const RowContainer = styled.div`
   margin-bottom: 0.5em;
 `;
 
-class Skills extends Component {
+class PasswordBox extends Component {
   constructor(props) {
     super(props);
-    this.skillInput = React.createRef();
+    this.newPass = React.createRef();
+    this.inpOTP = React.createRef();
+    this.realOTP = undefined;
+  }
+
+  handleSend = () => {
+      this.props.closePopup();
+      return;
   }
 
   handleSubmission = () => {
-    if (this.skillInput.current != null) {
-      let email = AuthService.getCurrentUser().user.email;
-      let n = this.skillInput.current.returnValue();
-      console.log(this.props)
-      console.log(n);
-      let res = [];
-      for(let i=0; i<n.length; i++){
-        res[i] = {"name":n[i].value};
-      }
-      let up = AuthService.updateSkills({"email":email, "skills":res});
-      console.log(email);
-      console.log(up);
-    }
+    // if (this.skillInput.current != null) {
+    //   let email = AuthService.getCurrentUser().user.email;
+    //   let n = this.skillInput.current.returnValue();
+    //   console.log(this.props)
+    //   console.log(n);
+    //   let res = [];
+    //   for(let i=0; i<n.length; i++){
+    //     res[i] = {"name":n[i].value};
+    //   }
+    //   let up = AuthService.updateSkills({"email":email, "skills":res});
+    //   console.log(email);
+    //   console.log(up);
+    // }
     this.props.closePopup();
     return;
   }
@@ -179,26 +184,39 @@ class Skills extends Component {
     <OuterContainer>
         <TopContainer>
             <HeaderContainer>
-                <HeaderText>Edit Skills</HeaderText>
+                <HeaderText>Reset Password</HeaderText>
             </HeaderContainer>
-            <SmallText>Click "confirm" to save changes.</SmallText>
+            <SmallText>An otp has been sent to the above email.</SmallText>
         </TopContainer>
         <BoxContainer>
             <FormContainer>
-                <MultiSelect style={{padding:padding, left: left, top:top}} ref={this.skillInput} />
-              </FormContainer>
+            <Input
+              placeholder="New password"
+              type="password"
+              className="form-control"
+              ref={this.newPass}
+            />
+            </FormContainer>
+            <FormContainer>
+            <Input
+              placeholder="OTP"
+              type="text"
+              className="form-control"
+              ref={this.inpOTP}
+            />
+            </FormContainer>
           </BoxContainer>
          <RowContainer>
-            <SkillButton onClick={this.props.closePopup}>Cancel</SkillButton>
+            <ForgotButton onClick={this.handleSend}>Send OTP</ForgotButton>
             <Marginer direction="horizontal" margin="0.5em" />
-            <SkillButton onClick={this.handleSubmission}>Confirm</SkillButton>
+            <ForgotButton onClick={this.handleSubmission}>Confirm</ForgotButton>
          </RowContainer>
       </OuterContainer>
   );
 }
 }
 
-export const SkillButton = styled.button`
+export const ForgotButton = styled.button`
   padding: 10px 10%;
   width: 12em;
   color: #000;
@@ -218,7 +236,7 @@ export const SkillButton = styled.button`
   }
 `;
 
-export class Skillpopup extends Component {
+export class PasswordPopup extends Component {
   constructor() {
     super();
     this.state = {
@@ -234,10 +252,10 @@ export class Skillpopup extends Component {
   render() {
     return (
       <div>
-        <SkillButton onClick={this.togglePopup.bind(this)}>Edit Skills</SkillButton>
+        <MutedLink onClick={this.togglePopup.bind(this)}><BoldLink>Forgot Password?</BoldLink> Type your email and click here.</MutedLink>
         <Marginer direction="vertical" margin="1em" />
         {this.state.showPopup ? 
-          <Skills
+          <PasswordBox
             closePopup={this.togglePopup.bind(this)}
           />
           : null

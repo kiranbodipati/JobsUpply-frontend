@@ -11,6 +11,7 @@ import {
 import { AccountContext } from "./context";
 import { Link, useHistory } from "react-router-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { PasswordPopup } from "./ForgotPasswordBox";
 
 import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
@@ -112,7 +113,8 @@ export const LoginForm = (props) => {
             />
           { passMessage }
       {/* </FormContainer> */}
-        <MutedLink href="#">Forgot Password?</MutedLink>
+        {/* <MutedLink href="#">Forgot Password?</MutedLink> */}
+        <PasswordPopup />
         <Marginer direction="vertical" margin="1em" />
         <CheckButton ref={checkBtn}>
           <SubmitButton>Login</SubmitButton>

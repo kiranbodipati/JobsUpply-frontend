@@ -68,8 +68,9 @@ const login = (Email, Password) => {
     });
 };
 
-const logout = () => {
-  localStorage.removeItem("user");
+const logout = async () => {
+  let res = await localStorage.removeItem("user");
+  console.log("Logged out successfully.")
 };
 
 const getCurrentUser = () => {
