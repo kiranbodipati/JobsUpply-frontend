@@ -238,6 +238,7 @@ export function JobList(props){
                 state: data
               }}>
                 <JobCards key = {data.linkedinUrl}
+                linkedinUrl = {data.linkedinUrl}
                 Jobtitle = {data.title}
                 Company = {data.company}
                 Industry = {data.industry}
