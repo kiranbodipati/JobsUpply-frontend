@@ -21,7 +21,7 @@ const OuterContainer = styled.div`
 `;
 
 const TopContainer = styled.div`
-  width: 100%;
+  width: 90%;
   height: 100px;
   display: flex;
   flex-direction: column;
@@ -148,31 +148,25 @@ const RowContainer = styled.div`
 class PasswordBox extends Component {
   constructor(props) {
     super(props);
+    this.email = React.createRef();
     this.newPass = React.createRef();
     this.inpOTP = React.createRef();
     this.realOTP = undefined;
   }
 
-  handleSend = () => {
-      this.props.closePopup();
+  handleSend = async () => {
+      console.log(this.email)
+      let otp = await AuthService.getOTP(this.email);
+      console.log(otp);
+      if (otp != "404") {
+          this.setState({ realOTP: otp });
+      }
+      console.log(this.realOTP);
       return;
   }
 
   handleSubmission = () => {
-    // if (this.skillInput.current != null) {
-    //   let email = AuthService.getCurrentUser().user.email;
-    //   let n = this.skillInput.current.returnValue();
-    //   console.log(this.props)
-    //   console.log(n);
-    //   let res = [];
-    //   for(let i=0; i<n.length; i++){
-    //     res[i] = {"name":n[i].value};
-    //   }
-    //   let up = AuthService.updateSkills({"email":email, "skills":res});
-    //   console.log(email);
-    //   console.log(up);
-    // }
-    this.props.closePopup();
+    
     return;
   }
 
@@ -186,9 +180,17 @@ class PasswordBox extends Component {
             <HeaderContainer>
                 <HeaderText>Reset Password</HeaderText>
             </HeaderContainer>
-            <SmallText>An otp has been sent to the above email.</SmallText>
+            <SmallText>Click "Send OTP" after entering your email below, then enter your new password and OTP before clicking submit.</SmallText>
         </TopContainer>
         <BoxContainer>
+            <FormContainer>
+            <Input
+              placeholder="Email"
+              type="text"
+              className="form-control"
+              ref={this.email}
+            />
+            </FormContainer>
             <FormContainer>
             <Input
               placeholder="New password"
@@ -252,7 +254,7 @@ export class PasswordPopup extends Component {
   render() {
     return (
       <div>
-        <MutedLink onClick={this.togglePopup.bind(this)}><BoldLink>Forgot Password?</BoldLink> Type your email and click here.</MutedLink>
+        <BoldLink onClick={this.togglePopup.bind(this)}>Forgot Password?</BoldLink>
         <Marginer direction="vertical" margin="1em" />
         {this.state.showPopup ? 
           <PasswordBox

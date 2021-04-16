@@ -68,6 +68,11 @@ const login = (Email, Password) => {
     });
 };
 
+const getOTP = async (email) => {
+  let res = await axios.get(API_URL + "backend/API/genOTP?email=" + email);
+  return res.data;
+}
+
 const logout = async () => {
   let res = await localStorage.removeItem("user");
   console.log("Logged out successfully.")
@@ -83,5 +88,6 @@ export default {
   login,
   logout,
   getCurrentUser,
-  updateSkills
+  updateSkills,
+  getOTP
 };
