@@ -66,7 +66,7 @@ export function JobDetail(props){
         <OuterContainer>
             <JobContainer>
                 <CourseContainer>
-                <Link className="jobcards__item__link" to="/jobs">
+                <a href = {jobData.linkedinUrl} target = "_blank" style={{ textDecoration: 'none' }}>
                   <JobCards
                   Jobtitle = {jobData.title}
                   Company = {jobData.company}
@@ -75,9 +75,10 @@ export function JobDetail(props){
                   matched = {jobData.matched}
                   missing = {jobData.missing}
                   />
-                  </Link>
+                  </a>
                   {courseData.map((data) =>
                     <CourseCards key = {data.url}
+                    url = {data.url}
                     Title = {data.course}
                     Institution = {data.university}
                     Rating = {data.rating} 

@@ -64,7 +64,7 @@ export function Cards() {
 // }
 
 export function JobCards(props) {
-  let {Jobtitle, Company, Industry, skills, matched, missing} = props;
+  let {linkedinUrl,Jobtitle, Company, Industry, skills, matched, missing} = props;
   return (
     <div className='jobcards'>
       <div className="jobcards__container">
@@ -73,6 +73,7 @@ export function JobCards(props) {
           {UserDetails.map((data) =>
             <JobCardItem
               src='Images/bg-masthead.jpg'
+              linkedinUrl = {linkedinUrl}
               text1= {Jobtitle}
               text2= {Company} 
               text3= {Industry}
@@ -90,12 +91,13 @@ export function JobCards(props) {
 }
 
 export function CourseCards(props) {
-  let {Title, Institution, Rating, NumRatings} = props;
+  let {url,Title, Institution, Rating, NumRatings} = props;
   return (
     <div className='coursecards'>
       <div className="coursecards__container">
         <div className="coursecards__wrapper">
           <ul className='coursecards__items'>
+         <a href = {url} target = "_blank" style={{ textDecoration: 'none' }}>
             <CourseCardItem
               src={Coursera}
               Title={Title}
@@ -103,6 +105,7 @@ export function CourseCards(props) {
               Rating={Rating}
               NumRatings={NumRatings}
             /> 
+            </a>
           </ul>
         </div>
       </div>
