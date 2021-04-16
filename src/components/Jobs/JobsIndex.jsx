@@ -49,6 +49,14 @@ const RowOneThird = styled.div`
   min-height:50px;
 `;
 
+const RowHalf = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  min-width:80px;
+  min-height:50px;
+`;
+
 export const JobContainer = styled.div`
   width: 100%;
   min-height: 490px;
@@ -61,26 +69,18 @@ export const JobContainer = styled.div`
 
 const Industryoptions = [
   { value: 'Select Industry', label: 'Select Industry'},
+  { value: 'All Industries', label: 'All Industries'},
   { value: 'Industry 1', label: 'Industry 1'},
   { value: 'Industry 2', label: 'Industry 2' },
-  { value: 'Industry 3', label: 'Industry 3' },
-  { value: 'Industry 4', label: 'Industry 4' }
+  { value: 'Industry 3', label: 'Industry 3' }
 ]
 
 const Sortbyoptions = [
   { value: 'Sort by', label: 'Sort By'},
-  { value: 'Most Skill Matched', label: 'Most Skill Matched' },
-  { value: 'Least skill Matched', label: 'Least skill Matched' },
+  { value: 'Industry (Default)', label: 'Industry (Default)' },
+  { value: 'Most Skills Matched', label: 'Most Skills Matched' },
+  { value: 'Least Skills Matched', label: 'Least Skills Matched' },
 ]
-
-const SelectIndustry = () => (
-  <Select options={Industryoptions} defaultValue = {Industryoptions[0]} />
-
-)
-
-const Sortby = () => (
-  <Select options={Sortbyoptions} defaultValue = {Sortbyoptions[0]} classNamePrefix='my-className-prefix'/>
-)
 
 const SearchBar = ({keyword,setKeyword}) => {
   const BarStyling = {width:"20rem",height:"22px", background:"#F2F1F9", border:"none", padding:"0.5rem", borderRadius: "3px"};
@@ -99,49 +99,140 @@ export function JobList(props){
   // const [currentUser, setCurrentUser] = useState(undefined);
   const [industries, setIndustries] = useState([]);
   const [jobListExtracted, setJobListExtracted] = useState([]);
-  const [waitText, setWaitText] = useState("Please wait while we find the best jobs for you... (Estimated time: 30s)");
+  const [waitText, setWaitText] = useState("Please wait while we find the best jobs for you... (May take a few seconds)");
+  const [jobListDisplay, setJobListDisplay] = useState([]);
 
   useEffect( async () => {
-    let recJobs = await APIService.jobQuery();
-    console.log(recJobs);
-    if (recJobs.length > 0){
-      console.log("Success");
-      let indust=[];
-      let jobListExt=[];
-      for(let i=0; i<recJobs.length; i++){
-        indust[i]=recJobs[i].queryText;
-        let jobs=recJobs[i].jobList;
-        for(let j=0; j<jobs.length; j++){
-          let temp = jobs[j];
-          temp['industry'] = indust[i];
-          let response = await APIService.courseRecommendation(UserDetails[0].skills, temp.skills);
-          temp['matched'] = response.matched;
-          temp['missing'] = response.missing;
-          temp['recommendations'] = response.recommendations;
-          jobListExt.push(temp);
+    console.log("useEffect called");
+    if (jobListExtracted.length==0) {
+      console.log("inside if statement");
+      let currentUser = AuthService.getCurrentUser();
+      let recJobs = await APIService.jobQuery();
+      console.log(recJobs);
+      if (recJobs.length > 0){
+        console.log("Success");
+        let indust=[];
+        let jobListExt=[];
+        for(let i=0; i<recJobs.length; i++){
+          indust[i]=recJobs[i].queryText;
+          let jobs=recJobs[i].jobList;
+          for(let j=0; j<jobs.length; j++){
+            let temp = jobs[j];
+            temp['industry'] = indust[i];
+            let response = await APIService.courseRecommendation(currentUser.user.skills, temp.skills);
+            temp['matched'] = response.matched;
+            temp['missing'] = response.missing;
+            temp['num_matched'] = response.num_matched;
+            temp['num_missing'] = response.num_missing;
+            temp['recommendations'] = response.recommendations;
+            jobListExt.push(temp);
+          };
         };
-      };
-      setIndustries(indust);
-      setJobListExtracted(jobListExt);
-      setWaitText("Click on a job to know more!")
+        setIndustries(indust);
+        setJobListExtracted(jobListExt);
+        setJobListDisplay(jobListExt);
+        setWaitText("Click on a job to know more!")
+      }
     }
 
-  }, []);
+  }, [jobListDisplay]);
+
+  const industryDropdown = () => {
+    let res = [Industryoptions[1]];
+    for(let i=0; i<industries.length; i++){
+      res.push({"value":industries[i], "label":industries[i]});
+    }
+    return res;
+  }
+
+  function compare(a, b) {
+    // Use toUpperCase() to ignore character casing
+    const A = a.num_matched;
+    const B = b.num_matched;
+  
+    let comparison = 0;
+    if (A > B) {
+      comparison = 1;
+    } else if (A < B) {
+      comparison = -1;
+    }
+    return comparison;
+  }
+
+  const handleSort = (e) => {
+    const opt = e.value;
+    console.log(opt);
+    let temp;
+    switch(opt){
+      case "Industry (Default)":
+        console.log("default sort");
+        setJobListDisplay([]);
+        setJobListDisplay(jobListExtracted);
+        break;
+      case "Most Skills Matched":
+        console.log("most matched sort");
+        temp = jobListDisplay.slice().sort(compare);
+        temp.reverse();
+        setJobListDisplay(temp);
+        break;
+      case "Least Skills Matched":
+        console.log("least matched sort");
+        temp = jobListDisplay.slice().sort(compare);
+        setJobListDisplay(temp);
+        break;
+      default:
+        console.log("Whoops");
+    }
+    console.log("extracted:");
+    console.log(jobListExtracted);
+    console.log("display:");
+    console.log(jobListDisplay);
+  };
+
+  const handleFilter = (e) => {
+    const opt = e.value;
+    console.log(opt);
+    if (opt==="All Industries") {
+      setJobListDisplay(jobListExtracted);
+    }
+    else {
+      let temp = jobListDisplay.slice();
+      temp = temp.filter(function(job) {
+        return job.industry === opt;
+      });
+      setJobListDisplay(temp);
+    }
+    console.log("extracted:");
+    console.log(jobListExtracted);
+    console.log("display:");
+    console.log(jobListDisplay);
+  };
   
   return(
       <OuterContainer>
           <RowContainer>
-            <RowOneThird>
+            {/* <RowOneThird> */}
+            <RowHalf>
             <div className= 'my-className-prefix'>
-              <SelectIndustry/>
+              <Select options={industryDropdown()} 
+                      defaultValue={Industryoptions[1]} 
+                      isSearchable={false}
+                      onChange={handleFilter} />
             </div>
-            </RowOneThird>
-            <RowOneThird>
+            </RowHalf>
+            {/* </RowOneThird> */}
+            {/* <RowOneThird> */}
+            <RowHalf>
             <div className= 'my-className-prefix'>
-              <Sortby/>
+              <Select options={Sortbyoptions.slice(1)} 
+                      defaultValue = {Sortbyoptions[1]} 
+                      isSearchable={false} 
+                      onChange={handleSort}
+                      classNamePrefix='my-className-prefix'/>
             </div>
-            </RowOneThird>
-            <RowOneThird><SearchBar/></RowOneThird>
+            </RowHalf>
+            {/* </RowOneThird> */}
+            {/* <RowOneThird><SearchBar/></RowOneThird> */}
           </RowContainer>
           <h3><font color="white">{waitText}</font></h3>
           <JobContainer>
@@ -150,13 +241,17 @@ export function JobList(props){
             {console.log(counter)}
             {console.log(response)} */}
             {console.log(industries)}
+            {console.log("Extracted:")}
             {console.log(jobListExtracted)}
-          {jobListExtracted.map((data) =>
+            {console.log("Display:")}
+            {console.log(jobListDisplay)}
+          {jobListDisplay.map((data) =>
               <Link className="jobcards__item__link" to={{
                 pathname: '/jobdetails',
                 state: data
               }}>
                 <JobCards key = {data.linkedinUrl}
+                linkedinUrl = {data.linkedinUrl}
                 Jobtitle = {data.title}
                 Company = {data.company}
                 Industry = {data.industry}

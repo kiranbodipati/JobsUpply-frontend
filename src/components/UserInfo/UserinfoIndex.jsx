@@ -111,11 +111,12 @@ export const Title = styled.h4`
 const SkillList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 90%;
   align-items: center;
-  justify-content: left;
-  margin-left: 1em;
+  justify-content: center;
+  margin-bottom: 1em;
   margin-top: 1em;
+  overflow-y: auto;
 `;
 
 export function UserInfo(props){

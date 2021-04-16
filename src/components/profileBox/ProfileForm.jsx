@@ -36,11 +36,12 @@ const InnerText = styled.h5`
 
 const RowContainer = styled.div`
   width: 100%;
-  line-height: 26px;
+  line-height: 15px;
   clear: both;
   margin-top: 10px;
   display: flex;
-  text-align: initial;
+  text-align: center;
+  justify-content: center;
 `;
 
 const RowLeft = styled.div`
@@ -51,7 +52,7 @@ const RowLeft = styled.div`
 `;
 
 const RowRight = styled.div`
-  width: 60%;
+  width: 70%;
   padding-left: 10px;
   text-align: left;
   float: left;
@@ -271,9 +272,8 @@ export function ProfileForm(props) {
         <font size="2">Note: Editing skills will save any changes above first.</font>
       </RowContainer>
       <RowContainer>
-        <Skillpopup />
+        <Skillpopup email={currentUser.user.email} />
       </RowContainer>
-      <Marginer direction="vertical" margin="1em" />
       <RowContainer>
         <CheckButton ref={checkBtn}>
           <ConfirmButton>Confirm</ConfirmButton>

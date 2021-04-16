@@ -25,7 +25,7 @@ export function CardItem(props) {
 }
 
 export function JobCardItem(props) {
-  let {text1, text2, text3, text4, matched, missing} = props;
+  let {linkedinUrl,text1, text2, text3, text4, matched, missing} = props;
   if (matched.length == 0 && missing.length == 0){
     missing = [{"name":"Unable to extract: view job details"}]
   }
@@ -42,10 +42,12 @@ export function JobCardItem(props) {
             <h5 className="jobcards__item__text">{text2}</h5>
             <h5 className="jobcards__item__text">{text3}</h5>
           </div>
+          <a  href = {linkedinUrl}  target = "_blank">
           <figure className='jobcards__item__logo-wrap'>
             <img src={props.src2} alt='nopic'
               className='jobcards__item__img' />
           </figure>
+          </a>
         </div>
         <div className="jobcards__item__info2">
         <h5 className="jobcards__item__text">{text4}</h5>
