@@ -82,15 +82,6 @@ const Sortbyoptions = [
   { value: 'Least Skills Matched', label: 'Least Skills Matched' },
 ]
 
-const SelectIndustry = () => (
-  <Select options={Industryoptions} defaultValue = {Industryoptions[0]} />
-
-)
-
-const Sortby = () => (
-  <Select options={Sortbyoptions} defaultValue = {Sortbyoptions[0]} classNamePrefix='my-className-prefix'/>
-)
-
 const SearchBar = ({keyword,setKeyword}) => {
   const BarStyling = {width:"20rem",height:"22px", background:"#F2F1F9", border:"none", padding:"0.5rem", borderRadius: "3px"};
   return (
@@ -108,7 +99,7 @@ export function JobList(props){
   // const [currentUser, setCurrentUser] = useState(undefined);
   const [industries, setIndustries] = useState([]);
   const [jobListExtracted, setJobListExtracted] = useState([]);
-  const [waitText, setWaitText] = useState("Please wait while we find the best jobs for you... (Estimated time: 30s)");
+  const [waitText, setWaitText] = useState("Please wait while we find the best jobs for you... (May take a few seconds)");
   const [jobListDisplay, setJobListDisplay] = useState([]);
 
   useEffect( async () => {
@@ -197,6 +188,25 @@ export function JobList(props){
     console.log("display:");
     console.log(jobListDisplay);
   };
+
+  const handleFilter = (e) => {
+    const opt = e.value;
+    console.log(opt);
+    if (opt==="All Industries") {
+      setJobListDisplay(jobListExtracted);
+    }
+    else {
+      let temp = jobListDisplay.slice();
+      temp = temp.filter(function(job) {
+        return job.industry === opt;
+      });
+      setJobListDisplay(temp);
+    }
+    console.log("extracted:");
+    console.log(jobListExtracted);
+    console.log("display:");
+    console.log(jobListDisplay);
+  };
   
   return(
       <OuterContainer>
@@ -204,7 +214,10 @@ export function JobList(props){
             {/* <RowOneThird> */}
             <RowHalf>
             <div className= 'my-className-prefix'>
-              <Select options={industryDropdown()} defaultValue={Industryoptions[1]} isSearchable={false} />
+              <Select options={industryDropdown()} 
+                      defaultValue={Industryoptions[1]} 
+                      isSearchable={false}
+                      onChange={handleFilter} />
             </div>
             </RowHalf>
             {/* </RowOneThird> */}
