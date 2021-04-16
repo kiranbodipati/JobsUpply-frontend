@@ -98,7 +98,6 @@ export function CourseCards(props) {
         <div className="coursecards__wrapper">
           <ul className='coursecards__items'>
          <a href = {url} target = "_blank" style={{ textDecoration: 'none' }}>
-
             <CourseCardItem
               src={Coursera}
               Title={Title}
