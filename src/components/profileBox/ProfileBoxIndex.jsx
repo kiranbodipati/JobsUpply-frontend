@@ -68,6 +68,7 @@ const HeaderText = styled.h2`
   margin-bottom: 0;
   font-size: 30px;
   line-height: 1.24;
+  margin-top:0.5em;
 `;
 
 const SmallText = styled.h5`
@@ -84,7 +85,6 @@ const InnerContainer = styled.div`
   display: inline-block;
   flex-direction: row;
   align-items: flex-start;
-  padding: 0 2.7em;
 `;
 
 const BackImage = styled.div`
