@@ -25,6 +25,8 @@ const Loginpagecontainer = styled.div`
     background-size: cover; 
     display: flex;
     align-items: center;
+    overflow-x:hidden;
+    overflow-y:scroll;
 `;
 
 const BackgroundFilter = styled.div`
