@@ -4,7 +4,6 @@ import {Button, JobHave, JobNo, JobProfileHave} from '../Button/Button';
 const OuterContainer = styled.div`
   width: 15%;
   min-width: 180px;
-  height: 550px;
   display: flex;
   flex-direction: column;
   border-radius: 19px;
