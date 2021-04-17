@@ -74,6 +74,7 @@ btn-large{
     color: #242424;
     border: 1px solid bisque;
     margin: 0.25em;
+    white-space: nowrap;
 }
 .btn--skilldonthave {
     font-size: 10px;
