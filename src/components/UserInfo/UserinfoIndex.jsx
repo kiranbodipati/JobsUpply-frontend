@@ -15,7 +15,7 @@ const OuterContainer = styled.div`
 `;
 
 export const ProfileContainer = styled.div`
-  width: 99%;
+  width: 95%;
   min-height: 200px;
   display: flex;
   flex-direction: column;
@@ -26,7 +26,7 @@ export const ProfileContainer = styled.div`
 `;
 
 export const SkillContainer = styled.div`
-  width: 99%;
+  width: 95%;
   min-height: 200px;
   display: flex;
   flex-direction: column;
