@@ -73,6 +73,21 @@ const getOTP = async (email) => {
   return res.data;
 }
 
+const updatePassword = async (email, newpass) => {
+  let res = await axios.put(API_URL + "backend/auth", { "email": email, "newpassword": newpass });
+  if (res.data == 1) {
+    console.log("Password change successful");
+  }
+  else if (res.data == 0) {
+    console.log("Password change failed");
+  }
+  else {
+    console.log("An error may have occured");
+    console.log(res.data);
+  }
+  return res.data;
+}
+
 const logout = async () => {
   let res = await localStorage.removeItem("user");
   console.log("Logged out successfully.")
@@ -89,5 +104,6 @@ export default {
   logout,
   getCurrentUser,
   updateSkills,
-  getOTP
+  getOTP,
+  updatePassword
 };

@@ -148,27 +148,62 @@ const RowContainer = styled.div`
 class PasswordBox extends Component {
   constructor(props) {
     super(props);
-    this.email = React.createRef();
-    this.newPass = React.createRef();
-    this.inpOTP = React.createRef();
-    this.realOTP = undefined;
+    this.state = {
+      email: "",
+      newPass: "",
+      inpOTP: "",
+      realOTP: undefined
+    }
+    this.emailForm = React.createRef();
+    this.newPassForm = React.createRef();
+    this.OTPForm = React.createRef();
   }
 
   handleSend = async () => {
-      console.log(this.email)
-      let otp = await AuthService.getOTP(this.email);
-      console.log(otp);
-      if (otp != "404") {
-          this.setState({ realOTP: otp });
-      }
-      console.log(this.realOTP);
-      return;
-  }
-
-  handleSubmission = () => {
-    
+    console.log(this.state.email)
+    let otp = await AuthService.getOTP(this.state.email);
+    console.log(otp);
+    if (otp != "404") {
+        this.setState({ realOTP: otp });
+    }
+    else {
+      console.log("Bad request - no such email found");
+    }
+    console.log(this.state.realOTP);
     return;
   }
+
+  handleSubmission = async () => {
+    console.log(this.state.email);
+    console.log(this.state.inpOTP);
+    console.log(this.state.realOTP);
+    if (this.state.inpOTP == this.state.realOTP) {
+      let res = await AuthService.updatePassword(this.state.email, this.state.newPass);
+      if (res == 1) {
+        this.props.closePopup();
+      }
+    }
+    else {
+      console.log("Incorrect OTP")
+    }
+    return;
+  }
+
+  onChangeEmail = (e) => {
+    const Email = e.target.value;
+    this.setState({ email: Email });
+  };
+
+  onChangePassword = (e) => {
+    const password = e.target.value;
+    this.setState({ newPass: password });
+  };
+
+  onChangeOTP = (e) => {
+    const otp = e.target.value;
+    this.setState({ inpOTP: otp });
+    console.log(this.state.realOTP);
+  };
 
   render() {
     var left = 5000 + 'px';
@@ -188,7 +223,8 @@ class PasswordBox extends Component {
               placeholder="Email"
               type="text"
               className="form-control"
-              ref={this.email}
+              onChange={this.onChangeEmail}
+              ref={this.emailForm}
             />
             </FormContainer>
             <FormContainer>
@@ -196,7 +232,8 @@ class PasswordBox extends Component {
               placeholder="New password"
               type="password"
               className="form-control"
-              ref={this.newPass}
+              onChange={this.onChangePassword}
+              ref={this.newPassForm}
             />
             </FormContainer>
             <FormContainer>
@@ -204,7 +241,8 @@ class PasswordBox extends Component {
               placeholder="OTP"
               type="text"
               className="form-control"
-              ref={this.inpOTP}
+              onChange={this.onChangeOTP}
+              ref={this.OTPForm}
             />
             </FormContainer>
           </BoxContainer>
