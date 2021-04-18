@@ -68,8 +68,29 @@ const login = (Email, Password) => {
     });
 };
 
-const logout = () => {
-  localStorage.removeItem("user");
+const getOTP = async (email) => {
+  let res = await axios.get(API_URL + "backend/API/genOTP?email=" + email);
+  return res.data;
+}
+
+const updatePassword = async (email, newpass) => {
+  let res = await axios.put(API_URL + "backend/auth", { "email": email, "newpassword": newpass });
+  if (res.data == 1) {
+    console.log("Password change successful");
+  }
+  else if (res.data == 0) {
+    console.log("Password change failed");
+  }
+  else {
+    console.log("An error may have occured");
+    console.log(res.data);
+  }
+  return res.data;
+}
+
+const logout = async () => {
+  let res = await localStorage.removeItem("user");
+  console.log("Logged out successfully.")
 };
 
 const getCurrentUser = () => {
@@ -82,5 +103,7 @@ export default {
   login,
   logout,
   getCurrentUser,
-  updateSkills
+  updateSkills,
+  getOTP,
+  updatePassword
 };

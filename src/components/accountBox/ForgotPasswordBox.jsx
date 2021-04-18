@@ -1,15 +1,13 @@
 import React, {Component} from "react";
 import styled from "styled-components";
-import AnimatedMulti from "./SkillDropdown";
 import { motion } from "framer-motion";
 import { Marginer } from "../marginer";
 import { Link } from "react-router-dom";
-import BackImg from "../../Images/Backorange.png";
-import MultiSelect from "./SkillDropdown";
 import AuthService from "../../services/auth.service.js";
+import { BoldLink, Input, MutedLink } from "./common";
 
 const OuterContainer = styled.div`
-  width: 400px;
+  width: 250px;
   min-height: 200px;
   display: flex;
   flex-direction: column;
@@ -23,13 +21,13 @@ const OuterContainer = styled.div`
 `;
 
 const TopContainer = styled.div`
-  width: 100%;
+  width: 90%;
   height: 100px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 0 1.8em;
+  padding: 0 1.2em;
 `;
 
 const BackDrop = styled(motion.div)`
@@ -147,29 +145,65 @@ const RowContainer = styled.div`
   margin-bottom: 0.5em;
 `;
 
-class Skills extends Component {
+class PasswordBox extends Component {
   constructor(props) {
     super(props);
-    this.skillInput = React.createRef();
+    this.state = {
+      email: "",
+      newPass: "",
+      inpOTP: "",
+      realOTP: undefined
+    }
+    this.emailForm = React.createRef();
+    this.newPassForm = React.createRef();
+    this.OTPForm = React.createRef();
   }
 
-  handleSubmission = () => {
-    if (this.skillInput.current != null) {
-      let email = AuthService.getCurrentUser().user.email;
-      let n = this.skillInput.current.returnValue();
-      console.log(this.props)
-      console.log(n);
-      let res = [];
-      for(let i=0; i<n.length; i++){
-        res[i] = {"name":n[i].value};
-      }
-      let up = AuthService.updateSkills({"email":email, "skills":res});
-      console.log(email);
-      console.log(up);
+  handleSend = async () => {
+    console.log(this.state.email)
+    let otp = await AuthService.getOTP(this.state.email);
+    console.log(otp);
+    if (otp != "404") {
+        this.setState({ realOTP: otp });
     }
-    this.props.closePopup();
+    else {
+      console.log("Bad request - no such email found");
+    }
+    console.log(this.state.realOTP);
     return;
   }
+
+  handleSubmission = async () => {
+    console.log(this.state.email);
+    console.log(this.state.inpOTP);
+    console.log(this.state.realOTP);
+    if (this.state.inpOTP == this.state.realOTP) {
+      let res = await AuthService.updatePassword(this.state.email, this.state.newPass);
+      if (res == 1) {
+        this.props.closePopup();
+      }
+    }
+    else {
+      console.log("Incorrect OTP")
+    }
+    return;
+  }
+
+  onChangeEmail = (e) => {
+    const Email = e.target.value;
+    this.setState({ email: Email });
+  };
+
+  onChangePassword = (e) => {
+    const password = e.target.value;
+    this.setState({ newPass: password });
+  };
+
+  onChangeOTP = (e) => {
+    const otp = e.target.value;
+    this.setState({ inpOTP: otp });
+    console.log(this.state.realOTP);
+  };
 
   render() {
     var left = 5000 + 'px';
@@ -179,26 +213,50 @@ class Skills extends Component {
     <OuterContainer>
         <TopContainer>
             <HeaderContainer>
-                <HeaderText>Edit Skills</HeaderText>
+                <HeaderText>Reset Password</HeaderText>
             </HeaderContainer>
-            <SmallText>Click "confirm" to save changes.</SmallText>
+            <SmallText>Click "Send OTP" after entering your email below, then enter your new password and OTP before clicking submit.</SmallText>
         </TopContainer>
         <BoxContainer>
             <FormContainer>
-                <MultiSelect style={{padding:padding, left: left, top:top}} ref={this.skillInput} />
-              </FormContainer>
+            <Input
+              placeholder="Email"
+              type="text"
+              className="form-control"
+              onChange={this.onChangeEmail}
+              ref={this.emailForm}
+            />
+            </FormContainer>
+            <FormContainer>
+            <Input
+              placeholder="New password"
+              type="password"
+              className="form-control"
+              onChange={this.onChangePassword}
+              ref={this.newPassForm}
+            />
+            </FormContainer>
+            <FormContainer>
+            <Input
+              placeholder="OTP"
+              type="text"
+              className="form-control"
+              onChange={this.onChangeOTP}
+              ref={this.OTPForm}
+            />
+            </FormContainer>
           </BoxContainer>
          <RowContainer>
-            <SkillButton onClick={this.props.closePopup}>Cancel</SkillButton>
+            <ForgotButton onClick={this.handleSend}>Send OTP</ForgotButton>
             <Marginer direction="horizontal" margin="0.5em" />
-            <SkillButton onClick={this.handleSubmission}>Confirm</SkillButton>
+            <ForgotButton onClick={this.handleSubmission}>Confirm</ForgotButton>
          </RowContainer>
       </OuterContainer>
   );
 }
 }
 
-export const SkillButton = styled.button`
+export const ForgotButton = styled.button`
   padding: 10px 10%;
   width: 12em;
   color: #000;
@@ -218,7 +276,7 @@ export const SkillButton = styled.button`
   }
 `;
 
-export class Skillpopup extends Component {
+export class PasswordPopup extends Component {
   constructor() {
     super();
     this.state = {
@@ -234,10 +292,10 @@ export class Skillpopup extends Component {
   render() {
     return (
       <div>
-        <SkillButton onClick={this.togglePopup.bind(this)}>Edit Skills</SkillButton>
+        <BoldLink onClick={this.togglePopup.bind(this)}>Forgot Password?</BoldLink>
         <Marginer direction="vertical" margin="1em" />
         {this.state.showPopup ? 
-          <Skills
+          <PasswordBox
             closePopup={this.togglePopup.bind(this)}
           />
           : null

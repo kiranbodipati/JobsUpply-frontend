@@ -20,12 +20,19 @@ import { UserDetails } from "../../data";
 
 const Loginpagecontainer = styled.div`
     width: 100%;
-    height: 683px;
+    height: 700px;
     background: url(${TopSectionBackgroundImg});
     background-size: cover; 
     display: flex;
     align-items: center;
+    overflow-x:hidden;
+    overflow-y:scroll;
+    webkit-scrollbar : none;
 `;
+
+// .jobcards__item__info2::-webkit-scrollbar {
+//     display: none;
+//   }
 
 const BackgroundFilter = styled.div`
     width: 100%;

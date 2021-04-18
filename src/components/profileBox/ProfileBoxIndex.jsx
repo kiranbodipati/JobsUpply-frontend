@@ -18,6 +18,7 @@ const BoxContainer = styled.div`
   position: relative; 
   overflow-x: hidden;
   overflow-y: auto;
+  webkit-scrollbar : none;
 `;
 
 const TopContainer = styled.div`
