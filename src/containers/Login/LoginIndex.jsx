@@ -30,10 +30,6 @@ const Loginpagecontainer = styled.div`
     webkit-scrollbar : none;
 `;
 
-// .jobcards__item__info2::-webkit-scrollbar {
-//     display: none;
-//   }
-
 const BackgroundFilter = styled.div`
     width: 100%;
     height: 100%;
@@ -60,10 +56,6 @@ export function Login(props) {
             console.log(currentUser);
         }
     }, []);
-    // if(currentUser!=null) {
-    //   console.log(currentUser);
-    //   return (<JobList />)
-    // };
 
     return(
         <PageContainer>

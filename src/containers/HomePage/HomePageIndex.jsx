@@ -97,19 +97,6 @@ export const Line = styled.hr`
 
 export function HomePage(props){
     const { children, textSize } = props;
-
-    // const [currentUser, setCurrentUser] = useState(undefined);
-
-    // useEffect(() => {
-    //     const user = AuthService.getCurrentUser();
-
-    //     if (user) {
-    //     setCurrentUser(user);
-    //     }
-    //     if(!currentUser) {
-    //         console.log(currentUser);
-    //        return ( <Login/>)};
-    // }, []);
     return (<PageContainer>
             <TopSectionContainer>
                 {/* <video>
@@ -120,7 +107,7 @@ export function HomePage(props){
                     {children}
                     <TopSectionInnerContainer>
                         <HeadlineContainer>
-                            <Title size = {textSize}>YOUR FIRST STEP TO THE WORKING WORLD</Title>
+                            <Title size = {textSize}>YOUR FIRST STEP INTO THE WORKING WORLD</Title>
                             <Line />
                             <SloganText>Sign in to see the best job only for you!</SloganText>
                             <Marginer direction = "vertical" margin = {30} />

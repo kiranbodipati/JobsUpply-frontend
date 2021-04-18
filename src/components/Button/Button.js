@@ -1,7 +1,5 @@
 import React from 'react';
 import './Button.css';
-import styled from "styled-components";
-import {Link} from 'react-router-dom';
 
 const STYLES = ['btn--primary', 'btn--outline']
 
@@ -52,7 +50,29 @@ export const JobHaveButton = ({
         )
     }
 
-    export const JobHave = ({
+export const JobHave = ({
+children,
+type,
+onClick,
+buttonStyle, 
+buttonSize
+}) => {
+    const checkButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0]
+    const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0]
+    return(
+        
+            <button
+            className={`btn--skillhave ${checkButtonStyle} ${checkButtonSize}` }
+            onClick={onClick}
+            typo={type}
+            >
+                {children}
+            </button>
+        
+    )
+}
+
+export const JobNo = ({
     children,
     type,
     onClick,
@@ -64,7 +84,7 @@ export const JobHaveButton = ({
         return(
             
                 <button
-                className={`btn--skillhave ${checkButtonStyle} ${checkButtonSize}` }
+                className={`btn--skilldonthave ${checkButtonStyle} ${checkButtonSize}` }
                 onClick={onClick}
                 typo={type}
                 >
@@ -73,49 +93,28 @@ export const JobHaveButton = ({
             
         )
     }
-    export const JobNo = ({
-        children,
-        type,
-        onClick,
-        buttonStyle, 
-        buttonSize
-        }) => {
-            const checkButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0]
-            const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0]
-            return(
-                
-                    <button
-                    className={`btn--skilldonthave ${checkButtonStyle} ${checkButtonSize}` }
-                    onClick={onClick}
-                    typo={type}
-                    >
-                        {children}
-                    </button>
-                
-            )
-        }
 
-        export const JobProfileHave = ({
-            children,
-            type,
-            onClick,
-            buttonStyle, 
-            buttonSize
-            }) => {
-                const checkButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0]
-                const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0]
-                return(
-                    
-                        <button
-                        className={`btn--skillProfilehave ${checkButtonStyle} ${checkButtonSize}` }
-                        onClick={onClick}
-                        typo={type}
-                        >
-                            {children}
-                        </button>
-                    
-                )
-            }
+export const JobProfileHave = ({
+    children,
+    type,
+    onClick,
+    buttonStyle, 
+    buttonSize
+    }) => {
+        const checkButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0]
+        const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0]
+        return(
+            
+                <button
+                className={`btn--skillProfilehave ${checkButtonStyle} ${checkButtonSize}` }
+                onClick={onClick}
+                typo={type}
+                >
+                    {children}
+                </button>
+            
+        )
+    }
     
     
 

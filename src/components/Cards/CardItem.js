@@ -1,10 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Marginer} from "../../components/marginer";
 import {Button, JobHave, JobNo} from '../Button/Button';
-import APIServices from '../../services/JobData'
-import AuthServices from '../../services/auth.service'
-import { useState, useEffect } from "react";
 
 export function CardItem(props) {
   return (

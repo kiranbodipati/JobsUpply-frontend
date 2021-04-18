@@ -3,19 +3,10 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Select from 'react-select'
 import { JobCards} from "../Cards/Cards"
-import {Button, JobHave, JobNo} from '../Button/Button'
 import { Link } from 'react-router-dom';
 import './new.css';
-import {PositionDetail, PositionDetailKiran} from "../../data";
 import AuthService from "../../services/auth.service";
-import {Login} from "../../containers/Login/LoginIndex";
-import Redirect from 'react';
 import APIService from "../../services/JobData"
-import {UserDetails} from '../../data'
-// import AuthService from "./services/auth.service.js";
-// import AuthService from "/Users/abhishekvaidyanathan/Desktop/JobsUpply-frontend/src/services/auth.service.js";
-// import AuthService from "../../services/auth.service";
-// import {Login} from "../../containers/Login/LoginIndex";
 
 
 const OuterContainer = styled.div`
@@ -255,7 +246,6 @@ export function JobList(props){
                 Jobtitle = {data.title}
                 Company = {data.company}
                 Industry = {data.industry}
-                skills ={data.skills}
                 matched = {data.matched}
                 missing = {data.missing}
                 />

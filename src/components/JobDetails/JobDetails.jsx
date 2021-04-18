@@ -1,11 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Select from 'react-select'
-import {Button, JobHave, JobNo} from '../Button/Button'
 import { CourseCards, JobCards } from "../Cards/Cards"
-import { Link } from 'react-router-dom';
-import {CourseDetail,PositionDetailsingle} from "../../data";
-
 
 const OuterContainer = styled.div`
   width: 58%;
@@ -62,20 +57,28 @@ export const CourseContainer = styled.div`
 export function JobDetail(props){
   let { jobData, courseData } = props;
   console.log(jobData.recommendations);
+
+  const courseText = () => {
+    if (courseData.length == 0) {
+      console.log("No courses.");
+      return <font color="white" size="3">Sorry, no courses were found for missing skills (if any).</font>
+    }
+  }
+
   return(
         <OuterContainer>
             <JobContainer>
                 <CourseContainer>
-                <a href = {jobData.linkedinUrl} target = "_blank" style={{ textDecoration: 'none' }}>
+                <a href = {jobData.linkedinUrl} target = "_blank" style={{ width: "100%", textDecoration: 'none' }}>
                   <JobCards
                   Jobtitle = {jobData.title}
                   Company = {jobData.company}
                   Industry = {jobData.industry}
-                  skills ={jobData.skills}
                   matched = {jobData.matched}
                   missing = {jobData.missing}
                   />
                   </a>
+                  {courseText()}
                   {courseData.map((data) =>
                     <CourseCards key = {data.url}
                     url = {data.url}

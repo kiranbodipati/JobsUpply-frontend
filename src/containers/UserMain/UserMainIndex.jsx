@@ -58,9 +58,6 @@ export function UserMain(props){
         else {
             console.log("oops")
         }
-        // if(!currentUser) {
-        //     console.log(currentUser);
-        //    return ( <Login/>)};
     }, []);
     return (
     <PageContainer>

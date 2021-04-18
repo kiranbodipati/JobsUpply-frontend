@@ -9,8 +9,9 @@ const register = (Email, Password) => {
   })
   .then((response) => {
     if (response.data.token) {
-      console.log(response.data.token)
-      localStorage.setItem("user", JSON.stringify(response.data));
+      console.log(response.data.token);
+      let data = {"token": response.data.token, "user": response.data}
+      localStorage.setItem("user", JSON.stringify(data));
     }
 
     return response.data;
@@ -60,7 +61,7 @@ const login = (Email, Password) => {
     })
     .then((response) => {
       if (response.data.token) {
-        console.log(response.data.token)
+        console.log(response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data));
       }
 

@@ -9,7 +9,7 @@ import {
   SubmitButton,
 } from "./common";
 import { AccountContext } from "./context";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
@@ -45,23 +45,22 @@ const validEmail = (value) => {
   }
 };
 
-// const vusername = (value) => {
-//   if (value.length < 3 || value.length > 20) {
-//     return (
-//       <div className="alert alert-danger" role="alert">
-//         The username must be between 3 and 20 characters.
-//       </div>
-//     );
-//   }
-// };
+const isLegalPassword = (pass) => {
+  let sp=0, up=0, lo=0;
+  let special = "!@#$%^&*()-_=+~{}[];:,<.>/?\'\"\\|`1234567890";
+  for(let i=0; i<pass.length; i++) {
+    let ch = pass[i];
+    if (special.includes(ch)) sp+=1;
+    else if (ch == ch.toUpperCase()) up+=1;
+    else if (ch == ch.toLowerCase()) lo+=1;
+  }
+  if (sp>0 && up>0 && lo>0) return true;
+  return false;
+}
 
 const vpassword = (value) => {
-  if (value.length < 8 || value.length > 40) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The password must be between 8 and 40 characters.
-      </div>
-    );
+  if (value.length < 8 || value.length > 40 || !isLegalPassword(value)) {
+    return 0;
   }
   else {
     return 1;
@@ -79,11 +78,6 @@ export const SignupForm = (props) => {
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
   const [formIsValid, setFormIsValid] = useState(false);
-
-  // const onChangeUsername = (e) => {
-  //   const username = e.target.value;
-  //   setUsername(username);
-  // };
 
   const onChangeEmail = (e) => {
     const Email = e.target.value;
@@ -107,7 +101,7 @@ export const SignupForm = (props) => {
     }
     else {
       setFormIsValid(false)
-      setMessage("Invalid password! (must be between 8 and 40 characters)")
+      setMessage("Invalid password! (must be between 8 and 40 characters, and have at least one uppercase, lowercase, and special character.)")
     }
   };
 
@@ -123,7 +117,8 @@ export const SignupForm = (props) => {
       AuthService.register(Email, password).then(
         (response) => {
           setSuccessful(true);
-          hist.push("/Settings")
+          hist.push("/Settings");
+          window.location.reload();
         },
         (error) => {
           const resMessage =

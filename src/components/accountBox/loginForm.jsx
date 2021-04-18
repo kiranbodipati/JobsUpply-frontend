@@ -10,7 +10,6 @@ import {
 } from "./common";
 import { AccountContext } from "./context";
 import { Link, useHistory } from "react-router-dom";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PasswordPopup } from "./ForgotPasswordBox";
 
 import React, { useState, useRef } from "react";
