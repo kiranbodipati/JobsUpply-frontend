@@ -8,6 +8,7 @@ export const BoxContainer = styled.div`
   margin-top: 10px;
   overflow-x: hidden;
   overflow-y: overlay;
+  webkit-scrollbar : none;
 `;
 
 export const FormContainer = styled.form`
