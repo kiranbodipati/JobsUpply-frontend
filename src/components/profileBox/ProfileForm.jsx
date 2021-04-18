@@ -136,7 +136,6 @@ export function ProfileForm(props) {
 
   const onChangeName = (e) => {
     const Name = e.target.value;
-    console.log({"email":currentUser.user.email, "name": name, "university":university, "major":major, "minor":minor})
     if (required(Name) === 1){
       setName(Name);
       setFormIsValid(true);

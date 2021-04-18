@@ -187,7 +187,7 @@ export function JobList(props){
       setJobListDisplay(jobListExtracted);
     }
     else {
-      let temp = jobListDisplay.slice();
+      let temp = jobListExtracted.slice();
       temp = temp.filter(function(job) {
         return job.industry === opt;
       });

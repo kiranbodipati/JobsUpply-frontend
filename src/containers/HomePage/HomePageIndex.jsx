@@ -9,8 +9,6 @@ import { Navbar } from "../../components/Navbar/NavbarBefore";
 import { Button } from '../../components/Button/Button';
 import { Cards } from '../../components/Cards/Cards';
 import { Footer } from '../../components/Footer/FooterIndex';
-// import AuthService from "../../services/auth.service";
-// import {Login} from "../../containers/Login/LoginIndex";
 
 export const ContentContainer = styled.div`
     width: 100%;
@@ -74,6 +72,7 @@ export const SloganText = styled.h2`
     font-weight: 1000;
     font-size: 25px;
     width: 70%
+    text-align: center;
 `;
 
 export const Line = styled.hr`
@@ -82,18 +81,6 @@ export const Line = styled.hr`
   border-width: 0.1em;
   border-color: rgb(244,98,58);
 `;
-
-// export background-video{
-
-//     height: 100%;
-//     width: 100%;
-//     float: left;
-//     top: 0;
-//     padding: none;
-//     position: fixed; /* optional depending on what you want to do in your app */
-    
-    
-//     }
 
 export function HomePage(props){
     const { children, textSize } = props;
